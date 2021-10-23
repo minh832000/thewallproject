@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block pagetitle %}
+      The Wall
+{% endblock %}
+
+{% block pagecontent %}
+      <!-- =============== HEADER =============== -->
+      <header class="bg-web position-fixed top-0 w-100">
+            <div class="container ">
+            <div class=" header d-flex row justify-content-between ">
+                  <div class="logo col-md-2  col-10 d-flex align-items-center">
+                        <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
+                        <p class="name text-white mb-0 fs-5">The Wall</p>
+                  </div>
+                  <div class="icon-menu col-2 align-items-center ">
+                        <img src="{% static 'image/menu.png' %}" alt="">
+                  </div>
+                  <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
+                        <div class="icon-close">
+                        <img src="{% static 'image/close-button.png' %}" alt="">
+                        </div>
+                        <div class="nav-menu row col-md-6 col-12 ">
+                        <ul class="list-unstyled mb-0 ">
+                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="">CƠ HỘI VIỆC LÀM</a></li>
+                              <li class="d-inline-block"><a class="text-decoration-none text-light" href="">DANH SÁCH CÔNG TY</a></li>
+                        </ul>
+                        </div>
+                        <div class="col-md-6 row justify-content-between align-items-center">
+                        <div class="sign-up col-md-6 col-12">
+                              <a class=" fs-14 text-decoration-none me-4 text-light" href="">ĐĂNG NHẬP</a>
+                              <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
+                        </div>
+                        <div class="col-md-6 col-12 ">
+                              <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                        </div>
+                        </div>
+                  </div>
+            </div>
+            </div>
+      </header>
+      <!------------END HEADER------------------>
+      <div id="content" class="font-NotoSans-Regular pt-5">
+            <div class="container">
+            <div class="my-5 px-md-0 px-4 search d-flex row justify-content-between gy-3">
+                  <div class="search-job p-1 col-md-5 col-12">
+                        <img src="{% static 'image/hello/search.png' %}" alt="">
+                        <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                  </div>
+                  <div class="search-location p-1 col-md-5 col-12">
+                        <img src="{% static 'image/location.png' %}" alt="">
+                        <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                  </div>
+                  <div class="btn-search">
+                        <button class="text-light w-100 border-0 h-100 bg-web">TÌM KIẾM</button>
+                  </div>
+            </div>
+            <div 
+                  class="px-md-0 px-4 row member-registration d-flex overflow-hidden"
+                  data-aos="fade-down"
+                  data-aos-offset="200"
+                  data-aos-delay="50"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+            >
+                  <div class="register-adv p-0 col-md-6 col-12">
+                        <h2 class="fs-4 pt-4  text-noto-b">ĐẨY NHANH QUÁ TRÌNH ỨNG TUYỂN <br>
+                        KHI BẠN LÀ THÀNH VIÊN CỦA THE WALL</h2>
+                        <p class="fs-14 my-3 text-noto-re w-75">
+                        Trở thành thành viên The Wall để khám phá thêm nhiều cơ hội việc làm hấp dẫn với thu nhập cao
+                        </p>
+                        <button class="btn-sign-in my-3 border-0 bg-btn fs-14 text-noto-b p-2">ĐĂNG KÝ NGAY</button>
+                  </div>
+                  <div class="review-member col-md-6 col-12">
+                        <div class="review p-4">
+                        <div class="review-item mb-4 position-relative" id="card_1">
+                              <div class="review-card p-4 position-relative bg-white">
+                                    <p class="review-content ">
+                                    Mình nhận được công việc, môi trường, lương & phúc lợi tốt. 
+                                    Mình được hỗ trợ rất nhiệt tình và tận tâm bởi bạn Chuyên viên 
+                                    Tuyển dụng từ The Wall
+                                    </p>
+                                    <div class="text-end">
+                                    <p class="mb-0">Đỗ Duy Phúc</p>
+                                    </div>
+                                    <div class="img-quote position-absolute">
+                                    <img class="w-100 " src="{% static 'image/hello/quote-left.png' %}" alt="">
+                                    </div>
+                              </div>
+                              <div class="card-shadow w-100 h-100 position-absolute"></div>
+                        </div>
+                        <div class="review-item mb-4 position-relative" id="card_2">
+                              <div class="review-card p-4 position-relative bg-white">
+                                    <p class="review-content ">
+                                    Nếu có 3 từ để nói về trải nghiệm làm việc với The Wall, mình sẽ chọn: 
+                                    "chuyên nghiệp" trong cách tiếp cận với các bạn ứng viên; 
+                                    "lịch sự" trong ngôn từ và cách giao tiếp;
+                                    </p>
+                                    <div class="text-end">
+                                    <p class="mb-0">Trịnh Trung Dũng</p>
+                                    </div>
+                                    <div class="img-quote position-absolute">
+                                    <img class="w-100 " src="{% static 'image/hello/quote-left.png' %}" alt="">
+                                    </div>
+                              </div>
+                              <div class="card-shadow w-100 h-100 position-absolute"></div>
+                        </div>
+                        <div class="review-item mb-4 position-relative" id="card_3">
+                              <div class="review-card p-4 position-relative bg-white">
+                                    <p class="review-content ">
+                                    C&B trong công việc của mình rất rõ ràng, headhunt giao tiếp tốt. 
+                                    Mình nghĩ The Wall đã làm rất tốt.
+                                    </p>
+                                    <div class="text-end">
+                                    <p class="mb-0">Phạm Đăng Hưng</p>
+                                    </div>
+                                    <div class="img-quote position-absolute">
+                                    <img class="w-100 " src="{% static 'image/hello/quote-left.png' %}" alt="">
+                                    </div>
+                              </div>
+                              <div class="card-shadow w-100 h-100 position-absolute"></div>
+                        </div>
+                        <div class="nav-button d-inline px-2" id="previous">&#10094;</div>
+                        <div class="nav-button d-inline px-2" id="next">&#10095;</div>
+                        </div>
+                  </div>
+            </div>
+            <!---------------------SỐ LIỆU QUẢNG BÁ--------------------------->
+            <div class="card-number d-flex row my-5 pb-5 justify-content-center"
+                  data-aos="fade-down"
+                  data-aos-offset="200"
+                  data-aos-delay="50"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+            >
+                  <div class="col-md col-10 card-number-member p-4">
+                        <p>Chúng tôi đã giúp</p>
+                        <h2 class="text-noto-b">2.042.899</h2>
+                        <p class="text-medium">bạn trẻ khám phá nghề nghiệp mơ ước</p>
+                  </div>
+                  <div class="col-md my-4 my-md-0 col-10 card-number-member mx-md-5 p-4">
+                        <p>Chúng tôi đã đồng hành cùng</p>
+                        <h2 class="text-noto-b">40.590</h2>
+                        <p class="text-medium">công ty trên toàn cầu xây dựng 
+                        thành công đội ngũ nhân lực tài năng</p>
+                  </div>
+                  <div class="col-md col-10 card-number-member p-4">
+                        <p>Khám phá ngay</p>
+                        <h2 class="text-noto-b">90.139</h2>
+                        <p class="text-medium">cơ hội việc làm mới nhất được 
+                        cập nhật hàng tháng</p>
+                  </div>
+            </div>
+            </div>
+            <!-------------------DANH SÁCH CÁC CÔNG VIỆC------------------------->
+            <div class="job-introduce mt-5">
+            <div class="container">
+                  <div class="row d-flex justify-content-between my-5">
+                        <div class="list-job col-md-3 col-12">
+                        <ul class="list-unstyled ">
+                              <li id="job-1">Thiết kế</li>
+                              <li id="job-2">Tài chính</li>
+                              <li id="job-3">Kỹ sư</li>
+                              <li id="job-4">Nhân sự</li>
+                              <li id="job-5">Quản lý dự án</li>
+                              <li id="job-6">Kinh doanh/Sale</li>
+                              <li id="job-7">Marketing</li>
+                              <li id="job-8">Truyền thông</li>
+                        </ul>
+                        </div>
+                        
+                        <div class="job-information col-12 col-md-8 text-white text-noto-re" id="design-introduce">
+                        <div class="select-job mb-4 ">
+                              <select name="job" id="" class="w-100 bg-dark text-white p-2 fs-14">
+                                    <option value="">Thiết kế</option>
+                                    <option value="">Tài chính</option>
+                                    <option value="">Kỹ sư</option>
+                                    <option value="">Nhân sự</option>
+                                    <option value="">Quản lý dự án</option>
+                                    <option value="">Kinh doanh/Sale</option>
+                              </select>
+                        </div>
+                        <h2 class="text-noto-b fs-3 w-50 d-inline-block pb-2">THIẾT KẾ</h2>
+                        <p class="fs-14">
+                              Thiết kế là việc tạo ra một bản vẽ hoặc quy ước nhằm tạo dựng một đối tượng, 
+                              một hệ thống hoặc một tương tác giữa người với người có thể đo lường được 
+                              (như ở các bản vẽ chi tiết kiến trúc, bản vẽ kỹ thuật, quy trình kinh doanh, sơ đồ mạch điện,  ni mẫu cắt may...)
+                        </p>
+                        <ul class="fs-14">
+                              <li>2399 việc làm còn trống</li>
+                              <li>1017 cơ hội việc làm</li>
+                        </ul>
+                        <div class="img-introduce px-md-5">
+                              <div class="swiper-container mt-4 pt-5 frame-swiper mySwiper-slide items-center mx-auto my-14">
+                                    <div class="swiper-wrapper ">
+                                    <div class=" swiper-slide " style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/des-4.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/des-5.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/des-3.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/des-2.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/des-11.jpg' %}" alt="">
+                                    </div>
+                                    </div>
+                              </div>
+                        </div>
+                        </div>
+                        <div class="job-information col-8 text-white text-noto-re" id="finance-introduce">
+                        <h2 class="text-noto-b fs-3 w-50 d-inline-block pb-2">TÀI CHÍNH</h2>
+                        <p class="fs-14">
+                              Một hoạt động kinh doanh riêng biệt bằng cách thông qua qua ngân hàng và 
+                              các công cụ tài chính của ngân hàng để thực hiện tất cả dịch vụ giao dịch tài chính, 
+                              lưu thông và vận hành tiền tệ bao gồm: bảo lãnh, thanh toán, chi trả trong nội địa và quốc tế
+                        </p>
+                        <ul class="fs-14">
+                              <li>1701 việc làm còn trống</li>
+                              <li>417 cơ hội việc làm</li>
+                        </ul>
+                        <div class="img-introduce px-5">
+                              <div class="swiper-container mt-4 pt-5 frame-swiper mySwiper-slide items-center w-7/12 mx-auto my-14">
+                                    <div class="swiper-wrapper ">
+                                    <div class=" swiper-slide " style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/fin-1.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/fin-2.jpg' %}" alt="">
+                                    </div>
+                                    <div class=" swiper-slide" style="width:160px">
+                                          <img class="scale-img" src="{% static 'image/hello/fin-3.jpg' %}" alt="">
+                                    </div>
+                                    </div>
+                              </div>
+                        </div>
+                        </div>
+                  </div>
+            </div>
+            </div>
+            <div class="container">
+            <div class="benefit my-5 py-5"
+                  data-aos="fade-up"
+                  data-aos-offset="200"
+                  data-aos-delay="50"
+                  data-aos-duration="1000"
+                  data-aos-easing="ease-in-out"
+            >
+                  <h2 class="fs-3 text-noto-b text-center">
+                        THAM GIA CỘNG ĐỒNG <span class="color-red fs-1">1.000.000+</span> ỨNG VIÊN TÀI NĂNG 
+                  </h2>
+                  <div class="list-benefit d-flex row justify-content-between">
+                        <div class="benefit-item position-relative shadow text-center col-3 p-3">
+                        <div class="icon-benefit position-absolute top-0 bg-web d-inline-block">
+                              <img src="{% static 'image/hello/telescope.png' %}" alt="">
+                        </div>
+                        <h4 class="fs-5 text-noto-b mb-3">
+                              KHÁM PHÁ <br>
+                              NGHỀ NGHIỆP MƠ ƯỚC
+                        </h4>
+                        <p>
+                              Khám phá nghề nghiệp mơ ước và ứng tuyển hàng ngàn việc 
+                              làm nổi bật nhất hiện nay.
+                        </p>
+                        </div>
+                        <div class="benefit-item mt-md-5 position-relative shadow text-center col-3 p-3 mt-10s">
+                        <div class="icon-benefit position-absolute top-0 bg-web d-inline-block">
+                              <img src="{% static 'image/hello/rocket.png' %}" alt="">
+                        </div>
+                        <h4 class="fs-5 text-noto-b mb-3">
+                              PHÁT TRIỂN<br>
+                              KỸ NĂNG CHUYÊN MÔN
+                        </h4>
+                        <p>
+                              Nắm bắt cơ hội phát triển kỹ thuật chuyên môn bản thân của bạn.
+                        </p>
+                        </div>
+                        <div class="benefit-item mt-10 mb-mt-0 position-relative shadow text-center col-3 p-3 mt-10s">
+                        <div class="icon-benefit position-absolute top-0 bg-web d-inline-block">
+                              <img src="{% static 'image/hello/global-network.png' %}" alt="">
+                        </div>
+                        <h4 class="fs-5 text-noto-b mb-3">
+                              KẾT NỐI VỚI CÔNG TY TRÊN TOÀN THẾ GIỚI
+                        </h4>
+                        <p>
+                              Đừng bỏ lỡ cơ hội kết nối với các công ty trên toàn cầu và nắm bắt cơ hội việc làm mới nhất
+                        </p>
+                        </div>
+                  </div>
+            </div>
+            <div class="user-review text-center position-relative">
+                  <h2 class="fs-3 text-noto-b text-center">CẢM NHẬN CỦA NGƯỜI DÙNG <span>THE WALL</span> </h2>
+                  <div class="list-review position-relative overflow-hidden">
+                        <div class="user-review-item" id="rv-1">
+                        <div class="img-review d-flex justify-content-center">
+                              <div class="img-small small-1 position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-1.png' %}" alt="">
+                              </div>
+                              <div class="img-big mx-5">
+                                    <img class="w-100" src="{% static 'image/hello/user-2.png' %}" alt="">
+                              </div>
+                              <div class="img-small small-2 position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-3.png' %}" alt="">
+                              </div> 
+                        </div>
+                        <div class="name-user">
+                              <p class="text-noto-b m-0">Jis Ann</p>
+                              <p class="text-secondary text-noto-re fs-14">Front-end Dev</p>
+                        </div>
+                        <p class="rv-content">
+                              Tôi thực sự không biết mình muốn làm gì 
+                              - và chỉ đang khám phá các nghề nghiệp trên Glints 
+                              - giờ tôi đã khám phá ra những gì tôi thích làm và tìm thấy sự nghiệp mơ ước của mình!
+                        </p>
+                        </div>
+                        <div class="user-review-item"  id="rv-2">
+                        <div class="img-review d-flex justify-content-center">
+                              <div class="img-small position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-2.png' %}" alt="">
+                              </div>
+                              <div class="img-big mx-5">
+                                    <img class="w-100" src="{% static 'image/hello/user-3.png' %}" alt="">
+                              </div>
+                              <div class="img-small position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-1.png' %}" alt="">
+                              </div> 
+                        </div>
+                        <div class="name-user">
+                              <p class="text-noto-b m-0">Jenny</p>
+                              <p class="text-secondary text-noto-re fs-14">Marketing</p>
+                        </div>
+                        <p class="rv-content">
+                              The Wall đã rất tuyệt vời khi giúp tôi phát triển kỹ năng của mình thông qua các đề xuất được cá nhân hóa! 
+                              Tôi đã tìm thấy nhiều khóa thực tập để phát triển kỹ năng của mình.
+                        </p>
+                        </div>
+                        <div class="user-review-item" id="rv-3">
+                        <div class="img-review d-flex justify-content-center">
+                              <div class="img-small position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-3.png' %}" alt="">
+                              </div>
+                              <div class="img-big mx-5">
+                                    <img class="w-100" src="{% static 'image/hello/user-1.png' %}" alt="">
+                              </div>
+                              <div class="img-small position-relative">
+                                    <div class="over-img position-absolute top-0"></div>
+                                    <img class="w-100" src="{% static 'image/hello/user-2.png' %}" alt="">
+                              </div> 
+                        </div>
+                        <div class="name-user">
+                              <p class="text-noto-b m-0">Kai</p>
+                              <p class="text-secondary text-noto-re fs-14">Design</p>
+                        </div>
+                        <p class="rv-content">
+                              Nền tảng này thực sự thuận tiện để liên hệ với các công ty và tôi đã nhận được 2 cuộc phỏng vấn rồi! 
+                              Tôi cũng có thể theo dõi tình trạng đơn đăng ký của mình thay vì tự hỏi liệu công ty đã nhìn thấy hoặc đưa tôi vào danh sách lựa chọn hay chưa.
+                        </p>
+                        </div>
+                  </div>
+                  <div class="nav-btn-review d-inline px-2 position-absolute" id="previous-rv">&#10094;</div>
+                  <div class="nav-btn-review d-inline px-2 position-absolute" id="next-rv">&#10095;</div>
+            </div>
+            </div>
+      </div>
+      <footer class="bg-web mt-5">
+            <div class="container">
+            <div class="row justify-content-between text-white text-noto-re text-md-start text-center">
+                  <div class="introduce col-md-4 mt-3 pb-5">
+                        <div class="logo w-50 p-2 m-auto m-md-0">
+                        <img class="w-100" src="{% static 'image/main-logo.png' %}" alt="">
+                        </div>
+                        <p class="fs-14">
+                        The Wall là nền tảng tuyển dụng và phát triển sự nghiệp hàng đầu Châu Á dành cho các tài năng trẻ. Sứ mệnh của The Wall là giúp người trẻ khám phá và theo đuổi đam mê nghề nghiệp.
+                        </p>
+                        <div class="social-icon pt-4 d-flex justify-content-md-start justify-content-center">
+                        <img class="col-2" src="{% static 'image/facebook.png' %}" alt="">
+                        <img class="mx-5 col-2" src="{% static 'image/linkedin-sign.png' %}" alt="">
+                        <img class="col-2" src="{% static 'image/twitter-sign.png' %}" alt="">
+                        </div>
+                  </div>
+                  <div class="contact col-md-4 pt-5">
+                        <h3 class="fs-4">LIÊN HỆ</h3>
+                        <p class="fs-14">
+                        <strong>Địa chỉ:</strong> Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
+                        </p>
+                        <p class="fs-14"><strong>Email:</strong> sales-vn@glints.com</p>
+                        <p class="fs-14"><strong>Hotline:</strong> (028) 7100 3030</p>
+                  </div>
+                  <div class="site-linking col-md-3 py-5">
+                        <h3 class="fs-4">CÁC TRANG LIÊN KẾT</h3>
+                        <ul class="list-unstyled">
+                        <li><a href="">Cơ hội việc làm</a></li>
+                        <li><a href="">Danh sách công ty</a></li>
+                        <li><a href="">Vị trí ứng tuyển</a></li>
+                        </ul>
+                  </div>
+            </div>
+            </div>
+      </footer>
+{% endblock %}
