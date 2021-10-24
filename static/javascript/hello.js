@@ -34,7 +34,7 @@ jQuery(document).ready(function($){
 
 // Sự kiện thay đổi thông tin giới thiệu công việc
 //Set cho mấy cái kia ẩn hết nè
-$('#finance-introduce').hide(200);
+$('#finance-introduce').hide();
 //xử lý bấm từng cái chứ sao giờ
 $(document).on('click', "#job-1", function() {
     $('#finance-introduce').hide(400);
