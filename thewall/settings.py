@@ -77,8 +77,16 @@ WSGI_APPLICATION = 'thewall.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        
+        # Connect to Postgres Database Server
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'thewall_db',
+        'USER': 'thewallGroup',
+        'PASSWORD': 'thewall24102021',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
