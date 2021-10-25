@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block pagetitle %}
+      Đăng ký | Người tìm việc
+{% endblock %}
+
+{% block pagecontent %}
+<!------------HEADER------------------>
+      <header class="bg-web position-fixed top-0 w-100">
+            <div class="container ">
+            <div class=" header d-flex row justify-content-between ">
+                  <div class="logo col-md-2  col-10 d-flex align-items-center">
+                        <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
+                        <p class="name text-white mb-0 fs-5">The Wall</p>
+                  </div>
+                  <div class="icon-menu col-2 align-items-center ">
+                        <img src="{% static 'image/menu.png' %}" alt="">
+                  </div>
+                  <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
+                        <div class="icon-close">
+                        <img src="{% static 'iamge/close-button.png' %}" alt="">
+                        </div>
+                        <div class="nav-menu row col-md-6 col-12 ">
+                        <ul class="list-unstyled mb-0 ">
+                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="">CƠ HỘI VIỆC LÀM</a></li>
+                              <li class="d-inline-block"><a class="text-decoration-none text-light" href="">DANH SÁCH CÔNG TY</a></li>
+                        </ul>
+                        </div>
+                        <div class="col-md-6 row justify-content-between align-items-center">
+                        <div class="sign-up col-md-6 col-12">
+                              <a class=" fs-14 text-decoration-none me-4 text-light" href="">ĐĂNG NHẬP</a>
+                              <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
+                        </div>
+                        <div class="col-md-6 col-12 ">
+                              <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="../assets/image/Arrow 1.png" alt=""></button>
+                        </div>
+                        </div>
+                  </div>
+            </div>
+            </div>
+      </header>
+      <div class="container text-noto-re">
+            <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
+            <h2 class="text-noto-b text-center fs-3">Đăng ký tài khoản The Wall</h2>
+            <form action="{% url 'jobseeker_register' %}" method="POST" id="form-sign-up">
+                  {% csrf_token %}
+                  <div class="input ps-2 my-4">
+                        <input type="text" name="first_name" placeholder="Tên đăng nhập" required>
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <input type="text" name="last_name" placeholder="Tên đăng nhập" required>
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <img src="{% static 'image/sign-in/user.png' %}" alt="">
+                        <input type="text" name="username" placeholder="Tên đăng nhập" required>
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <img src="{% static 'image/email.png' %}" alt="">
+                        <input type="email" name="email" placeholder="Email" >
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <img src="{% static 'image/sign-in/padlock.png' %}" alt="">
+                        <input type="password" name="password1" id="pwd" placeholder="Mật khẩu" required>
+                  </div>
+                  <div class="input ps-2 my-2">
+                        <img src="../assets/image/sign-in/padlock.png" alt="">
+                        <input type="password" name="password2" id="repwd" placeholder="Nhập lại mật khẩu" required>
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <input type="text" name="phone_number" placeholder="Tên đăng nhập" required>
+                  </div>
+                  <div class="input ps-2 my-4">
+                        <input type="text" name="address" placeholder="Tên đăng nhập" required>
+                  </div>
+                  <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 text-noto-b" type="submit" value="Đăng ký">
+                  <hr width="100%"/>
+                  <span>or</span>
+            </form>
+            <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b" type="submit">Đăng ký với Google</button>
+            </div>
+      </div>
+
+
+      <!-- <form action="{% url 'jobseeker_register' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Send">
+      </form> -->
+{% endblock %}
