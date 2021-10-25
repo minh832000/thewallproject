@@ -20,16 +20,54 @@
       <!-- Template CSS Files -->
       <link rel="stylesheet" href="{% static 'css/base.css' %}">
       <link rel="stylesheet" href="{% static 'css/typography.css' %}">
-      <link rel="stylesheet" href="{% static 'css/hello.css' %}">
       <link rel="stylesheet" href="{% static 'css/header.css' %}">
       <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-      <link rel="stylesheet" href="{% static 'css/sign-up.css' %}"
+      <!--Link css riêng-->
+      {% block linkcss %}
+
+      {% endblock %}
+      
 </head>
 <body>
       {% block pagecontent %}
 
-      {% endblock %}      
-
+      {% endblock %}    
+      <!--Footer-->  
+      <footer class="bg-web mt-5">
+            <div class="container">
+                <div class="row d-flex justify-content-between text-white text-noto-re text-md-start text-center">
+                    <div class="introduce col-md-4 mt-3 pb-5">
+                        <div class="logo w-50 p-2 m-auto m-md-0">
+                            <img class="w-100" src="{% static 'image/main-logo.png' %}" alt="">
+                        </div>
+                        <p class="fs-14">
+                            The Wall là nền tảng tuyển dụng và phát triển sự nghiệp hàng đầu Châu Á dành cho các tài năng trẻ. Sứ mệnh của The Wall là giúp người trẻ khám phá và theo đuổi đam mê nghề nghiệp.
+                        </p>
+                        <div class="social-icon pt-4 d-flex justify-content-md-start justify-content-center">
+                            <img class="col-2" src="{% static 'image/facebook.png' %}" alt="">
+                            <img class="mx-5 col-2" src="{% static 'image/linkedin-sign.png' %}" alt="">
+                            <img class="col-2" src="{% static 'image/twitter-sign.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="contact col-md-4 pt-5">
+                        <h3 class="fs-4">LIÊN HỆ</h3>
+                        <p class="fs-14">
+                            <strong>Địa chỉ:</strong> Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
+                        </p>
+                        <p class="fs-14"><strong>Email:</strong> sales-vn@glints.com</p>
+                        <p class="fs-14"><strong>Hotline:</strong> (028) 7100 3030</p>
+                    </div>
+                    <div class="site-linking col-md-3 py-5">
+                        <h3 class="fs-4">CÁC TRANG LIÊN KẾT</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="">Cơ hội việc làm</a></li>
+                            <li><a href="">Danh sách công ty</a></li>
+                            <li><a href="">Vị trí ứng tuyển</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+      </footer>
       <!-- Vendor Script Files -->
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js" type="text/javascript"></script>
       <script src="https://unpkg.com/aos@next/dist/aos.js" type="text/javascript"></script>
@@ -41,5 +79,7 @@
 
       <!-- Main Script Files -->
       <script src="{% static 'javascript/hello.js' %}" type="text/javascript"></script>
+      <script src="../assets/javascript/list-job.js"></script>
+
 </body>
 </html>
