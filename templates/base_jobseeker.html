@@ -16,10 +16,12 @@
 <header class="bg-web position-fixed top-0 w-100">
     <div class="container">
         <div class="header row justify-content-between ">
-            <div class="logo col-md-2  col-10 d-flex align-items-center">
-                <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
-                <p class="name text-white mb-0 fs-5">The Wall</p>
-            </div>
+            <a href="{% url 'index' %}" class="col-10 col-md-2 ">
+                <div class="logo d-flex h-100 align-items-center">
+                    <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
+                    <p class="name text-white mb-0 fs-5">The Wall</p>
+                </div>
+            </a>
             <div class="icon-menu col-2 align-items-center ">
                 <img src="{% static 'image/menu.png' %}" alt="">
             </div>
@@ -39,7 +41,9 @@
                         <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
                     </div>
                     <div class="col-md-6 col-12 ">
-                        <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                        <a href="{% url 'r-home'%}">
+                            <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                        </a>
                     </div>
                 </div>
                 <!--Bảng điều khiên khi đăng nhập user-->
