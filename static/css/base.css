@@ -101,5 +101,14 @@ p {
       color: #626262;
 }
 .height-45{
-      height:45px;
-  }
+      height:45px;  
+}
+.height-90vh{
+      height: 90vh;
+}
+.text-blue{
+      color: #2894C9
+}
+.border-bottom-b{
+      border-bottom: #2894C9 3px solid;
+}

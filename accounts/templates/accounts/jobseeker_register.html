@@ -48,7 +48,7 @@
       <div class="container text-noto-re">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
             <h2 class="text-noto-b text-center fs-3">Đăng ký tài khoản The Wall</h2>
-            <form action="{% url 'jobseeker_register' %}" method="POST" id="form-sign-up">
+            <form action="{% url 'register-success' %}" method="POST" id="form-sign-up">
                   {% csrf_token %}
                   <div class="d-flex justify-content-between">
                         <div class="input ps-2 mt-4 w-49">
@@ -91,9 +91,4 @@
       </div>
 
 
-      <!-- <form action="{% url 'jobseeker_register' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Send">
-      </form> -->
 {% endblock %}
