@@ -42,6 +42,7 @@ header{
     opacity: 0.8;
     z-index: 99;
 }
+/*Xử lý ẩn user header*/
 .for-user{
     display:none;
 }
@@ -59,7 +60,7 @@ header{
 .dropdown li:hover{
     background: #BFE9FF;
 }
-.accordion-button::after{
+.control-user .accordion-button::after{
     background-image: url(../image/down-arrow.png);
     margin-left: 6px;
     
