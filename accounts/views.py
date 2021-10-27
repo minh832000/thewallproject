@@ -16,6 +16,5 @@ class jobseeker_register(CreateView):
       form_class = JobSeekerSignUpForm
       template_name = 'accounts/jobseeker_register.html'
 
-      def form_valid(self, form):
-            url = reverse_lazy('register_ok')
-            return redirect(reverse(url))
+      # def form_valid(self, form):
+      #       return redirect('register_success')
