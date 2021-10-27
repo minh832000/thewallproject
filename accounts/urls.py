@@ -4,4 +4,5 @@ from .import views
 
 urlpatterns = [
       path('jobseeker_register/', views.jobseeker_register.as_view(), name='jobseeker_register'),
+      path('register_success/', views.register_ok, name='register_ok')
 ]
