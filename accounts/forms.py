@@ -18,6 +18,7 @@ class JobSeekerSignUpForm(UserCreationForm):
       @transaction.atomic
       def save(self):
             user = super().save(commit=False)
+            user.is_job_seeker = True
             user.first_name = self.cleaned_data.get('first_name')
             user.last_name = self.cleaned_data.get('last_name')
             user.save()
@@ -42,6 +43,7 @@ class RecruiterSignUpForm(UserCreationForm):
       @transaction.atomic
       def save(self):
             user = super().save(commit=False)
+            user.is_recruiter = True
             user.first_name = self.cleaned_data.get('first_name')
             user.last_name = self.cleaned_data.get('last_name')
             user.save()
