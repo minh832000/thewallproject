@@ -5,7 +5,9 @@
 {% block pagetitle %}
       The Wall
 {% endblock %}
-
+{% block linkcss %}
+      <link rel="stylesheet" href="{% static 'css/hello.css' %}">
+{% endblock %}
 {% block pagecontent %}
       <!-- =============== HEADER =============== -->
       <header class="bg-web position-fixed top-0 w-100">
@@ -24,7 +26,7 @@
                         </div>
                         <div class="nav-menu row col-md-6 col-12 ">
                         <ul class="list-unstyled mb-0 ">
-                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="">CƠ HỘI VIỆC LÀM</a></li>
+                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job' %}">CƠ HỘI VIỆC LÀM</a></li>
                               <li class="d-inline-block"><a class="text-decoration-none text-light" href="">DANH SÁCH CÔNG TY</a></li>
                         </ul>
                         </div>
@@ -34,7 +36,9 @@
                               <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
                         </div>
                         <div class="col-md-6 col-12 ">
-                              <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                              <a href="{% url 'r-home' %} ">
+                                    <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                              </a>
                         </div>
                         </div>
                   </div>
@@ -408,5 +412,5 @@
             </div>
             </div>
       </footer>
-      <!-- <script src="{% static 'javascript/hello.js' %}" type="text/script"></script> -->
+      
 {% endblock %}

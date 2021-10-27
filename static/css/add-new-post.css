@@ -1,0 +1,107 @@
+#main .wrapper {
+      border: 1px solid #c5c5c5;
+      border-radius: 3px;
+      padding: 15px 25px;
+}
+
+#main .input-fields {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+}
+
+#main .input-fields .input {
+      margin-bottom: 20px;
+}
+
+#main .input-fields .input-area {
+      width: 480px;
+      height: 38px;
+      margin-top: 10px;
+      padding-left: 15px;
+      padding-right: 10px;
+      border-radius: 3px;
+      border: 1px solid #d9d9d9;
+}
+
+#main .input-fields input.input-area {
+      outline: none;
+}
+
+#main .input-box {
+      display: flex;
+      align-items: center;
+      position: relative;
+}
+
+#main .input-box .input-selected-options {
+      width: 100%;
+}
+
+#main .input-box input.input-selected-options {
+      outline: none;
+      border: none;
+}
+
+#main .dividing-line {
+      width: 100%;
+      height: 2px;
+      background-color: #d9d9d9;
+      margin-top: 40px;
+      margin-bottom: 40px;
+}
+
+#main .input-job-detail {
+      width: 100%;
+      height: 230px;
+      margin-top: 10px;
+      border-radius: 3px;
+      border: 1px solid #d9d9d9;
+}
+
+#main input.input-job-detail {
+      outline: none;
+      border: none;
+}
+
+#main .input-required-skills {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+}
+
+#main .input-required-skills .input-column {
+      width: 480px;
+}
+
+#main .search-input {
+      margin-bottom: 20px;
+      width: 100%;
+}
+
+#main .list-selected-skills {
+      list-style-type: none;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+}
+
+#main .item-selected-skill {
+      text-align: center;
+      width: 180px;
+      background-color: #c5c5c5;
+      padding-top: 7px;
+      padding-bottom: 7px;
+}
+.list-selected-skills span{
+      border: #c5c5c5 1px solid;
+      border-radius: 20px;
+      background: #ECECEC;
+}
+input:focus,
+textarea:focus{
+      outline: none;
+}

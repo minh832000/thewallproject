@@ -1,0 +1,272 @@
+{% extends 'base_jobseeker.html' %}
+{% load static %}
+
+{% block pagetitle_jobseeker %}
+      Danh sách công việc
+{% endblock %}
+{% block linkcss_jobseeker %}
+    <link rel="stylesheet" href="{% static 'css/list-job.css' %}" >
+{% endblock %}
+{% block maincontent %}
+    <div id="content" class="text-noto-re pt-5 pb-5 mb-5">
+        <div class="container">
+            <div class="search my-5 px-md-0 px-4 d-flex row justify-content-between gy-3">
+                <div class="search-job p-1 col-md-5 col-12">
+                    <img src="{% static 'image/hello/search.png' %}" alt="">
+                    <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                </div>
+                <div class="search-location p-1 col-md-5 col-12">
+                    <img src="{% static 'image/location.png' %}" alt="">
+                    <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                </div>
+                <div class="btn-search">
+                    <button class="text-light w-100 border-0 h-100 bg-web">TÌM KIẾM</button>
+                </div>
+            </div>
+            <div class="content ">
+                <div class="btn-filter m-3 pb-3">
+                    <button class="w-100 border-1 p-2">Lọc tìm kiếm của bạn</button>
+                </div>
+                <div class="filter bg-white py-4 text-roboto-re">
+                    <h3 class="text-roboto-m border-bottom pb-2 fs-5 px-3" >Lọc tìm kiếm của bạn</h3>
+                    <div class="sort border-bottom pb-3 px-3">
+                        <p>Sắp xếp theo</p>
+                        <div class="d-flex">
+                            <button class="button-choose me-2 fs-14">Mức độ liên quan</button>
+                            <button class="px-3 fs-14">Mới nhất</button>
+                        </div>
+                    </div>
+                    <div class="accordion accordion-flush" id="accordionFilter">
+                        <div class="accordion-item type-work border-bottom pb-3">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  Loại công việc
+                                </button>
+                              </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFilter">
+                                <form action="" class="accordion-body">
+                                    <div class="check-type">
+                                        <input type="checkbox" name="" id="intern" value="intern" class="me-2 text-roboto-re">Intern
+                                    </div>
+                                    <div class="check-type">
+                                        <input type="checkbox" name="" id="fulltime" value="full-time" class="me-2 text-roboto-re">Full-time
+                                    </div>
+                                    <div class="check-type">
+                                        <input type="checkbox" name="" id="parttime" value="part-time" class="me-2 text-roboto-re">Part-time
+                                    </div>
+                                    <div class="check-type">
+                                        <input type="checkbox" name="" id="freelance" value="freelance" class="me-2 text-roboto-re">Freelance
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="city accordion-item border-bottom pb-3">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                  Thành phố
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo"  class="accordion-collapse collapse"  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFilter">
+                                <form action="" class="accordion-body">
+                                    <div class="check-city">
+                                        <input type="checkbox" name="" id="hcm" value="hcm" class="me-2 text-roboto-re">Hồ Chí Minh
+                                    </div>
+                                    <div class="check-city">
+                                        <input type="checkbox" name="" id="cantho" value="cantho" class="me-2 text-roboto-re">Cần Thơ
+                                    </div>
+                                    <div class="check-city">
+                                        <input type="checkbox" name="" id="hanoi" value="hanoi" class="me-2 text-roboto-re">Hà Nội
+                                    </div>
+                                    <div class="check-city">
+                                        <input type="checkbox" name="" id="danang" value="danang" class="me-2 text-roboto-re">Đà Nẵng
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="job accordion-item border-bottom pb-3">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                  Danh mục công việc
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFilter">
+                                <form action="" class="accordion-body">
+                                    <div class="check-job">
+                                        <input type="checkbox" name="" id="sale" value="sale" class="me-2 text-roboto-re">Nhân viên kinh doanh/ Sale
+                                    </div>
+                                    <div class="check-job">
+                                        <input type="checkbox" name="" id="marketing" value="marketing" class="me-2 text-roboto-re">Marketing
+                                    </div>
+                                    <div class="check-job">
+                                        <input type="checkbox" name="" id="engineer" value="engineer" class="me-2 text-roboto-re">Sortware Engineer
+                                    </div>
+                                    <div class="check-job">
+                                        <input type="checkbox" name="" id="other" value="other" class="me-2 text-roboto-re">Khác
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="experience accordion-item border-bottom pb-3">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                  Kinh nghiệm
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse collapse"  aria-labelledby="flush-headingOne" data-bs-parent="#accordionFilter">
+                                <form action="" class="accordion-body">
+                                    <div class="check-exp">
+                                        <input type="checkbox" name="" id="" value="one-y" class="me-2 text-roboto-re">Ít hơn 1 năm
+                                    </div>
+                                    <div class="check-exp">
+                                        <input type="checkbox" name="" id="" value="three-y" class="me-2 text-roboto-re">1 - 3 năm
+                                    </div>
+                                    <div class="check-exp">
+                                        <input type="checkbox" name="" id="" value="five-y" class="me-2 text-roboto-re">3 - 5 năm
+                                    </div>
+                                    <div class="check-exp">
+                                        <input type="checkbox" name="" id="" value="more-five" class="me-2 text-roboto-re">Trên 5 năm
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-job row ps-5 overflow-auto">
+                    <div class="list-job-card mb-4">
+                        <div class="job-card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-1"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 py-2  text-worksans-l">
+                                <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="list-job-card mb-4">
+                        <div class="job-card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-2"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 py-2 text-worksans-l">
+                                <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="list-job-card mb-4">
+                        <div class="job-card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-3"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 py-2  text-worksans-l">
+                                <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-job-card mb-4">
+                        <div class="job-card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-4"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 py-2  text-worksans-l">
+                                <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-job-card mb-4">
+                        <div class="job-card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-5"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 py-2  text-worksans-l">
+                                <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+{% endblock %}

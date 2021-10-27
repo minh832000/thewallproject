@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def index(request):
       return render(request, 'index.html')
+
+def recruiterHome(request):
+      return render(request, 'recruiter_home.html')

@@ -6,6 +6,10 @@
       Đăng ký | Người tìm việc
 {% endblock %}
 
+{% block linkcss %}
+<link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
+{% endblock %}
+
 {% block pagecontent %}
 <!------------HEADER------------------>
       <header class="bg-web position-fixed top-0 w-100">
@@ -44,35 +48,39 @@
       <div class="container text-noto-re">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
             <h2 class="text-noto-b text-center fs-3">Đăng ký tài khoản The Wall</h2>
-            <form action="{% url 'jobseeker_register' %}" method="POST" id="form-sign-up">
+            <form action="{% url 'register-success' %}" method="POST" id="form-sign-up">
                   {% csrf_token %}
-                  <div class="input ps-2 my-4">
-                        <input type="text" name="first_name" placeholder="Tên đăng nhập" required>
+                  <div class="d-flex justify-content-between">
+                        <div class="input ps-2 mt-4 w-49">
+                              <input type="text" name="first_name" placeholder="Tên" required>
+                        </div>
+                        <div class="input ps-2 mt-4 w-49">
+                              <input type="text" name="last_name" placeholder="Họ" required>
+                        </div>
                   </div>
                   <div class="input ps-2 my-4">
-                        <input type="text" name="last_name" placeholder="Tên đăng nhập" required>
-                  </div>
-                  <div class="input ps-2 my-4">
-                        <img src="{% static 'image/sign-in/user.png' %}" alt="">
+                        <img src="{% static 'image/sign-in/user.png' %}" alt="" class="me-2">
                         <input type="text" name="username" placeholder="Tên đăng nhập" required>
                   </div>
                   <div class="input ps-2 my-4">
-                        <img src="{% static 'image/email.png' %}" alt="">
+                        <img src="{% static 'image/email.png' %}" alt="" class="me-2">
                         <input type="email" name="email" placeholder="Email" >
                   </div>
                   <div class="input ps-2 my-4">
-                        <img src="{% static 'image/sign-in/padlock.png' %}" alt="">
+                        <img src="{% static 'image/sign-in/padlock.png' %}" alt="" class="me-2">
                         <input type="password" name="password1" id="pwd" placeholder="Mật khẩu" required>
                   </div>
                   <div class="input ps-2 my-2">
-                        <img src="../assets/image/sign-in/padlock.png" alt="">
+                        <img src="{% static 'image/sign-in/padlock.png' %}" alt="" class="me-2">
                         <input type="password" name="password2" id="repwd" placeholder="Nhập lại mật khẩu" required>
                   </div>
                   <div class="input ps-2 my-4">
-                        <input type="text" name="phone_number" placeholder="Tên đăng nhập" required>
+                        <img src="{% static 'image/sign-in/phone-call.png' %}" alt="" class="me-2">
+                        <input type="text" name="phone_number" placeholder="Số điện thoại" required>
                   </div>
                   <div class="input ps-2 my-4">
-                        <input type="text" name="address" placeholder="Tên đăng nhập" required>
+                        <img src="{% static 'image/sign-in/location.png' %}" alt="" class="me-2">
+                        <input type="text" name="address" placeholder="Địa chỉ" required>
                   </div>
                   <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 text-noto-b" type="submit" value="Đăng ký">
                   <hr width="100%"/>
@@ -81,4 +89,6 @@
             <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b" type="submit">Đăng ký với Google</button>
             </div>
       </div>
+
+
 {% endblock %}

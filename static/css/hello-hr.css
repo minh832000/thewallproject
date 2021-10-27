@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+/*header----------------------------*/
+header{
+    background: #193549;
+    z-index:1000;
+}
+.header{
+    height:60px
+}
+.img-logo{
+    width:40px;
+    height: 40px;
+}
+.btn-sign-up{
+    border: #ccc 0.5px solid;
+    width:106px;
+    height:25px;
+}
+.btn-sign-in{
+    color:#193549;
+    width:108px;
+    height:26px;
+    font-weight:500
+}
+/*------------nội dung-----------------*/
+/*---------banner---------*/
+.banner{
+    height: 125vh;
+    background:url(../image/hello-hr/banner.png);
+    background-size: cover;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+.content-banner{
+    padding-top: 25%;
+}
+.content-banner h1{
+    font-size: 45px;
+    letter-spacing: 1px;
+}
+.text-shadow{
+    text-shadow: 0 0 4px #000;
+}
+.card-number-member{
+    border: 1px solid rgba(0, 35, 158, 0.4);
+    color: #00239E;
+    font-family:NotoSans;
+}
+.card-number-member h2{
+    color: #EC5211;
+}
+.card-number span{
+    color:#EC5211;
+}
+.adv-solution span{
+    color:#EC1111
+}
+#content{
+    margin-bottom: 6%;
+}
+/* FOOTER */
+
+.social-icon img{
+    width:40px;
+}
+.site-linking ul li a{
+    color: #fff;
+    text-decoration:none;
+    font-size: 14px;
+    line-height: 35px
+}

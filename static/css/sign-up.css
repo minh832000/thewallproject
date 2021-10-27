@@ -15,6 +15,9 @@
 {
     width: 20px;
 }
+.w-49{
+    width: 49%;
+}
 .input input{
     border: none;
     height: 40px;
