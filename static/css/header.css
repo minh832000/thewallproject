@@ -44,7 +44,7 @@ header{
 }
 /*Xử lý ẩn user header*/
 .for-user{
-    display:none;
+    /* display:none; */
 }
 .icon-notify{
     width: 25px;
