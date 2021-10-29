@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block linkcss %}
-<link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
+      <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-<!------------HEADER------------------>
+      <!-- ========== ---HEADER--- ========== -->
       <header class="bg-web position-fixed top-0 w-100">
             <div class="container ">
             <div class=" header d-flex row justify-content-between ">
@@ -45,6 +45,7 @@
             </div>
             </div>
       </header>
+      <!-- End HEADER -->
       <div class="container font-NotoSans-Regular">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
             <h2 class="text-noto-b text-center fs-3">Đăng ký tài khoản The Wall</h2>
@@ -81,16 +82,4 @@
             <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b" type="submit">Đăng ký với Google</button>
             </div>
       </div> 
-
-
-      <!-- <div class="container mt-80">
-            <form action="{% url 'register_jobseeker' %}" method="post">
-                  {% csrf_token %}
-                  {{ form.as_p }}
-                  <input type="submit" value="submit">
-            </form>
-      </div> -->
-
-
-
 {% endblock %}

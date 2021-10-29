@@ -1,0 +1,48 @@
+/*------------------*/
+.sign-in{
+    margin-top: 10rem;
+    border: #ccc 1px solid;
+    width: 450px;
+    border-radius: 6px;
+    margin-bottom: 15rem;
+    padding: 50px 40px
+}
+@media (max-width: 567px){
+    .sign-in{
+        width: 95%;
+        padding: 50px 25px;
+    }
+}
+.input img 
+{
+    width: 20px;
+}
+.input input{
+    border: none;
+    height: 40px;
+    width: 90%;
+}
+.input input:focus{
+    outline: none;
+}
+.input{
+    border: #ccc 1px solid;
+    border-radius: 6px;
+
+}
+.sign-in button{
+    border-radius: 6px;
+}
+.sign-in span{
+    position: relative;
+    left: calc(50% - 20px);
+    top: -31px;
+    background: #fff;
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+}
+.btn-gg{
+    background: #C10909;
+    margin-top: -15px;
+}
