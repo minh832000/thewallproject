@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.urls.base import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .models import User
 from .forms import SignUpForm, LoginForm
@@ -20,8 +20,7 @@ class RegisterJobSeeker(CreateView):
                   instance.is_job_seeker = True
                   instance.save()
                   return super(RegisterJobSeeker, self).form_valid(form)
-            return HttpResponse('Đăng ký không thành công')
-
+            return render(request, 'accounts/jobseeker_register.html', {'form': form})
 
 class Login(FormView):
       form_class = LoginForm
