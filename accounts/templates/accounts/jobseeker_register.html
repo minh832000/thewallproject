@@ -52,7 +52,7 @@
       
                   <form action="{% url 'accounts:register_jobseeker' %}" method="POST" id="form-sign-up">
                         {% csrf_token %}
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                               <div class="input ps-2 mt-4 w-49">
                                     <input type="text" name="first_name" placeholder="Tên" required>
                               </div>
@@ -74,12 +74,19 @@
                               <input type="email" name="email" placeholder="Email" >
                         </div>
                         {% if form.email.errors %}
-                              <span class="alert alert-danger">{{ form.email.errors.as_text }}</span>
+                              <p class="alert alert-danger font-NotoSans-Bold">
+                                    {{ form.email.errors.as_text }}
+                              </p>
                         {% endif %}
                         <div class="input ps-2 my-4">
                               <img src="{% static 'image/sign-in/padlock.png' %}" alt="" class="me-2">
                               <input type="password" name="password" id="pwd" placeholder="Mật khẩu" required>
                         </div>
+                        {% if form.password.errors %}
+                              <p class="alert alert-danger font-NotoSans-Bold">
+                                    {{ form.password.errors.as_text }}
+                              </p>
+                        {% endif%}
                         <div class="input ps-2 my-2">
                               <img src="{% static 'image/sign-in/padlock.png' %}" alt="" class="me-2">
                               <input type="password" name="re_password" id="repwd" placeholder="Nhập lại mật khẩu" required>
