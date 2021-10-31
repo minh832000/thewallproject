@@ -30,8 +30,12 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_REDIRECT_URL = '/home'
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
+LOGIN_REDIRECT_URL = '/home'
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +48,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     # 'profiles.apps.ProfilesConfig',
     # 'posts.apps.PostsConfig',
-    'accounts',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

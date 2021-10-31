@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.db import transaction
 import re
 
@@ -29,6 +30,7 @@ class SignUpForm(forms.ModelForm):
             except User.DoesNotExist:
                   return username
             raise forms.ValidationError("Tài khoản đã tồn tại")
+                 
       
       def clean_email(self):
             email = self.cleaned_data['email']
@@ -39,13 +41,8 @@ class SignUpForm(forms.ModelForm):
             raise forms.ValidationError('Email đã được sử dụng')
 
 class LoginForm(forms.Form):
-      username = forms.CharField(required=True, max_length=30)
+      username = forms.CharField(max_length=30, required=True)
       password = forms.CharField(required=True, widget=forms.PasswordInput)
-
-      def __init__(self, *args, **kwargs):
-            self.username = 'Unknown'
-            self.password = 'Password'
-            super(LoginForm, self).__init__(*args, **kwargs)     
       
 class RecruiterSignUpForm(forms.ModelForm):
       re_password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput)
