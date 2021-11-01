@@ -2,18 +2,20 @@ from django.urls.base import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, get_user_model, login
 
 from .models import User
 from .forms import SignUpForm, LoginForm
 
+UserModel = get_user_model()
+
 def view_register_success(request):
-     return render(request, 'accounts/register_success.html')
+     return render(request, 'accounts/notify_register_success.html')
 
 class Register(CreateView):
       model = User
       form_class = SignUpForm
-      template_name = 'accounts/jobseeker_register.html'
+      template_name = 'accounts/register.html'
       success_url = reverse_lazy('accounts:register_success')
 
       def post(self, request, *args, **kwargs):
@@ -25,10 +27,11 @@ class Register(CreateView):
                   instance.set_password(form.cleaned_data['password'])
                   instance.save()
                   return redirect('accounts:register_success')
-            return render(request, 'accounts/jobseeker_register.html', {'form': form})
+            return render(request, 'accounts/register.html', {'form': form})
+
 class Login(FormView):
       form_class = LoginForm
-      template_name = 'accounts/sign-in.html'
+      template_name = 'accounts/login.html'
       success_url = reverse_lazy('home:index')
 
       def post(self, request, *args, **kwargs):
@@ -42,5 +45,11 @@ class Login(FormView):
                         if user.is_active:
                               login(request, user)
                               return redirect('home:index')
-            return render(request, 'accounts/sign-in.html', {'form': form})
+            return render(request, 'accounts/login.html', {'form': form})
 
+class RecruiterRegister(CreateView):
+      model = UserModel
+
+
+class RecruiterLogin(FormView):
+      model = UserModel
