@@ -5,9 +5,11 @@
 {% block pagetitle %}
       The Wall
 {% endblock %}
+
 {% block linkcss %}
       <link rel="stylesheet" href="{% static 'css/hello.css' %}">
 {% endblock %}
+
 {% block pagecontent %}
       <!-- =============== HEADER =============== -->
       <header class="bg-web position-fixed top-0 w-100">
@@ -32,8 +34,8 @@
                         </div>
                         <div class="col-md-6 row justify-content-between align-items-center">
                         <div class="sign-up col-md-6 col-12">
-                              <a class=" fs-14 text-decoration-none me-4 text-light" href="">ĐĂNG NHẬP</a>
-                              <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
+                              <a class=" fs-14 text-decoration-none me-4 text-light" href="{% url 'accounts:login' %}">ĐĂNG NHẬP</a>
+                              <a class=" fs-14 text-decoration-none text-light" href="{% url 'accounts:register' %}">ĐĂNG KÝ</a> 
                         </div>
                         <div class="col-md-6 col-12 ">
                               <a href="#">

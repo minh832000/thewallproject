@@ -1,10 +1,11 @@
 from django import forms
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.db import transaction
 import re
 
 from .models import User
 
+UserModel = get_user_model()
 class SignUpForm(forms.ModelForm):  
       re_password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput)
       class Meta():
@@ -43,6 +44,22 @@ class SignUpForm(forms.ModelForm):
 class LoginForm(forms.Form):
       username = forms.CharField(max_length=30, required=True)
       password = forms.CharField(required=True, widget=forms.PasswordInput)
+
+      def clean(self, *args, **kwargs):
+            username = self.cleaned_data.get("username")
+            password = self.cleaned_data.get("password")
+            if username and password:
+                  try:
+                        user = UserModel.objects.get(username=username)
+                        if not user:
+                              raise forms.ValidationError('Tài khoản không tồn tại')
+                        if not user.check_password(password):
+                              raise forms.ValidationError('Mật khẩu không chính xác')
+                        if not user.is_active:
+                              raise forms.ValidationError('Người dùng này không còn hoạt động')
+                  except UserModel.DoesNotExist:
+                        pass
+            return super(LoginForm, self).clean(*args, **kwargs)
       
 class RecruiterSignUpForm(forms.ModelForm):
       re_password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput)

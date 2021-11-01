@@ -6,9 +6,6 @@
       Đăng ký thành công
 {% endblock %}
 
-{% block linkcss_jobseeker %}
-
-{% endblock %}
 
 {% block maincontent %}
     <div class="content height-90vh pt-5">
@@ -20,7 +17,7 @@
                 <img class="col-1" src="{% static 'image/ok.png' %}" alt="">
                 <div class="ms-4 mt-3">
                     <h4>Đăng ký thành công</h4>
-                    <p class="fs-6">Tài khoản của bạn được tạo thành công, mời bạn <a class="text-blue" href="">đăng nhập</a> lại</p>
+                    <p class="fs-6">Tài khoản của bạn được tạo thành công, mời bạn <a class="text-blue" href="{% url 'accounts:login' %}">đăng nhập</a> lại</p>
                 </div>
             </div>
         </div>

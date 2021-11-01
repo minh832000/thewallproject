@@ -1,4 +1,3 @@
-from django.http.response import Http404, HttpResponse
 from django.urls.base import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
@@ -8,11 +7,14 @@ from django.contrib.auth import authenticate, login
 from .models import User
 from .forms import SignUpForm, LoginForm
 
+def view_register_success(request):
+     return render(request, 'accounts/register_success.html')
+
 class Register(CreateView):
       model = User
       form_class = SignUpForm
       template_name = 'accounts/jobseeker_register.html'
-      success_url = reverse_lazy('accounts:login')
+      success_url = reverse_lazy('accounts:register_success')
 
       def post(self, request, *args, **kwargs):
             form = SignUpForm(request.POST)
@@ -22,7 +24,7 @@ class Register(CreateView):
                   instance.verificationStatus = 'verified'
                   instance.set_password(form.cleaned_data['password'])
                   instance.save()
-                  return super(Register, self).form_valid(form)
+                  return redirect('accounts:register_success')
             return render(request, 'accounts/jobseeker_register.html', {'form': form})
 class Login(FormView):
       form_class = LoginForm
@@ -35,12 +37,10 @@ class Login(FormView):
                   username = form.cleaned_data['username']
                   password = form.cleaned_data['password']
 
-                  # user = User.objects.get(username=username, password=password)
                   user = authenticate(request, username=username, password=password)
                   if user is not None:
                         if user.is_active:
                               login(request, user)
                               return redirect('home:index')
-                  raise Http404('Tài khoản không tồn tại')
             return render(request, 'accounts/sign-in.html', {'form': form})
 

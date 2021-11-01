@@ -52,30 +52,25 @@
       
             <form action="{% url 'accounts:login' %}" method="POST">
                 {% csrf_token %}
+                {% if form.errors %}
+                    <p class="alert alert-danger">
+                        {{ form.errors.as_text }}
+                    </p>
+                {% endif%}
                 <div class="input ps-2 my-4">
                     <img src="{% static 'image/sign-in/user.png' %}" alt="">
                     <input type="text" name="username" placeholder="Tên đăng nhập" required>
                 </div>
-                {% if form.username.errors %}
-                    <p class="alert alert-danger">
-                        {{ form.username.errors.as_text }}
-                    </p>
-                {% endif%}
                 <div class="input ps-2 my-2">
                     <img src="{% static 'image/sign-in/padlock.png' %}" alt="">
                     <input type="password" name="password" placeholder="Mật khẩu" required>
-                </div>
-                {% if form.password.errors %}
-                    <p class="alert alert-danger">
-                        {{ form.password.errors.as_text }}
-                    </p>
-                {% endif %}
+                </div>                                  
                 <a class="fs-14 text-dark" href="">Bạn quên mật khẩu??</a>
                 <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 text-noto-b" type="submit" value="Đăng nhập">
                 <hr width="100%"/>
                 <span>or</span>
             </form> 
-            <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b" type="submit">Đăng nhập với Google</button>
+            <a href="#" class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b">Đăng nhập với Google</a>
             <p>Chưa có tài khoản? Nhấn <a href="">vào đây</a> để dễ dàng tạo tài khoản mới.</p>
         </div>
     </div>
