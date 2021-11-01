@@ -66,6 +66,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'home.apps.HomeConfig',
+<<<<<<< HEAD
+=======
+    # 'profiles.apps.ProfilesConfig',
+    # 'posts.apps.PostsConfig',
+    'posts',
+    'fields_job',
+>>>>>>> 15623e0a1c2292d899f6e2c829e85d98d7228d68
     'accounts.apps.AccountsConfig',
 ]
 
