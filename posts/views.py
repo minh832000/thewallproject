@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from .forms import PostForm
 from fields_job.models import FieldJob
