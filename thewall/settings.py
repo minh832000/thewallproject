@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     # 'profiles.apps.ProfilesConfig',
     # 'posts.apps.PostsConfig',
+    'posts',
+    'fields_job',
     'accounts.apps.AccountsConfig',
 ]
 
