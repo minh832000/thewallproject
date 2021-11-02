@@ -26,7 +26,7 @@ class Register(CreateView):
                   instance.verificationStatus = 'verified'
                   instance.set_password(form.cleaned_data['password'])
                   instance.save()
-                  return redirect('accounts:register_success')
+                  return render(request, 'accounts/notify_register_success.html')
             return render(request, 'accounts/register.html', {'form': form})
 
 class Login(FormView):

@@ -1,11 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
-# class User(AbstractUser):
-#       is_job_seeker = models.BooleanField(default=False)
-#       is_recruiter = models.BooleanField(default=False)
-
 # class Skills (models.Model):
 #       id_skill = models.IntegerField()
 #       name_skill = models.CharField(max_length=128)
