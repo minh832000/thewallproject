@@ -27,9 +27,9 @@
                                           <p class="font-WorkSans-Regular">Lĩnh vực công việc</p>
                                           <div class="input-box input-area">
                                                 
-                                                <select name="" id="" class="input-selected-options border-0">
+                                                <select name="field_job" id="" class="input-selected-options border-0">
                                                       {% for item in fields %}
-                                                      <option value="{{item.field_name}}">{{item.field_name}}</option>
+                                                      <option value={{item.id}}>{{item.field_name}}</option>
                                                       {% endfor %}
                                                 </select>
                                                 <!-- <i class="icofont-rounded-down input-icon-show"></i> -->
@@ -76,6 +76,7 @@
                                           <input 
                                                 class="input-area" 
                                                 type="text"
+                                                name="type_job"
                                                 placeholder="Nhập hình thức công việc"
                                           >
                                     </div>
@@ -95,12 +96,17 @@
                                     <p class="font-WorkSans-Regular">Kỹ năng yêu cầu</p>
                                     <div class="input-required-skills">
                                           <div class="input-column search-skills">
-                                                <input
-                                                      type="text"
-                                                      class=" height-45 w-100 border px-2 my-3"
-                                                      placeholder="Nhập kỹ năng cần tìm kiếm"
-                                                      class="search-input"
-                                                >
+                                                <form action="" id="search-form" autocomplete="off">
+                                                      {% csrf_token %}
+                                                      <input
+                                                            id="search-inputt"
+                                                            type="text"
+                                                            class=" height-45 w-100 border px-2 my-3"
+                                                            placeholder="Nhập kỹ năng cần tìm kiếm"
+                                                            class="search-input"
+                                                      >
+                                                      <div class="result-card not-visible" id="result-box"></div>
+                                                </form>
                                                 <div class="skill-suggestions">
                                                       <div class="list-skill row row-cols-2 font-NotoSans-Regular">
                                                             <div class="py-3">
@@ -151,12 +157,15 @@
                                     </div>
                               </div>
                         </div>
+                        <!-- <input type="hidden" name="creater_id" value="{{user.id}}"> -->
                         <div class="btn-add-post text-end mt-5">
                               <input type="submit" class="px-4 py-2 bg-btn font-NotoSans-Bold fs-14 border-0 " value="THÊM BÀI ĐĂNG MỚI">
                         </div>
+      
                   </form>
             </div>
       </div>
       <script src="{% static 'vendor/ckeditor/ckeditor.js' %}"></script>
+      
       <script>CKEDITOR.replace('text-job-detail');</script>
 {% endblock %}

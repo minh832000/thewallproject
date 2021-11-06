@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     # 'posts.apps.PostsConfig',
     'posts',
     'fields_job',
+    'tag_skill',
     'accounts.apps.AccountsConfig',
 ]
 
