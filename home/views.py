@@ -1,9 +1,18 @@
+from django.http import request
+from django.http.request import HttpRequest
 from django.shortcuts import render
+from django.views.generic import View
 
 # Create your views here.
 
-def index(request):
-      return render(request, 'jobseeker/index.html')
+class Index(View):
+      def get(self, request):
+            print(request)
+            return render(request, 'jobseeker/index.html')
 
-def recruiter_index(request):
-      return render(request, 'recruiter/index.html')
+class RecruiterIndex(View):
+      def get(self, request):
+            print(request)
+            return render(request, 'recruiter/index.html')
+
+

@@ -3,6 +3,6 @@ from .import views
 
 app_name = 'home'
 urlpatterns = [
-      path('', views.index, name='index'),
-      path('recruiter/', views.recruiter_index, name='recruiter_index')
+      path('', views.Index.as_view(), name='index'),
+      path('recruiter/', views.RecruiterIndex.as_view(), name='recruiter_index')
 ]

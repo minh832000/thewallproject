@@ -1,10 +1,30 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 
-# Create your models here.
-# class User(AbstractUser):
-#       is_job_seeker = models.BooleanField(default=False)
-#       is_recruiter = models.BooleanField(default=False)
+UserModel = get_user_model()
+
+class Profile(models.Model):
+      GENDER_MALE       = 1
+      GENDER_FEMALE     = 2
+      GENDER_CHOICE     = [
+            (GENDER_MALE, _('Name')),
+            (GENDER_FEMALE, _('Nữ')),
+      ]
+
+      user              = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE)
+      date_of_birth     = models.DateField(null=True, blank=True)
+      gender            = models.PositiveBigIntegerField(choices=GENDER_CHOICE, null=True, blank=True)
+      phone_number      = models.CharField(max_length=32, null=True, blank=True)
+      address           = models.CharField(max_length=255, null=True, blank=True)
+
+      created_at        = models.DateTimeField(auto_now_add=True)
+      updated_at        = models.DateTimeField(auto_now=True)
+
+      class Meta:
+            verbose_name            = _('Profile')
+            verbose_name_plural     = _('Profiles')
 
 # class Skills (models.Model):
 #       id_skill = models.IntegerField()

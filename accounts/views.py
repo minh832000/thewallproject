@@ -20,14 +20,19 @@ class Register(CreateView):
 
       def post(self, request, *args, **kwargs):
             form = SignUpForm(request.POST)
+            print(self.request)
             if form.is_valid():
                   instance = form.save(commit=False)
                   instance.is_job_seeker = True
                   instance.verificationStatus = 'verified'
                   instance.set_password(form.cleaned_data['password'])
                   instance.save()
-                  return redirect('accounts:register_success')
+                  return render(request, 'accounts/notify_register_success.html')
             return render(request, 'accounts/register.html', {'form': form})
+
+      def dispatch(self, request, *args, **kwargs):
+            print(self.request.user)
+            return super(Register, self).dispatch(request, *args, **kwargs)
 
 class Login(FormView):
       form_class = LoginForm
@@ -46,6 +51,11 @@ class Login(FormView):
                               login(request, user)
                               return redirect('home:index')
             return render(request, 'accounts/login.html', {'form': form})
+      
+      def dispatch(self, request, *args, **kwargs):
+            print(self.request)
+            print(self.request.user)
+            return super(Login, self).dispatch(request, *args, **kwargs)
 
 class RecruiterRegister(CreateView):
       model = UserModel

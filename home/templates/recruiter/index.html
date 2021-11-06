@@ -3,17 +3,19 @@
 {% load static %}
 
 {% block pagetitle %}
-      The Wall
+      The Wall | Employers
 {% endblock %}
+
 {% block linkcss %}
       <link rel="stylesheet" href="{% static 'css/hello-hr.css' %}">
 {% endblock %}
+
 {% block pagecontent %}
         <!------------HEADER------------------>
         <header class="bg-web position-fixed top-0 w-100">
             <div class="container">
                 <div class=" header d-flex row justify-content-between align-content-center">
-                    <a href="{% url 'index' %}" class="col-5">
+                    <a href="{% url 'home:recruiter_index' %}" class="col-5">
                         <div class="logo   d-flex align-items-center">
                             <img class="img-logo me-2" src="{% static 'image/logo.png' %}" alt="">
                             <p class="name text-white mb-0 fs-5">The Wall</p>
