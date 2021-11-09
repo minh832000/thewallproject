@@ -8,6 +8,7 @@ from django.conf import settings
 
 # Create your models here.
 class Post(models.Model):
+    id=models.AutoField(primary_key=True)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
     field_job=models.ForeignKey(FieldJob,on_delete=models.SET_NULL,null=True)
     tag_skill= ManyToManyField(TagSkill,blank=True, null=True, related_name="post_tag")

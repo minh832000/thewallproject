@@ -49,11 +49,7 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'posts',
     'fields_job',
-<<<<<<< HEAD
     'tag_skill',
-    'accounts.apps.AccountsConfig',
-=======
->>>>>>> d67648326fe80dd6a33f0febebef915cba2bcc48
 ]
 
 MIDDLEWARE = [
