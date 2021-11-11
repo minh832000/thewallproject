@@ -22,7 +22,7 @@ class Profile(LoginRequiredMixin, View):
                   'user': user,
                   'profile': profile,
             }
-            return render(request, 'profiles/jobseekers/profile.html', context)
+            return render(request, 'profiles/JobSeeker/profile.html', context)
 
       def post(self, request, *args, **kwargs):
             if request.method == 'POST' and request.is_ajax():
@@ -45,4 +45,7 @@ class Profile(LoginRequiredMixin, View):
                         context = model_to_dict(instance)
                         return  JsonResponse(context, safe=False)
             return JsonResponse({'error': 'Submit error', }, safe=False)
-      
+
+class RecruiterProfile(LoginRequiredMixin, View):
+      def get(self, request):
+            return render(request, 'profiles/Recruiter/profile.html')
