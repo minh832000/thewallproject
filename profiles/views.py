@@ -24,17 +24,6 @@ class Profile(LoginRequiredMixin, View):
             }
             return render(request, 'profiles/jobseekers/profile.html', context)
 
-<<<<<<< HEAD
-      def dispatch(self, request, *args, **kwargs):
-            print("Data is from request")
-            print(self.request.GET)
-            print(self.request.user)
-            return super(Profile, self).dispatch(request, *args, **kwargs)
-
-
-def profileRecruiter(request):
-      return render(request, 'profiles/recruiter/profile.html')
-=======
       def post(self, request, *args, **kwargs):
             if request.method == 'POST' and request.is_ajax():
                   # Get username of user
@@ -57,4 +46,3 @@ def profileRecruiter(request):
                         return  JsonResponse(context, safe=False)
             return JsonResponse({'error': 'Submit error', }, safe=False)
       
->>>>>>> 3ae8e823c4f342c17e7860450204da0de72f5b2a
