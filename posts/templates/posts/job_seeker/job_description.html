@@ -16,13 +16,13 @@
                 </div>
                 <div class="main-post col-10 ps-5">
                     <div class="main-inf">
-                        <h3 class="font-NotoSans-Bold fs-5">SOCIAL MEDIA MANAGER freelance</h3>
-                        <p class="color-blue font-NotoSans-Regular">Thành phố Hồ Chí Minh</p>
-                        <p class="mb-1"> <img class="me-2" src="{% static 'image/dollar.png' %}" alt="">USD 0 - 2300</p>
-                        <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
-                        <p class=" mb-1"><img class="me-2" src="{% static 'image/portfolio.png' %}" alt="">Full - time</p>
+                        <h3 class="font-NotoSans-Bold fs-5">{{post.name_post}}</h3>
+                        <p class="color-blue font-NotoSans-Regular">{{post.location}}</p>
+                        <p class="mb-1"> <img class="me-2" src="{% static 'image/dollar.png' %}" alt="">{{post.salary}}</p>
+                        <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">{{post.field_job}}</p>
+                        <p class=" mb-1"><img class="me-2" src="{% static 'image/portfolio.png' %}" alt="">{{post.type_job}}</p>
                     </div>
-                    <p class="time-post fs-14"> <img src="{% static 'image/clock.png' %}" alt=""> Được đăng cách đây 10 ngày</p>
+                    <p class="time-post fs-14"> <img src="{% static 'image/clock.png' %}" alt="">{{post.time_create}}</p>
                     <div class="btn-post justify-content-start row">
                         <div class="button-apply col-lg-3 col-md-4 my-2">
                             <button class="bg-btn font-NotoSans-Bold fs-14 px-3 py-2 border-0">ỨNG TUYỂN NGAY</button>
@@ -38,7 +38,8 @@
             </div>
             <div class="detail-post px-2 py-5">
                 <h3 class="font-NotoSans-Bold fs-5">CHI TIẾT</h3>
-                <div class="post-content">
+                {{post.content_post}}
+                <!-- <div class="post-content">
                     <p class="font-WorkSans-Regular">
                         <strong>Chi tiết công việc SOCIAL MEDIA MANAGER freelance Remote tại Idea Factory</strong><br>
                         <strong>Job description:</strong> <br>
@@ -54,7 +55,7 @@
                         Salary : 2mil/week (probation time)  + commission based on KPI per project ( up-to ~$1000/ month )
                     </p>
                     
-                </div>
+                </div> -->
             </div>
             <div class="skill">
                 <h3 class="font-NotoSans-Bold fs-5">KỸ NĂNG BẮT BUỘC CÓ</h3>

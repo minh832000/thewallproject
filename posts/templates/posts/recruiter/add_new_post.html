@@ -16,7 +16,7 @@
             <h1 class="text-uppercase font-NotoSans-Bold text-center fs-4">Thêm bài đăng mới</h1>
             <!-- Content of Page -->
             <div class="container px-0 mx-120 mt-40">
-                  <form action="{% url 'save' %}" method="post">
+                  <form action="{% url 'save'%}" method="post">
                         {% csrf_token %}
                         <div class="mt-40 input-basic-information">
                               <!-- Heading Field -->
@@ -27,9 +27,9 @@
                                           <p class="font-WorkSans-Regular">Lĩnh vực công việc</p>
                                           <div class="input-box input-area">
                                                 
-                                                <select name="" id="" class="input-selected-options border-0">
+                                                <select name="field_job" id="" class="input-selected-options border-0">
                                                       {% for item in fields %}
-                                                      <option value="{{item.field_name}}">{{item.field_name}}</option>
+                                                      <option value={{item.id}}>{{item.field_name}}</option>
                                                       {% endfor %}
                                                 </select>
                                                 <!-- <i class="icofont-rounded-down input-icon-show"></i> -->
@@ -76,6 +76,7 @@
                                           <input 
                                                 class="input-area" 
                                                 type="text"
+                                                name="type_job"
                                                 placeholder="Nhập hình thức công việc"
                                           >
                                     </div>
@@ -95,68 +96,43 @@
                                     <p class="font-WorkSans-Regular">Kỹ năng yêu cầu</p>
                                     <div class="input-required-skills">
                                           <div class="input-column search-skills">
-                                                <input
-                                                      type="text"
-                                                      class=" height-45 w-100 border px-2 my-3"
-                                                      placeholder="Nhập kỹ năng cần tìm kiếm"
-                                                      class="search-input"
-                                                >
-                                                <div class="skill-suggestions">
+                                                      <input
+                                                            id="search-inputt"
+                                                            type="text"
+                                                            class=" height-45 w-100 border px-2 my-3"
+                                                            placeholder="Nhập kỹ năng cần tìm kiếm"
+                                                            class="search-input"
+                                                      >
+                                                <div class="skill-suggestions result-card not-visible" id="result-box">
                                                       <div class="list-skill row row-cols-2 font-NotoSans-Regular">
-                                                            <div class="py-3">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  First checkbox
-                                                            </div>
-                                                            <div class="py-3">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  Second checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  third checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  Fourth checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  First checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  Second checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  third checkbox
-                                                            </div>
-                                                            <div class="py-2">
-                                                                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                                                  Fourth checkbox
-                                                            </div>
                                                       </div>
                                                 </div> 
                                           </div>
                                           <div class="input-column selected-skills">
                                                 <p class="font-WorkSans-Regular">Những kỹ năng đã chọn</p>
-                                                <div class="list-selected-skills d-flex flex-wrap justify-content-start">
-                                                      <span class="px-3 py-1 me-2">HTML</span>
+                                                <div id="selected-skills" class="list-selected-skills d-flex flex-wrap justify-content-start">
+                                                      <!-- <span class="px-3 py-1 me-2">HTML</span>
                                                       <span class="px-3 py-1 me-2">CSS</span>
                                                       <span class="px-3 py-1 me-2">PHP</span>
                                                       <span class="px-3 py-1 me-2">PYTHON</span>
-                                                      <span class="px-3 py-1 me-2">Java</span>
+                                                      <span class="px-3 py-1 me-2">Java</span> -->
                                                 </div>
                                           </div>
                                     </div>
                               </div>
                         </div>
+                        <!-- <input type="hidden" name="creater_id" value="{{user.id}}"> -->
                         <div class="btn-add-post text-end mt-5">
                               <input type="submit" class="px-4 py-2 bg-btn font-NotoSans-Bold fs-14 border-0 " value="THÊM BÀI ĐĂNG MỚI">
                         </div>
+      
                   </form>
             </div>
       </div>
       <script src="{% static 'vendor/ckeditor/ckeditor.js' %}"></script>
+      
       <script>CKEDITOR.replace('text-job-detail');</script>
+{% endblock %}
+{% block linkjs %}
+<script src="{% static 'javascript/add-new-post.js' %}"></script>
 {% endblock %}
