@@ -34,8 +34,8 @@
                 </div>
                 <div class="nav-menu row col-md-6 col-12 ">
                     <ul class="list-unstyled mb-0 ">
-                        <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="">CƠ HỘI VIỆC LÀM</a></li>
-                        <li class="d-inline-block"><a class="text-decoration-none text-light" href="">DANH SÁCH CÔNG TY</a></li>
+                        <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job'%}">CƠ HỘI VIỆC LÀM</a></li>
+                        <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
                     </ul>
                 </div>
                 {% if not user.is_authenticated %}
@@ -45,7 +45,7 @@
                             <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
                         </div>
                         <div class="col-md-6 col-12 ">
-                            <a href="#">
+                            <a href="{% url 'home:recruiter_index' %}">
                                 <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
                             </a>
                         </div>

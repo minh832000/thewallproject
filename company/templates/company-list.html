@@ -1,0 +1,170 @@
+{% extends 'base_jobseeker.html' %}
+{% load static %}
+
+{% block pagetitle_jobseeker %}
+      Danh sách công việc
+{% endblock %}
+{% block linkcss_jobseeker %}
+    <link rel="stylesheet" href="{% static 'css/company-list.css' %}" >
+{% endblock %}
+{% block maincontent %}
+    <div id="content" class="text-noto-re pt-5 pb-5 mb-5">
+        <div class="container">
+            <div class="search my-5 px-md-0 px-4 row justify-content-between gy-3">
+                <div class="search-job p-1 col-md-5 col-12">
+                    <img src="{% static 'image/hello/search.png' %}" alt="">
+                    <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                </div>
+                <div class="search-location p-1 col-md-5 col-12">
+                    <img src="{% static 'image/location.png' %}" alt="">
+                    <input class="input-sr border-0 bg-transparent" type="text" placeholder="Tìm kiếm việc làm">
+                </div>
+                <div class="btn-search">
+                    <button class="text-light w-100 border-0 h-100 bg-web">TÌM KIẾM</button>
+                </div>
+            </div>
+            <div class="list-company row row-cols-lg-3 row-cols-sm-2 row-cols-1 ">
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inf-company my-3">
+                    <div class="card p-4">
+                        <div class="title-card d-flex">
+                            <div class="img-company">
+                                <img class="w-100" src="{% static 'image/lfpt-software-tuyen.png' %}" alt="">
+                            </div>
+                            <div class="title-post ms-3 col-8">
+                                <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                <p class="fs-14 text-worksans-l color-gray-light m-0">Thành phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="content-card p-3 text-worksans-l fs-14">
+                            <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">Information Technology</p>
+                            <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block linkjs %}
+        <script src="{% static 'javascript/search.js' %}"></script>
+    {% endblock %}

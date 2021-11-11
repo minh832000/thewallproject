@@ -210,3 +210,10 @@
         width: 100%;
     }
 }
+.list-job-card a,
+.list-job-card a:hover{
+    color:#000;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}

@@ -1,0 +1,53 @@
+/*----------search------------*/
+.search-job {
+    background-color:#E5F2F9;
+    border-radius: 6px;
+    border: #B1B2CD 1px solid;
+}
+.input-sr:focus{
+    outline:none;
+}
+.search input{
+    width: 90%;
+}
+.search-job input::placeholder{
+    color: rgba(43, 49, 180, 0.53);
+    font-size: 14px;
+    font-family:NotoSans;
+}
+.search-location{
+    background-color:#FEF2DE;
+    border-radius: 6px;
+    border: #CCCCCC 1px solid;
+}
+.search-location input::placeholder{
+    color: rgba(114, 88, 49, 0.46);
+    font-size: 14px;
+    font-family:NotoSans;
+}
+.btn-search{
+    width: calc(100% - 80% - 5%);
+}
+@media (max-width: 767px){
+    .btn-search{
+        width: 100%;
+        padding:0;
+    }
+    .btn-search button{
+        padding: 6px;
+    }
+}
+/*-------------*/
+.img-company{
+    width: 50px;
+    height: 50px;
+}
+.content-card img{
+    width: 15px;
+}
+.color-blue{
+    color:#7199FF;
+}
+.list-company {
+    --bs-gutter-x: 1.5rem;
+}

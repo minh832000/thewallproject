@@ -7,12 +7,10 @@ from django.views.generic import View
 
 class Index(View):
       def get(self, request):
-            print(request)
             return render(request, 'jobseeker/index.html')
 
 class RecruiterIndex(View):
       def get(self, request):
-            print(request)
             return render(request, 'recruiter/index.html')
 
 

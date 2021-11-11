@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'posts',
     'fields_job',
+    'company',
+    'manage_recruiter',
     'tag_skill',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
