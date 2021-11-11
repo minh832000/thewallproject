@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, get_user_model, login
 
 from .models import User
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, RecruiterRegisterForm
 
 UserModel = get_user_model()
 
@@ -59,7 +59,20 @@ class Login(FormView):
 
 class RecruiterRegister(CreateView):
       model = UserModel
+      form_class = RecruiterRegisterForm
+      template_name = 'accounts/recruiter_register.html'
+      success_url = reverse_lazy('accounts:register_success')
 
+      def post(self, request, *args, **kwargs):
+            form = RecruiterRegisterForm(request.POST)
+            if form.is_valid():
+                  instance = form.save(commit=False)
+                  instance.is_recruiter = True
+                  instance.set_password(form.cleaned_data['password'])
+                  instance.save()
+                  return redirect('accounts:register_success')
+            return render(request, 'accounts/recruiter_register.html', {'form': form})
 
-class RecruiterLogin(FormView):
-      model = UserModel
+      def dispatch(self, request, *args, **kwargs):
+            print(self.request.user)
+            return super(RecruiterRegister, self).dispatch(request, *args, **kwargs)
