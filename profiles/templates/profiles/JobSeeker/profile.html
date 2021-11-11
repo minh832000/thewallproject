@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block pagetitle %}
-    Trang thông tin tài khoản
+    Trang hồ sơ người dùng
 {% endblock %}
 
-{% block linkcss %}
-    <link rel="stylesheet" href="{% static 'css/personal-profile.css' %}"
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/Recruiter/profile.css' %}"/>
 {% endblock %}
 
 {% block pagecontent %}
@@ -590,4 +590,8 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'javascript/Recruiter/profile.js' %}" type="text/javascript"></script>
 {% endblock %}
