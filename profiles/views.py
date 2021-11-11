@@ -21,3 +21,7 @@ class Profile(LoginRequiredMixin, View):
             print(self.request.GET)
             print(self.request.user)
             return super(Profile, self).dispatch(request, *args, **kwargs)
+
+
+def profileRecruiter(request):
+      return render(request, 'profiles/recruiter/profile.html')

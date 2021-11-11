@@ -1,0 +1,141 @@
+{% extends 'base_recruiter.html' %}
+{% load static %}
+
+{% block pagetitle_recruiter %}
+      Chi tiết công việc
+{% endblock %}
+{% block linkcss_recruiter %}
+    <link rel="stylesheet" href="{% static 'css/company-profile.css' %}" >
+{% endblock %}
+{% block maincontent %}
+      <!-- End Header -->
+      <!--bảng Thông tin cơ bản-->
+    <div class="frame-profile d-none">
+      <div class="frame-update-inf  position-absolute">
+          <h3 class="fs-5 font-NotoSans-Bold border-bottom p-3 mt-3 position-relative">
+              THÔNG TIN CƠ BẢN 
+              <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
+          </h3>
+          <div class="img-profile-edt overflow-hidden m-auto position-relative">
+              <img class="w-100" src="{% static 'image/profile.jpg" alt="">
+              <img class="edt-img-user position-absolute " src="{% static 'image/draw.png' %}" alt="">
+              <div class="position-absolute bg-opacity w-100 h-100"></div>
+          </div>
+          <form action="." class="p-3 border-bottom">
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Họ và tên</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Email</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="email">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Số điện thoại</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Địa chỉ</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <p class="px-3 fs-6 color-gray">Ngày sinh</p>
+              <div class="d-grid birthday">
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Ngày</legend>
+                      <select class="w-100 border-0" name="" id="day">
+                          <option value="">1</option>
+                          <option value="">2</option>
+                          <option value="">3</option>
+                      </select>
+                  </fieldset>
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
+                      <select class="w-100 border-0" name="" id="month">
+                          <option value="">1</option>
+                          <option value="">2</option>
+                          <option value="">3</option>
+                      </select>
+                  </fieldset>
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
+                      <select class="w-100 border-0" name="" id="year">
+                          <option value="">2001</option>
+                          <option value="">2002</option>
+                          <option value="">2003</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <p class="px-3 fs-6 color-gray">Giới tính</p>
+              <fieldset class="border-0 px-3 py-4 row row-cols-2">
+                  <div class="">
+                      <input type="radio" name="gender" id="male"> 
+                      <label for="female" class="fs-6 ms-2">Nam</label>
+                  </div>
+                  <div class="">
+                      <input class="" type="radio" name="gender" id="female">
+                      <label class="fs-6 ms-2" for="female">Nữ</label>
+                  </div>
+              </fieldset>
+              <div class="btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
+                  <button class="btn-cancel btn border px-3 me-3">HỦY</button>
+                  <button type="submit" class="btn bg-btn px-3">LƯU</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+
+
+
+      <!-- =============== Main Content =============== -->
+
+      <div id="main" class="my-120 mx-120">
+            <div class="wrapper">
+                  <div class="d-flex align-items-start position-relative">
+                        <div class="box">
+                              <img src="{% static 'image/upload.png' %}" alt="">
+                        </div>
+                        <div class="ms-40">
+                              <h3 class="font-NotoSans-Bold fs-4 mb-4">Tên của công ty</h3>
+                              <span class="font-WorkSans-Regular fst-italic">Viết một số câu giới thiệu về công ty...</span>
+
+                              <div class="d-flex align-items-center mt-40 font-WorkSans-Regular">
+                                    <div class="text-gray">
+                                          <p class="mb-2">Địa điểm</p>
+                                          <p class="mb-2">Lĩnh vực kinh doanh</p>
+                                          <p class="mb-2">Website</p>
+                                    </div>
+                                    <div class="ms-40">
+                                          <p class="fst-italic mb-2">Nhập vị trí công ty</p>
+                                          <p class="fst-italic mb-2">Nhập lĩnh vực kinh doanh công ty</p>
+                                          <p class="fst-italic mb-2">Nhập địa chỉ website công ty</p>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="position-absolute icon-edit">
+                              <div class="box-small">
+                                    <i class="icofont-pencil-alt-2"></i>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            
+            <div class="wrapper mt-40">
+                  <div class="position-relative">
+                        <p class="font-NotoSans-Bold text-uppercase fs-6">Chi tiết công ty</p>
+                        <div class="mt-4">
+                              <p class="text-center font-WorkSans-Regular">Nội dung giới thiệu về công ty</p>
+                        </div>
+      
+                        <div class="position-absolute icon-edit">
+                              <div class="box-small">
+                                    <i class="icofont-pencil-alt-2"></i>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+{% endblock %}
+{% block linkjs %}
+
+{% endblock %}

@@ -4,10 +4,11 @@ from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
 from tag_skill.models import TagSkill
+from django.contrib.postgres.search import SearchVector
 # Create your views here.
 
 def listJob(request):
-      Data = {'Posts': Post.objects.all().order_by('time_create')}
+      Data = {'Posts': Post.objects.all().order_by('-time_create')}
       return render(request, 'posts/job_seeker/list_job.html', Data)
 
 def detailJob(request,post_id):
@@ -73,17 +74,27 @@ def search_post(request):
             res = None
             post=request.POST.get('post')
             qs=Post.objects.filter(name_post__icontains=post)
-            if len(qs) > 0 and len(post) >0:
-                  data = []
-                  for pos in qs:
-                        item = {
-                              'pk': pos.pk,
-                              'name':pos.name_post
-                        }
-                        data.append(item)
-                  res=data
-            else:
-                  res='No post found..'
+            # qs=Post.objects.annotate(search=SearchVector('name_post')).filter(search=post)
+            print(qs)
+            data = []
+            for pos in qs:
+                  item = {
+                        'pk': pos.pk,
+                        'name':pos.name_post
+                  }
+                  data.append(item)
+            res=data
+            # if len(qs) > 0 and len(post) >0:
+            #       data = []
+            #       for pos in qs:
+            #             item = {
+            #                   'pk': pos.pk,
+            #                   'name':pos.name_post
+            #             }
+            #             data.append(item)
+            #       res=data
+            # else:
+            #       res='No post found..'
             return JsonResponse({'data':res})
       return JsonResponse({})
 
