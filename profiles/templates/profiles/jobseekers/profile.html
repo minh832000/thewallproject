@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <h3 class="fs-4 font-NotoSans-Bold">MINH VO BAO</h3>
+                    <h3 id="displayFullName" class="fs-4 font-NotoSans-Bold">{{ profile.full_name }}</h3>
                 </div>
             </div>
             <div class="information row px-lg-5 px-0 pt-lg-4 pt-0 mt-3">
@@ -110,7 +110,7 @@
                                 <p class="font-WorkSans-SemiBold fs-14">Email</p>
                             </div>
                             <div class="inf-content">
-                                <p class="font-NotoSans-Regular">18621111@gm.uit.edu.vn</p>
+                                <p id="displayEmail" class="font-NotoSans-Regular">{{ user.email }}</p>
                             </div>
                         </div>
                         <div class="list-inf d-flex justify-content-between py-2">
@@ -118,7 +118,7 @@
                                 <p class="font-WorkSans-SemiBold fs-14">SỐ ĐIỆN THOẠI</p>
                             </div>
                             <div class="inf-content">
-                                <p class="font-NotoSans-Regular">0912032913</p>
+                                <p id="displayPhoneNumber" class="font-NotoSans-Regular">{{ profile.phone_number }}</p>
                             </div>
                         </div>
                         <div class="list-inf d-flex justify-content-between py-2">
@@ -126,7 +126,7 @@
                                 <p class="font-WorkSans-SemiBold fs-14">ĐỊA CHỈ</p>
                             </div>
                             <div class="inf-content">
-                                <p class="font-NotoSans-Regular">Thành phố Hồ Chí Minh</p>
+                                <p id="displayAddress" class="font-NotoSans-Regular">{{ profile.address }}</p>
                             </div>
                         </div>
                     </div>
@@ -206,22 +206,24 @@
                 <img class="edt-img-user position-absolute " src="{% static 'image/draw.png' %}" alt="">
                 <div class="position-absolute bg-opacity w-100 h-100"></div>
             </div>
-            <form action="." class="p-3 border-bottom">
+            <!-- Form for Basic Information -->
+            <form id="basicInformationForm" method="POST" class="p-3 border-bottom">
+                {% csrf_token %}
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Họ và tên</legend>
-                    <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="full_name" class="border-0 font-NotoSans-Regular fs-6" type="text">
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Email</legend>
-                    <input class="border-0 font-NotoSans-Regular fs-6" type="email">
+                    <input name="email" class="border-0 font-NotoSans-Regular fs-6" type="email">
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Số điện thoại</legend>
-                    <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="phone_number" class="border-0 font-NotoSans-Regular fs-6" type="text">
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Địa chỉ</legend>
-                    <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="address" class="border-0 font-NotoSans-Regular fs-6" type="text">
                 </fieldset>
                 <p class="px-3 fs-6 color-gray">Ngày sinh</p>
                 <div class="d-grid birthday">
@@ -263,7 +265,7 @@
                 </fieldset>
                 <div class="btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
                     <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                    <button type="submit" class="btn bg-btn px-3">LƯU</button>
+                    <button id="submitBasicInformationForm" type="submit" class="btn bg-btn px-3">LƯU</button>
                 </div>
             </form>
         </div>

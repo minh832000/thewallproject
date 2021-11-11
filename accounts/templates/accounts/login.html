@@ -3,21 +3,58 @@
 {% load static %}
 
 {% block pagetitle %}
-    Đăng nhập | Người tìm việc
+    Đăng nhập
 {% endblock %}
 
-{% block linkcss %}
-    <link rel="stylesheet" href="{% static 'css/sign-in.css' %}"
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-    {% include 'components/header.html' %}
+    <header class="position-fixed top-0 w-100 bg-web">
+        <div class="header-group">
+            <div class="header-scope">
+                <div class="logo-scope">
+                    <img src="{% static 'image/logo.png' %}" alt="Logo The Wall">
+                    <p class="font-NotoSans-Bold name-site">The Wall</p>
+                </div>
+                <div id="showMenu" class="icon-show-menu">
+                    <img src="{% static 'image/menu.png' %}" alt="">
+                </div>
+                <div id="mainMenu" class="actions-scope">
+                    <div class="icon-close-menu">
+                        <img src="{% static 'image/close-button.png' %}" alt="">
+                    </div>
+                    <a 
+                        href="{% url 'accounts:login' %}" 
+                        class="action-item font-NotoSans-Regular" 
+                        style="margin-left: -30px;"
+                    >
+                        Đăng nhập
+                    </a>
+                    <a 
+                        href="{% url 'accounts:register' %}" 
+                        class="action-item font-NotoSans-Regular"
+                    >
+                        Đăng ký
+                    </a>
+                    <a 
+                        href="{% url 'accounts:recruiter_register' %}" 
+                        class="redirect-recruiter font-NotoSans-Bold"
+                    >
+                        Nhà tuyển dụng
+                        <img src="{% static 'image/arrow-right.png' %}" alt="icon arrow right">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
     
     <div class="container font-NotoSans-Regular">
-        <div class="sign-in mx-auto position-relative">
-
+        <div class="login-form mx-auto position-relative">
+            <!-- Title of Form -->
             <h2 class="font-NotoSans-Bold text-center fs-3">Đăng nhập vào The Wall</h2>
-      
+            <!-- Content of Form -->
             <form action="{% url 'accounts:login' %}" method="POST">
                 {% csrf_token %}
                 {% if form.errors %}
@@ -36,14 +73,19 @@
 
                 <a class="fs-14 text-dark" href="">Bạn quên mật khẩu??</a>
 
-                <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 text-noto-b" type="submit" value="Đăng nhập">
+                <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 font-NotoSans-Bold" type="submit" value="Đăng nhập">
 
                 <hr width="100%"/>
                 <span>or</span>
             </form> 
-            <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b">Đăng nhập với Google</a>
-            <p>Chưa có tài khoản? Nhấn <a href="{% url 'accounts:register' %}">vào đây</a> để dễ dàng tạo tài khoản mới.</p>
+            <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 font-NotoSans-Bold">Đăng nhập với Google</a>
+
+            <p>Chưa có tài khoản? Nhấn <a href="{% url 'accounts:register' %}" style="color: blue;">vào đây</a> để dễ dàng tạo tài khoản mới.</p>
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'javascript/login.js' %}" type="text/javascript"></script>
 {% endblock %}

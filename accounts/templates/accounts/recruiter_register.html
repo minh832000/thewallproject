@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block pagetitle %}
+      Đăng Ký | Nhà Tuyển Dụng
+{% endblock %}
+
+{% block style %}
+      <link rel="stylesheet" href="{% static 'css/Recruiter/register.css' %}"/>
+{% endblock %}
+
+{% block pagecontent %}
+      <!-- Start => Header of Register Page for Recruiter -->
+      <header class="position-fixed top-0 w-100 bg-web">
+            <div class="header-group">
+                  <div class="header-scope">
+                        <div class="logo-scope">
+                              <img src="{% static 'image/logo.png' %}" alt="Logo The Wall">
+                              <div class="name-site-recuiter">
+                                    <p class="font-NotoSans-Bold main-name-site">The Wall</p>
+                                    <p class="sub-name-site font-NotoSans-Regular">for Employer</p>
+                              </div>
+                        </div>
+                        <div id="showMenu" class="icon-show-menu">
+                              <img src="{% static 'image/menu.png' %}" alt="">
+                        </div>
+                        <div id="mainMenu" class="actions-scope">
+                              <div class="icon-close-menu">
+                                    <img src="{% static 'image/close-button.png' %}" alt="">
+                              </div>
+                              <a 
+                                    href="{% url 'accounts:login' %}" 
+                                    class="action-item font-NotoSans-Regular" 
+                                    style="margin-left: -30px;"
+                              >
+                                    Đăng nhập
+                              </a>
+                              <a 
+                                    href="{% url 'accounts:recruiter_register' %}" 
+                                    class="action-item font-NotoSans-Regular"
+                              >
+                                    Đăng ký
+                              </a>
+                        </div>
+                  </div>
+            </div>
+      </header>
+      <!-- End => Header Scope -->
+      <!-- Start => Register Form for Recruiter -->
+      <div class="container font-NotoSans-Regular">
+            <div class="register-form mx-auto p-sm-5 p-4 position-relative">
+                  <!-- Title of Form -->
+                  <h2 class="font-NotoSans-Bold text-center fs-4">Đăng ký tài khoản The Wall</h2>
+
+                  <!-- Content of Form -->
+                  <form action="{% url 'accounts:recruiter_register' %}" method="POST" id="form-sign-up">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between align-items-center">
+                              <div class="input ps-3 mt-4 w-49">
+                                    <input type="text" name="first_name" placeholder="Tên" required>
+                              </div>
+                              <div class="input ps-3 ms-2 mt-4 w-49">
+                                    <input type="text" name="last_name" placeholder="Họ" required>
+                              </div>
+                        </div>
+                        <div class="input ps-2 my-4">
+                              <img src="{% static 'image/sign-in/user.png' %}" alt="">
+                              <input type="text" name="username" placeholder="Tên đăng nhập" required>
+                        </div>
+                        {% if form.username.errors %}
+                              <p class="alert alert-danger font-NotoSans-Bold">
+                                    {{ form.username.errors.as_text }}
+                              </p>
+                        {% endif %}
+                        <div class="input ps-2 my-4">
+                              <img src="{% static 'image/email.png' %}" alt="">
+                              <input type="email" name="email" placeholder="Email" >
+                        </div>
+                        {% if form.email.errors %}
+                              <p class="alert alert-danger font-NotoSans-Bold">
+                                    {{ form.email.errors.as_text }}
+                              </p>
+                        {% endif %}
+                        <div class="input ps-2 my-4">
+                              <img src="{% static 'image/sign-in/padlock.png' %}" alt="">
+                              <input type="password" name="password" id="pwd" placeholder="Mật khẩu" required>
+                        </div>
+                        {% if form.password.errors %}
+                              <p class="alert alert-danger font-NotoSans-Bold">
+                                    {{ form.password.errors.as_text }}
+                              </p>
+                        {% endif%}
+                        <div class="input ps-2 my-2">
+                              <img src="{% static 'image/sign-in/padlock.png' %}" alt="">
+                              <input type="password" name="re_password" id="repwd" placeholder="Nhập lại mật khẩu" required>
+                        </div>
+                        <input class="d-block border-0 bg-web text-white w-100 my-4 p-2 fs-14 font-NotoSans-Bold" type="submit" value="Đăng ký">
+                        
+                        <hr width="100%"/>
+                        <span>or</span>
+                  </form> 
+                  <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 font-NotoSans-Bold" type="submit">Đăng ký với Google</button>
+            </div>
+      </div> 
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

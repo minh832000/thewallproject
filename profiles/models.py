@@ -14,6 +14,7 @@ class Profile(models.Model):
       ]
 
       user              = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE)
+      full_name         = models.CharField(max_length=128, null=True, blank=True)
       date_of_birth     = models.DateField(null=True, blank=True)
       gender            = models.PositiveBigIntegerField(choices=GENDER_CHOICE, null=True, blank=True)
       phone_number      = models.CharField(max_length=32, null=True, blank=True)
@@ -25,6 +26,9 @@ class Profile(models.Model):
       class Meta:
             verbose_name            = _('Profile')
             verbose_name_plural     = _('Profiles')
+      # show how we want it to be displayed
+      def __str__(self):
+          return f'{self.user.username} profile'
 
 # class Skills (models.Model):
 #       id_skill = models.IntegerField()

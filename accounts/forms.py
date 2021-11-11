@@ -61,7 +61,7 @@ class LoginForm(forms.Form):
                         pass
             return super(LoginForm, self).clean(*args, **kwargs)
       
-class RecruiterSignUpForm(forms.ModelForm):
+class RecruiterRegisterForm(forms.ModelForm):
       re_password = forms.CharField(max_length=128, required=True, widget=forms.PasswordInput)
 
       class Meta():

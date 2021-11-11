@@ -43,7 +43,7 @@ header{
     z-index: 99;
 }
 /*Xử lý ẩn user header*/
-.for-user{
+.for-user {
     /* display:none; */
 }
 .icon-notify{
