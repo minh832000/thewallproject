@@ -138,6 +138,15 @@ header {
             width: 90%;
             padding: 50px 25px;
       }
+      .register-form h2{
+            font-size:18px !important;
+      }
+      .input input {
+            height: 32px;
+      }
+      .input {
+            margin: 0.8rem 0.1rem !important;
+      }
       #mainMenu {
             position: fixed;
             right: 0px;
