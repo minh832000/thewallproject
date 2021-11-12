@@ -14,7 +14,7 @@ class Profile(models.Model):
       ]
       # Form: "Thông tin cơ bản"
       user              = models.OneToOneField(UserModel, related_name="profile", on_delete=models.CASCADE)
-      profile_picture   = models.ImageField(blank=True, null=True)
+      profile_picture   = models.ImageField(blank=True, null=True, upload_to='profile-picture', default="default-profile-picture.jpg")
       full_name         = models.CharField(max_length=128, null=True, blank=True)
       date_of_birth     = models.DateField(null=True, blank=True)
       gender            = models.PositiveBigIntegerField(choices=GENDER_CHOICE, null=True, blank=True)
