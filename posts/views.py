@@ -73,8 +73,8 @@ def search_post(request):
       if request.is_ajax():
             res = None
             post=request.POST.get('post')
-            qs=Post.objects.filter(name_post__icontains=post)
-            # qs=Post.objects.annotate(search=SearchVector('name_post')).filter(search=post)
+            # qs=Post.objects.filter(name_post__icontains=post)
+            qs=Post.objects.annotate(search=SearchVector('name_post'),).filter(search=post)
             print(qs)
             data = []
             for pos in qs:
