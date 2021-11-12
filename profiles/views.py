@@ -17,7 +17,7 @@ class Profile(LoginRequiredMixin, View):
                   user = UserModel.objects.get(username=request.user)
                   profile = ProfileModel.objects.get(user=request.user)
             except UserModel.DoesNotExist:
-                  return render(request, 'profiles/jobseeker/profile.html', {'username': 'Unknown'})
+                  return render(request, 'profiles/JobSeeker/profile.html', {'username': 'Unknown'})
             context = {
                   'user': user,
                   'profile': profile,
@@ -45,4 +45,7 @@ class Profile(LoginRequiredMixin, View):
                         context = model_to_dict(instance)
                         return  JsonResponse(context, safe=False)
             return JsonResponse({'error': 'Submit error', }, safe=False)
-
+      
+class RecruiterProfile(LoginRequiredMixin, View):
+      def get(self, request):
+            return render(request, 'profiles/Recruiter/profile.html')

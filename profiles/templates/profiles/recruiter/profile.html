@@ -3,8 +3,97 @@
 {% load static %}
 
 {% block pagetitle %}
+<<<<<<< HEAD
+      Trang hồ sơ người dùng | Nhà Tuyển Dụng
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/Recruiter/profile-page.css' %}" >
+{% endblock %}
+
+{% block pagecontent %}
+      {% include 'components/Recruiter/header.html' %}
+
+      <!--bảng Thông tin cơ bản-->
+    <div class="frame-profile d-none">
+      <div class="frame-update-inf  position-absolute">
+          <h3 class="fs-5 font-NotoSans-Bold border-bottom p-3 mt-3 position-relative">
+              THÔNG TIN CƠ BẢN 
+              <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
+          </h3>
+          <div class="img-profile-edt overflow-hidden m-auto position-relative">
+              <img class="w-100" src="{% static 'image/profile.jpg" alt="">
+              <img class="edt-img-user position-absolute " src="{% static 'image/draw.png' %}" alt="">
+              <div class="position-absolute bg-opacity w-100 h-100"></div>
+          </div>
+          <form action="." class="p-3 border-bottom">
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Họ và tên</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Email</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="email">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Số điện thoại</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <fieldset class="mx-3 px-3 pb-2 my-3">
+                  <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Địa chỉ</legend>
+                  <input class="border-0 font-NotoSans-Regular fs-6" type="text">
+              </fieldset>
+              <p class="px-3 fs-6 color-gray">Ngày sinh</p>
+              <div class="d-grid birthday">
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Ngày</legend>
+                      <select class="w-100 border-0" name="" id="day">
+                          <option value="">1</option>
+                          <option value="">2</option>
+                          <option value="">3</option>
+                      </select>
+                  </fieldset>
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
+                      <select class="w-100 border-0" name="" id="month">
+                          <option value="">1</option>
+                          <option value="">2</option>
+                          <option value="">3</option>
+                      </select>
+                  </fieldset>
+                  <fieldset class="mx-3 px-3 pb-2 my-3">
+                      <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
+                      <select class="w-100 border-0" name="" id="year">
+                          <option value="">2001</option>
+                          <option value="">2002</option>
+                          <option value="">2003</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <p class="px-3 fs-6 color-gray">Giới tính</p>
+              <fieldset class="border-0 px-3 py-4 row row-cols-2">
+                  <div class="">
+                      <input type="radio" name="gender" id="male"> 
+                      <label for="female" class="fs-6 ms-2">Nam</label>
+                  </div>
+                  <div class="">
+                      <input class="" type="radio" name="gender" id="female">
+                      <label class="fs-6 ms-2" for="female">Nữ</label>
+                  </div>
+              </fieldset>
+              <div class="btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
+                  <button class="btn-cancel btn border px-3 me-3">HỦY</button>
+                  <button type="submit" class="btn bg-btn px-3">LƯU</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+
+=======
       Trang thông tin người dùng | Nhà Tuyển Dụng
 {% endblock %}
+>>>>>>> 587267cec29cfa97cd4a13528260f0b632c51ae2
 
 {% block style %}
       <link rel="stylesheet" href="{% static 'css/Recruiter/profile-page.css' %}" />
@@ -59,6 +148,12 @@
                   </div>
             </div>
       </div>
+<<<<<<< HEAD
+{% endblock %}
+
+{% block javascript %}
+=======
+>>>>>>> 587267cec29cfa97cd4a13528260f0b632c51ae2
 
       <!-- =============== Footer ================ -->
       <footer class="container-fluid px-0 bg-web">
