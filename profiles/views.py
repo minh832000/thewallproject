@@ -17,24 +17,13 @@ class Profile(LoginRequiredMixin, View):
                   user = UserModel.objects.get(username=request.user)
                   profile = ProfileModel.objects.get(user=request.user)
             except UserModel.DoesNotExist:
-                  return render(request, 'profiles/jobseeker/profile.html', {'username': 'Unknown'})
+                  return render(request, 'profiles/JobSeeker/profile.html', {'username': 'Unknown'})
             context = {
                   'user': user,
                   'profile': profile,
             }
             return render(request, 'profiles/JobSeeker/profile.html', context)
 
-<<<<<<< HEAD
-      def dispatch(self, request, *args, **kwargs):
-            print("Data is from request")
-            print(self.request.GET)
-            print(self.request.user)
-            return super(Profile, self).dispatch(request, *args, **kwargs)
-
-
-def profileRecruiter(request):
-      return render(request, 'profiles/recruiter/profile.html')
-=======
       def post(self, request, *args, **kwargs):
             if request.method == 'POST' and request.is_ajax():
                   # Get username of user
@@ -56,12 +45,7 @@ def profileRecruiter(request):
                         context = model_to_dict(instance)
                         return  JsonResponse(context, safe=False)
             return JsonResponse({'error': 'Submit error', }, safe=False)
-<<<<<<< HEAD
-
+      
 class RecruiterProfile(LoginRequiredMixin, View):
       def get(self, request):
             return render(request, 'profiles/Recruiter/profile.html')
-=======
-      
->>>>>>> 3ae8e823c4f342c17e7860450204da0de72f5b2a
->>>>>>> 18f55549503ca80f5eec559a3dc96184905b87e8

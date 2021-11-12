@@ -1,14 +1,18 @@
-{% extends 'base_recruiter.html' %}
+{% extends 'base.html' %}
+
 {% load static %}
 
-{% block pagetitle_recruiter %}
-      Chi tiết công việc
+{% block pagetitle %}
+      Trang hồ sơ người dùng | Nhà Tuyển Dụng
 {% endblock %}
-{% block linkcss_recruiter %}
-    <link rel="stylesheet" href="{% static 'css/company-profile.css' %}" >
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/Recruiter/profile-page.css' %}" >
 {% endblock %}
-{% block maincontent %}
-      <!-- End Header -->
+
+{% block pagecontent %}
+      {% include 'components/Recruiter/header.html' %}
+
       <!--bảng Thông tin cơ bản-->
     <div class="frame-profile d-none">
       <div class="frame-update-inf  position-absolute">
@@ -136,6 +140,7 @@
             </div>
       </div>
 {% endblock %}
-{% block linkjs %}
+
+{% block javascript %}
 
 {% endblock %}
