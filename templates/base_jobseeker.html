@@ -8,7 +8,8 @@
     {% endblock %}
 {% endblock %}
 
-{% block linkcss %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
     {% block linkcss_jobseeker %}
 
     {% endblock %}
@@ -88,5 +89,6 @@
     {% block maincontent %}
     {% endblock %}
 {% endblock %}
-{% block linkjs %}
+
+{% block javascript %}
 {% endblock %}

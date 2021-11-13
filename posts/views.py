@@ -1,10 +1,15 @@
+from django.db.models import query
+from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
 from tag_skill.models import TagSkill
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.db.models.functions import Lower
+
+CharField.register_lookup(Lower)
 # Create your views here.
 
 def listJob(request):
@@ -73,28 +78,22 @@ def search_post(request):
       if request.is_ajax():
             res = None
             post=request.POST.get('post')
-            # qs=Post.objects.filter(name_post__icontains=post)
-            qs=Post.objects.annotate(search=SearchVector('name_post'),).filter(search=post)
-            print(qs)
-            data = []
-            for pos in qs:
-                  item = {
-                        'pk': pos.pk,
-                        'name':pos.name_post
-                  }
-                  data.append(item)
-            res=data
-            # if len(qs) > 0 and len(post) >0:
-            #       data = []
-            #       for pos in qs:
-            #             item = {
-            #                   'pk': pos.pk,
-            #                   'name':pos.name_post
-            #             }
-            #             data.append(item)
-            #       res=data
-            # else:
-            #       res='No post found..'
+            qs=Post.objects.filter(name_post__icontains=post)
+            # vector=SearchVector('name_post')
+            # query=SearchQuery(post)
+            # qs=Post.objects.annotate(rank=SearchRank(vector, query))
+
+            if len(qs) > 0 and len(post) >0:
+                  data = []
+                  for pos in qs:
+                        item = {
+                              'pk': pos.pk,
+                              'name':pos.name_post
+                        }
+                        data.append(item)
+                  res=data
+            else:
+                  res='No post found..'
             return JsonResponse({'data':res})
       return JsonResponse({})
 
@@ -121,6 +120,9 @@ def search_location(request):
 def search(request):
       if request.method == 'POST':
             post=request.POST.get('post')
-            location=request.POST.get('location')
-            Data = {'Posts': Post.objects.filter(name_post__icontains=post,location__icontains=location)}
+            # location=request.POST.get('location')
+            Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post)}
+      
+ 
+
       return render(request, 'posts/job_seeker/list_job.html', Data)
