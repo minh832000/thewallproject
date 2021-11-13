@@ -78,7 +78,7 @@ def search_post(request):
       if request.is_ajax():
             res = None
             post=request.POST.get('post')
-            qs=Post.objects.filter(name_post__icontains=post)
+            qs=Post.objects.filter(name_post__unaccent__icontains=post)
             # vector=SearchVector('name_post')
             # query=SearchQuery(post)
             # qs=Post.objects.annotate(rank=SearchRank(vector, query))
@@ -93,29 +93,11 @@ def search_post(request):
                         data.append(item)
                   res=data
             else:
-                  res='No post found..'
+                  res=''
             return JsonResponse({'data':res})
       return JsonResponse({})
 
 
-def search_location(request):
-      if request.is_ajax():
-            res = None
-            loc=request.POST.get('loc')
-            qs=Post.objects.filter(location__icontains=loc)
-            if len(qs) > 0 and len(loc) >0:
-                  data = []
-                  for pos in qs:
-                        item = {
-                              'pk': pos.pk,
-                              'location':pos.location
-                        }
-                        data.append(item)
-                  res=data
-            else:
-                  res='No post found..'
-            return JsonResponse({'data':res})
-      return JsonResponse({})
 
 def search(request):
       if request.method == 'POST':
