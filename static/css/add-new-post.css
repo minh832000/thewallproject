@@ -13,10 +13,11 @@
 
 #main .input-fields .input {
       margin-bottom: 20px;
+      width: 50%;
 }
 
 #main .input-fields .input-area {
-      width: 480px;
+      width: 99%;
       height: 38px;
       margin-top: 10px;
       padding-left: 15px;
@@ -73,7 +74,7 @@
 }
 
 #main .input-required-skills .input-column {
-      width: 480px;
+      width: 90%;
 }
 
 #main .search-input {
@@ -122,4 +123,15 @@ textarea:focus, select:focus{
       color:#000;
       padding:6px;
       cursor:pointer;
+}
+@media (max-width: 576px){
+      #main .input-fields .input {
+            width: 100%;
+      }
+      form{
+            margin: 0 16px;
+      }
+      #main .input-required-skills .input-column {
+            width: 100%;
+        }
 }
