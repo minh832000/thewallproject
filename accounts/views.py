@@ -74,5 +74,4 @@ class RecruiterRegister(CreateView):
             return render(request, 'accounts/recruiter_register.html', {'form': form})
 
       def dispatch(self, request, *args, **kwargs):
-            print(self.request.user)
             return super(RecruiterRegister, self).dispatch(request, *args, **kwargs)

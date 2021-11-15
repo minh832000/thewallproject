@@ -1,7 +1,7 @@
 from django.db.models import query
 from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
@@ -23,9 +23,12 @@ def detailJob(request,post_id):
 def addNewPost(request):
       fieldJob=FieldJob.objects.all()
       a = PostForm()
-      return render(request, 'posts/recruiter/add_new_post.html',{ 
-            'f': a, 
-            'fields':fieldJob})
+      print(request.user.is_recruiter)
+      if request.user.id and request.user.is_recruiter:
+            return render(request, 'posts/recruiter/add_new_post.html',{ 
+                  'f': a, 
+                  'fields':fieldJob})
+      else: return redirect('accounts:login')
 
 
 def savePost(request):
@@ -102,8 +105,8 @@ def search_post(request):
 def search(request):
       if request.method == 'POST':
             post=request.POST.get('post')
-            # location=request.POST.get('location')
-            Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post)}
+            location=request.POST.get('location')
+            Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post, location__unaccent__icontains=location)}
       
  
 

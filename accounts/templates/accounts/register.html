@@ -1,50 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base_jobseeker.html' %}
 
 {% load static %}
 
-{% block pagetitle %}
+{% block pagetitle_jobseeker %}
       Đăng ký | Người tìm việc
 {% endblock %}
 
-{% block linkcss %}
+{% block linkcss_jobseeker %}
       <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
 {% endblock %}
 
-{% block pagecontent %}
-      <!-- ========== ---HEADER--- ========== -->
-      <header class="bg-web position-fixed top-0 w-100">
-            <div class="container ">
-            <div class=" header d-flex row justify-content-between ">
-                  <div class="logo col-md-2  col-10 d-flex align-items-center">
-                        <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
-                        <p class="name text-white mb-0 fs-5">The Wall</p>
-                  </div>
-                  <div class="icon-menu col-2 align-items-center ">
-                        <img src="{% static 'image/menu.png' %}" alt="">
-                  </div>
-                  <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
-                        <div class="icon-close">
-                        <img src="{% static 'image/close-button.png' %}" alt="">
-                        </div>
-                        <div class="nav-menu row col-md-6 col-12 ">
-                        <ul class="list-unstyled mb-0 ">
-                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="">CƠ HỘI VIỆC LÀM</a></li>
-                              <li class="d-inline-block"><a class="text-decoration-none text-light" href="">DANH SÁCH CÔNG TY</a></li>
-                        </ul>
-                        </div>
-                        <div class="col-md-6 row justify-content-between align-items-center">
-                        <div class="sign-up col-md-6 col-12">
-                              <a class=" fs-14 text-decoration-none me-4 text-light" href="">ĐĂNG NHẬP</a>
-                              <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
-                        </div>
-                        <div class="col-md-6 col-12 ">
-                              <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
-                        </div>
-                        </div>
-                  </div>
-            </div>
-            </div>
-      </header>
+{% block maincontent %}
+      
       <!-- End HEADER -->
       <div class="container font-NotoSans-Regular">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
@@ -99,10 +66,5 @@
             </div>
       </div> 
 
-      <!-- <div class="container mt-80">
-            <form action="#" method="POST">
-                  {% csrf_token %}
-                  {{ form.as_p }}
-            </form>
-      </div> -->
+      
 {% endblock %}
