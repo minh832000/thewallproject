@@ -107,7 +107,14 @@ def search(request):
             post=request.POST.get('post')
             location=request.POST.get('location')
             Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post, location__unaccent__icontains=location)}
-      
- 
-
       return render(request, 'posts/job_seeker/list_job.html', Data)
+
+
+def filter(request):
+      if request.method == 'POST':
+            filter=request.POST.get('value[]')
+           
+            # Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post, location__unaccent__icontains=location)}
+                  
+            return JsonResponse({'Data':'success'})
+      return JsonResponse({})
