@@ -90,6 +90,7 @@ p {
     display: none; 
 }
 .frame-update-inf{
+    background: #fff;
     width: 98%;
     max-width: 500px;
     top: 15%;
