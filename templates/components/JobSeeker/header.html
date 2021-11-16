@@ -21,36 +21,15 @@
                         <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
                     </ul>
                 </div>
-<<<<<<< HEAD
                 <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
                     <div class="icon-notify me-3 gx-0">
                         <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
                     </div>
                     <div class="img-user">
                         <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-=======
-                {% if not user.is_authenticated %}
-                    <div class="col-md-6 row justify-content-between align-items-center">
-                        <div class="sign-up col-md-6 col-12">
-                            <a class=" fs-14 text-decoration-none me-4 text-light font-NotoSans-Regular" href="{% url 'accounts:login' %}">ĐĂNG NHẬP</a>
-                            <a class=" fs-14 text-decoration-none text-light" href="{% url 'accounts:register' %}">ĐĂNG KÝ</a> 
-                        </div>
-                        <div class="col-md-6 col-12 ">
-                            <a href="{% url 'home:recruiter_index' %}">
-                                <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
-                            </a>
-                        </div>
->>>>>>> 4e5c8889029da7b2e1c1bc93e786aebe98f245b1
                     </div>
                 <!--Bảng điều khiên khi đăng nhập user-->
-                {% else %}
                     <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                        <div class="icon-notify me-3 gx-0">
-                            <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
-                        </div>
-                        <div class="img-user">
-                            <img class="w-100" src="{% static 'image/horror.png' %}" alt="">
-                        </div>
                         <div class="control-user accordion accordion-flush" id="accordion">
                             <div class="accordion-item bg-transparent  position-relative ">
                                 <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
@@ -70,7 +49,6 @@
                             </div>
                         </div>
                     </div>
-                {% endif %}
             </div>
         </div>
     </div>
