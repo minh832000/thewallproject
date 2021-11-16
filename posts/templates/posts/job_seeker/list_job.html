@@ -15,7 +15,7 @@
                     {% csrf_token %}
                     <div class="search-job p-1 col-md-5 col-12">
                         <img src="{% static 'image/hello/search.png' %}" alt="">
-                        <input id="search-post" class=" input-sr border-0 bg-transparent" name="post" type="text" placeholder="Tìm kiếm việc làm">
+                        <input autocomplete="off" id="search-post" class=" input-sr border-0 bg-transparent" name="post" type="text" placeholder="Tìm kiếm việc làm">
                         <div id="result-search" class="not-visible"></div>
                     </div>
                     <div class="search-location p-1 col-md-5 col-12">

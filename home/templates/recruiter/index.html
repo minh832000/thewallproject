@@ -6,7 +6,7 @@
       The Wall | Employers
 {% endblock %}
 
-{% block linkcss %}
+{% block style %}
       <link rel="stylesheet" href="{% static 'css/hello-hr.css' %}">
 {% endblock %}
 
@@ -15,15 +15,15 @@
         <header class="bg-web position-fixed top-0 w-100">
             <div class="container">
                 <div class=" header d-flex row justify-content-between align-content-center">
-                    <a href="{% url 'home:recruiter_index' %}" class="col-5">
+                    <a href="{% url 'home:index' %}" class="col-5">
                         <div class="logo   d-flex align-items-center">
                             <img class="img-logo me-2" src="{% static 'image/logo.png' %}" alt="">
                             <p class="name text-white mb-0 fs-5">The Wall</p>
                         </div>
                     </a>
                     <div class="button-header pt-2 col-7 align-content-center justify-content-end d-flex fs-14">
-                        <button class="btn-sign-up bg-transparent fs-14 me-md-4 me-1 text-light">ĐĂNG NHẬP</button>
-                        <button class="btn-sign-in fs-14 border-0 bg-white">ĐĂNG KÝ</button> 
+                        <a href="{% url 'accounts:login'%}"><button class="btn-sign-up bg-transparent fs-14 me-md-4 me-1 text-light">ĐĂNG NHẬP</button></a>
+                        <a href="{% url 'accounts:recruiter_register'%}"><button class="btn-sign-in fs-14 border-0 bg-white">ĐĂNG KÝ</button></a> 
                     </div>
                 </div>
             </div>

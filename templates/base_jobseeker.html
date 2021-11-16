@@ -8,7 +8,8 @@
     {% endblock %}
 {% endblock %}
 
-{% block linkcss %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
     {% block linkcss_jobseeker %}
 
     {% endblock %}
@@ -16,77 +17,13 @@
 
 {% block pagecontent %}
 <!-- ========== HEADER ========== -->
-<header class="bg-web position-fixed top-0 w-100">
-    <div class="container">
-        <div class="header row justify-content-between ">
-            <a href="#" class="col-10 col-md-2 ">
-                <div class="logo d-flex h-100 align-items-center">
-                    <img class="img-logo" src="{% static 'image/logo.png' %}" alt="">
-                    <p class="name text-white mb-0 fs-5">The Wall</p>
-                </div>
-            </a>
-            <div class="icon-menu col-2 align-items-center ">
-                <img src="{% static 'image/menu.png' %}" alt="">
-            </div>
-            <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
-                <div class="icon-close">
-                    <img src="{% static 'image/close-button.png' %}" alt="">
-                </div>
-                <div class="nav-menu row col-md-6 col-12 ">
-                    <ul class="list-unstyled mb-0 ">
-                        <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job'%}">CƠ HỘI VIỆC LÀM</a></li>
-                        <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
-                    </ul>
-                </div>
-                {% if not user.is_authenticated %}
-                    <div class="col-md-6 row justify-content-between align-items-center">
-                        <div class="sign-up col-md-6 col-12">
-                            <a class=" fs-14 text-decoration-none me-4 text-light font-NotoSans-Regular" href="">ĐĂNG NHẬP</a>
-                            <a class=" fs-14 text-decoration-none text-light" href="">ĐĂNG KÝ</a> 
-                        </div>
-                        <div class="col-md-6 col-12 ">
-                            <a href="{% url 'home:recruiter_index' %}">
-                                <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
-                            </a>
-                        </div>
-                    </div>
-                <!--Bảng điều khiên khi đăng nhập user-->
-                {% else %}
-                    <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                        <div class="icon-notify me-3 gx-0">
-                            <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
-                        </div>
-                        <div class="img-user">
-                            <img class="w-100" src="{% static 'image/horror.png' %}" alt="">
-                        </div>
-                        <div class="control-user accordion accordion-flush" id="accordion">
-                            <div class="accordion-item bg-transparent  position-relative ">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="name-user accordion-button fs-14 text-white bg-transparent collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
-                                    MINH VO
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
-                                    <div class="pt-2">
-                                        <ul class="list-unstyled">
-                                            <li><a href="">Quản lí hồ sơ</a> </li>
-                                            <li><a href="">Đơn ứng tuyển của tôi</a> </li>
-                                            <li><a href="">Cài đặt tài khoản</a> </li>
-                                            <li><a href="">Đăng xuất</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</header>
+    {% include 'components/JobSeeker/header.html' %}
  
     {% block maincontent %}
     {% endblock %}
+
+    {% include 'components/JobSeeker/footer.html' %}
 {% endblock %}
-{% block linkjs %}
+
+{% block javascript %}
 {% endblock %}
