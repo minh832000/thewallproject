@@ -134,8 +134,7 @@ $(document).on('click', '#submitSummaryForm', (e) => {
         processData: false,
         success: (res) => {
             $('#updateSummaryInformation').addClass('d-none');
-            var e_str = `<p class="font-WorkSans-Regular">${res['summary']}</p>`;
-            $('#displaySummaryInformation').html(e_str);
+            $('#displaySummaryInformation').text(res['summary']);
         },
         error: (error) => {
             console.log(error);
