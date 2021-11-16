@@ -93,8 +93,8 @@ class Profile(LoginRequiredMixin, View):
                         name_of_major = request.POST.get('name_of_major') if request.POST.get('name_of_major') else None
                         time_admission = request.POST.get('time_admission') if request.POST.get('time_admission') else None
                         time_graduate = request.POST.get('time_graduate') if request.POST.get('time_graduate') else None
-                        is_studying = request.POST.get('is_studying')
-                        additional_education = request.POST.get('additional_education')
+                        is_studying = True if request.POST.get('is_studying') == '1' else False
+                        additional_education = request.POST.get('additional_education') if request.POST.get('additional_education') else None
                         # Update fields in Profile model
                         if name_of_school:
                               instance.name_of_school = name_of_school.strip()
