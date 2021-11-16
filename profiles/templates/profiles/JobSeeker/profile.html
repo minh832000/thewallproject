@@ -138,7 +138,7 @@
                 <div class="update-profile col-md-8 col-12 ps-lg-5 ps-4 mt-4 mt-md-0">
                     <div class="inf-item pb-5">
                         <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">THÔNG TIN CHUNG</h3>
-                        {% if profile.summary is None %}
+                        {% if not profile.summary %}
                             <div id="updateSummaryInformation">
                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
                                 <div class="add-edit justify-content-center d-flex" id="add-edit-2">
