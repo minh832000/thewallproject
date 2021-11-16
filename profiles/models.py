@@ -24,7 +24,7 @@ class Profile(models.Model):
       created_at        = models.DateTimeField(auto_now_add=True)
       updated_at        = models.DateTimeField(auto_now=True)
       # Form: "Thông tin chung"
-      summary           = models.TextField(max_length=1000, blank=True, null=True, default='Not Updated')
+      summary           = models.TextField(max_length=1000, blank=True, null=True)
 
       # Form: "Trình độ học vấn"
       name_of_school           = models.CharField(max_length=255, blank=True, null=True)
