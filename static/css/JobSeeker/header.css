@@ -49,8 +49,17 @@ header {
 }
 
 .img-user {
-    width: 65px;
-    --bs-gutter-x:1.5rem;
+    width: 45px;
+    height: 45px;
+    --bs-gutter-x: 1.5rem;
+    margin-right: 15px;
+}
+
+.img-user img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
 }
 
 .dropdown li{
