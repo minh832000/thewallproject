@@ -72,7 +72,8 @@ $(document).on('click', '#submitBasicInformationForm', (e) => {
             };
 
             var d = new Date(res['date_of_birth']);
-            var d_str = `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`
+            var m = d.getMonth() + 1;
+            var d_str = `${d.getDate()}/${m}/${d.getFullYear()}`
             $('#displayDateOfBirth').text(d_str)
         },
         error: (error) => {
