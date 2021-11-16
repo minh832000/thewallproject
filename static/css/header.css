@@ -61,7 +61,7 @@ header{
     background: #BFE9FF;
 }
 .control-user .accordion-button::after{
-    background-image: url(../image/down-arrow.png);
+    background-image: url(https://img.icons8.com/material-outlined/24/ffffff/expand-arrow--v1.png);
     margin-left: 6px;
     
 }
