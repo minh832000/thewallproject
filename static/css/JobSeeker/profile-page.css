@@ -38,8 +38,7 @@ p {
 .name h3 { 
     line-height: 100px;
 }
-.basic-inf h3,
-.inf-item h3{
+.basic-inf h3 {
     border-bottom: #000 1px solid;
 }
 .basic-inf{
@@ -212,4 +211,32 @@ input[type='text']{
 .vnd{
     background: #C4C4C4;
     width:23%;
+}
+
+/* Update Profile */
+.header_information_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #111111;
+    padding-bottom: 5px;
+}
+
+.header_information_item p {
+    font-size: 14pt;
+    text-transform: uppercase;
+}
+
+.header_information_item button {
+    background: none;
+    border: none;
+}
+
+.header_information_item i {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.body_information_item {
+    padding: 7px;
 }

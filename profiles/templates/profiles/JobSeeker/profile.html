@@ -39,14 +39,15 @@
                         </div>
                         <div class="img-user">
                             <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-                        </div>
+                        </div> 
+        
                     <!--Bảng điều khiên khi đăng nhập user-->
                         <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                
                             <div class="control-user accordion accordion-flush" id="accordion">
                                 <div class="accordion-item bg-transparent  position-relative ">
-                                    <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
-                                            {{ user.first_name }}
-                                            
+                                    <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">   
+                                        {{ user.first_name }}    
                                     </button>
                                     <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
                                         <div class="pt-2">
@@ -73,7 +74,6 @@
                 <div class="frame-img col-sm-3 col-12">
                     <div class="img-profile overflow-hidden m-auto me-sm-2">
                         <input id="changeProfilePicture" type="file" multiple accept="image/*"/>
-                        <!-- <img id="profilePicture" src="{% static 'image/profile.jpg' %}" alt=""> -->
                         <img id="profilePicture" src="{{ profile.profile_picture.url }}" alt="Profile Picture">
                     </div>
                 </div>
@@ -137,24 +137,34 @@
                 </div>
                 <div class="update-profile col-md-8 col-12 ps-lg-5 ps-4 mt-4 mt-md-0">
                     <div class="inf-item pb-5">
-                        <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">THÔNG TIN CHUNG</h3>
-                        {% if not profile.summary %}
-                            <div id="updateSummaryInformation">
-                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
-                                <div class="add-edit justify-content-center d-flex" id="add-edit-2">
-                                    <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                                    <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
-                                </div>
-                            </div> 
-                        {% else %}
-                            <div id="displaySummaryInformation">
-                                <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
-                            </div>
-                        {% endif %}
+                        <div class="header_information_item">
+                            <p class="font-NotoSans-Bold">Thông tin chung</p>
+                            <button id="button_EditSummary" type="button">
+                                <i class="icofont-pencil-alt-5"></i>
+                            </button>
+                        </div>
+                        <div class="body_information_item">
+                            {% if not profile.summary %}
+                                <div id="updateSummaryInformation">
+                                    <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
+                                    <div class="add-edit justify-content-center d-flex" id="add-edit-2">
+                                        <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                        <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
+                                    </div>
+                                </div> 
+                            {% else %}
+                                <p id="displaySummaryInformation" class="font-WorkSans-Regular">{{ profile.summary }}</p>
+                            {% endif %}
+                        </div>
+
                     </div>
                     <div class="inf-item pb-5">
-                        <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">TRÌNH ĐỘ HỌC VẤN</h3>
-                        
+                        <div class="header_information_item">
+                            <p class="font-NotoSans-Bold">Trình độ học vấn</p>
+                            <button id="button_EditEducation" type="button">
+                                <i class="icofont-pencil-alt-5"></i>
+                            </button>
+                        </div>
                         <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy giúp nhà tuyển dụng hiểu rõ hơn về bạn. Thông tin về quá trình học vấn sẽ giúp tăng cơ hội phỏng vấn của bạn đến 23%.</p>
                         <div class="add-edit justify-content-center d-flex" id="add-edit-4">
                             <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
@@ -162,7 +172,14 @@
                         </div>
                     </div>
                     <div class="inf-item pb-5">
-                        <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">KỸ NĂNG CHUYÊN MÔN</h3>
+                        <!-- Header of a profile'item -->
+                        <div class="header_information_item">
+                            <p class="font-NotoSans-Bold">Kỹ năng chuyên môn</p>
+                            <button id="button_EditProfestionalSkill" type="button">
+                                <i class="icofont-pencil-alt-5"></i>
+                            </button>
+                        </div>
+                        <!-- Body of a profile's item -->
                         <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Nêu ra các kỹ năng giúp ích cho vị trí ứng tuyển</p>
                         <div class="add-edit justify-content-center d-flex" id="add-edit-5">
                             <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
@@ -178,7 +195,14 @@
                         </div>
                     </div>
                     <div class="inf-item pb-5">
-                        <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">DỰ ÁN THAM GIA</h3>
+                        <!-- Header of a profile'item -->
+                        <div class="header_information_item">
+                            <p class="font-NotoSans-Bold">Dự án tham gia</p>
+                            <button id="button_EditProjectParticipated" type="button">
+                                <i class="icofont-pencil-alt-5"></i>
+                            </button>
+                        </div>
+                        <!-- Body of a profile's item -->
                         <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho nhà tuyển dụng thấy kinh nghiệm của bạn qua các dự án mà bạn đã từng tham gia</p>
                         <div class="add-edit justify-content-center d-flex"  id="add-edit-6">
                             <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
@@ -186,7 +210,14 @@
                         </div>
                     </div>
                     <div class="inf-item pb-5">
-                        <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">HOẠT ĐỘNG XÃ HỘI</h3>
+                        <!-- Header of a profile'item -->
+                        <div class="header_information_item">
+                            <p class="font-NotoSans-Bold">Hoạt động xã hội</p>
+                            <button id="button_EditVolunteeringActivity" type="button">
+                                <i class="icofont-pencil-alt-5"></i>
+                            </button>
+                        </div>
+                        <!-- Body of a profile's item -->
                         <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Các hoạt động xã hội giúp nhà tuyển dụng biết thêm về kỹ năng mềm của bạn</p>
                         <div class="add-edit justify-content-center d-flex" id="add-edit-7">
                             <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
@@ -242,7 +273,7 @@
                 <div class="d-grid birthday">
                     <fieldset class="mx-3 px-3 pb-2 my-3">
                         <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Ngày</legend>
-                        <select class="w-100 border-0" id="dayBirth" value="{{ profile.date_of_birth.day }}">
+                        <select class="w-100 border-0" id="dayBirth">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
