@@ -23,28 +23,28 @@ jQuery(document).ready(function($){
 
     
 })
-const filterTypeJob=(val)=>{
-    console.log(val)
-    $.ajax({
-        type: 'POST',
-        url:"filter/",
-        data:{
-            'value':val
-        },
-        success: (res) => {
-            console.log(res)
-        }
-    })
-}
-
-$("input[name='type-job']").click(function(){
-    var checkTypeJob=$("input[name='type-job']");
-    var result=[];
+// const filterTypeJob=(val)=>{
     
-    $(checkTypeJob).each(function (index, check) {
-        if ($(check).prop('checked') === true){
-            result[index] = $(check).val();
-        }
-    });
-    filterTypeJob(result)
-})
+//     $.ajax({
+//         type: 'POST',
+//         url:"filter/",
+//         data:{
+//             'value':val
+//         },
+//         success: (res) => {
+//             console.log(res)
+//         }
+//     })
+// }
+
+// $("input[name='type-job']").click(function(){
+//     var checkTypeJob=$("input[name='type-job']");
+//     var result=[];
+    
+//     $(checkTypeJob).each(function (index, check) {
+//         if ($(check).prop('checked') === true){
+//             result.unshift($(check).val());
+//         }
+//     });
+//     filterTypeJob(result)
+// })

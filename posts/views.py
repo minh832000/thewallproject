@@ -112,9 +112,23 @@ def search(request):
 
 def filter(request):
       if request.method == 'POST':
-            filter=request.POST.get('value[]')
-           
-            # Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post, location__unaccent__icontains=location)}
-                  
-            return JsonResponse({'Data':'success'})
-      return JsonResponse({})
+            filter=dict(request.POST)
+            Data=[]
+            if ("type-job" in filter):
+                  for item in dict(filter)['type-job']:
+                        post =  list(Post.objects.filter(type_job__unaccent__icontains=item))
+                        if len(post)>0:
+                              Data.extend(list(post))
+            if ("location" in filter):
+                  for item in dict(filter)['location']:
+                        post =  list(Post.objects.filter(location__unaccent__icontains=item))
+                        if len(post)>0:
+                              Data.extend(list(post))
+            if ("job" in filter):
+                  for item in dict(filter)['job']:
+                        post =  list(Post.objects.filter(field_job__field_name__unaccent__icontains=item))
+                        if len(post)>0:
+                              Data.extend(list(post))
+            return render(request, 'posts/job_seeker/list_job.html',{'Posts': Data})
+            
+      
