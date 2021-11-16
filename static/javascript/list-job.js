@@ -43,7 +43,7 @@ $("input[name='type-job']").click(function(){
     
     $(checkTypeJob).each(function (index, check) {
         if ($(check).prop('checked') === true){
-            result[index] = $(check).val();
+            result.unshift($(check).val());
         }
     });
     filterTypeJob(result)
