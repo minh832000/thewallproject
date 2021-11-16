@@ -9,10 +9,10 @@ $(document).on('click', ".i-close, .over-edit, btn-cancel", function() {
         $('.over-edit').remove();
     });
     $('#frame-1').hide();
-return false;
+    return false;
 });
 
-$(document).on('click', '.add-edit', function(){
+$(document).on('click', '.add-edit', function() {
     var idBtn = '#'+this.id;
     var numberBtn = idBtn.slice(-1);
     var idFrame= '#frame-'+ numberBtn;
@@ -24,7 +24,7 @@ $(document).on('click', '.add-edit', function(){
             $('.over-edit').remove();
         });
         $(idFrame).hide();
-    return false;
+        return false;
     });
 });
 
@@ -139,6 +139,52 @@ $(document).on('click', '#submitSummaryForm', (e) => {
         error: (error) => {
             console.log(error);
         }
-        
+    })
+})
+
+$(document).on('click', '#btn_submit_EducationForm', (e) => {
+    e.preventDefault();
+    // selecting elements which are related to admission time field
+    var m_s = $('#month_start_EducationForm').val();
+    var y_s = $('#year_start_EducationForm').val();
+    var t_s = `${y_s}-${m_s}-01`;
+    // selecting elements which are related to graduation time field
+    var m_e = $('#month_end_EducationForm').val();
+    var y_e = $('#year_end_EducationForm').val();
+    var t_e = `${y_e}-${m_e}-01`;
+    // selecting element form 
+    var f = document.getElementById('educationForm');
+    var fd = new FormData(f);
+    fd.append('form', 'educationForm');
+    fd.append('time_admission', t_s);
+    fd.append('time_graduate', t_e);
+    
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: (res) => {
+            console.log(res);
+            $('#frame-4').hide();
+            $('.over-edit').remove();
+            // Update the fields which are just changed
+            $('#display_NameOfSchool').text(res['name_of_school'])
+            $('#display_AcademicDegree').text(res['academic_degree'])
+            $('#display_NameOfMajor').text(res['name_of_major'])
+            $('#display_AdditionalEducation').text(res['additional_education'])
+
+            var t_start = new Date(res['time_admission']);
+            var m_start = t_start.getMonth() + 1;
+            var t_end = new Date(res['time_graduate']);
+            var m_end = t_end.getMonth() + 1;
+            var t_str = `${m_start}/${t_start.getFullYear()} - ${m_end}/${t_end.getFullYear()}`;
+            $('#display_TimeEducation').text(t_str);
+        },
+        error: (error) => {
+            console.log(error);
+        }
     })
 })
