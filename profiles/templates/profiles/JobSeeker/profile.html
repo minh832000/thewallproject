@@ -17,9 +17,11 @@
         <div class="container mx-120 p-0">
             <h1 class="font-NotoSans-Bold text-center my-5">HỒ SƠ CỦA BẠN</h1>
             <div class="name row text-center text-sm-start">
-                <div class="frame-img col-sm-3 col-12 ">
-                    <div class="img-profile  overflow-hidden m-auto me-sm-2">
-                        <img class="w-100" src="{% static 'image/profile.jpg' %}" alt="">
+                <div class="frame-img col-sm-3 col-12">
+                    <div class="img-profile overflow-hidden m-auto me-sm-2">
+                        <input id="changeProfilePicture" type="file" multiple accept="image/*"/>
+                        <!-- <img id="profilePicture" src="{% static 'image/profile.jpg' %}" alt=""> -->
+                        <img id="profilePicture" src="{{ profile.profile_picture.url }}" alt="Profile Picture">
                     </div>
                 </div>
                 <div class="col-sm-9">
@@ -35,7 +37,9 @@
                                 <p class="font-WorkSans-SemiBold fs-14">NGÀY SINH</p>
                             </div>
                             <div class="inf-content">
-                                <p class="font-NotoSans-Regular">08/03/2000</p>
+                                <p id="displayDateOfBirth" class="font-NotoSans-Regular">
+                                    {{ profile.date_of_birth.day }}/{{ profile.date_of_birth.month }}/{{ profile.date_of_birth.year }}
+                                </p>
                             </div>
                         </div>
                         <div class="list-inf d-flex justify-content-between py-2">
@@ -43,7 +47,13 @@
                                 <p class="font-WorkSans-SemiBold fs-14">GIỚI TÍNH</p>
                             </div>
                             <div class="inf-content">
-                                <p class="font-NotoSans-Regular">Nam</p>
+                                <p id="displayGender" class="font-NotoSans-Regular">
+                                    {% if profile.gender == 1 %}
+                                        Nam
+                                    {% else %}
+                                        Nữ
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                         <div class="list-inf d-flex justify-content-between py-2">
@@ -75,12 +85,19 @@
                 <div class="update-profile col-md-8 col-12 ps-lg-5 ps-4 mt-4 mt-md-0">
                     <div class="inf-item pb-5">
                         <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">THÔNG TIN CHUNG</h3>
-                    
-                        <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
-                        <div class="add-edit justify-content-center d-flex" id="add-edit-2">
-                            <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                            <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
-                        </div>
+                        {% if profile.summary is None %}
+                            <div id="updateSummaryInformation">
+                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
+                                <div class="add-edit justify-content-center d-flex" id="add-edit-2">
+                                    <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                    <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
+                                </div>
+                            </div> 
+                        {% else %}
+                            <div id="displaySummaryInformation">
+                                <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="inf-item pb-5">
                         <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">TRÌNH ĐỘ HỌC VẤN</h3>
@@ -154,57 +171,123 @@
                 {% csrf_token %}
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Họ và tên</legend>
-                    <input name="full_name" class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="full_name" class="border-0 font-NotoSans-Regular fs-6" type="text" value="{{ profile.full_name }}">
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Email</legend>
-                    <input name="email" class="border-0 font-NotoSans-Regular fs-6" type="email">
+                    <input name="email" class="border-0 font-NotoSans-Regular fs-6" type="email" value="{{ user.email }}" readonly>
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Số điện thoại</legend>
-                    <input name="phone_number" class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="phone_number" class="border-0 font-NotoSans-Regular fs-6" type="text" value="{{ profile.phone_number }}">
                 </fieldset>
                 <fieldset class="mx-3 px-3 pb-2 my-3">
                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Địa chỉ</legend>
-                    <input name="address" class="border-0 font-NotoSans-Regular fs-6" type="text">
+                    <input name="address" class="border-0 font-NotoSans-Regular fs-6" type="text" value="{{ profile.address }}">
                 </fieldset>
                 <p class="px-3 fs-6 color-gray">Ngày sinh</p>
                 <div class="d-grid birthday">
                     <fieldset class="mx-3 px-3 pb-2 my-3">
                         <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Ngày</legend>
-                        <select class="w-100 border-0" name="" id="day">
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
+                        <select class="w-100 border-0" id="dayBirth" value="{{ profile.date_of_birth.day }}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
                         </select>
                     </fieldset>
                     <fieldset class="mx-3 px-3 pb-2 my-3">
                         <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
-                        <select class="w-100 border-0" name="" id="month">
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
+                        <select class="w-100 border-0" id="monthBirth" value="{{ profile.date_of_birth.month }}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
                     </fieldset>
                     <fieldset class="mx-3 px-3 pb-2 my-3">
                         <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
-                        <select class="w-100 border-0" name="" id="year">
-                            <option value="">2001</option>
-                            <option value="">2002</option>
-                            <option value="">2003</option>
+                        <select class="w-100 border-0" id="yearBirth" value="{{ profile.date_of_birth.year }}">
+                            <option value="1985">1985</option>
+                            <option value="1986">1986</option>
+                            <option value="1987">1987</option>
+                            <option value="1988">1988</option>
+                            <option value="1989">1989</option>
+                            <option value="1990">1990</option>
+                            <option value="1991">1991</option>
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
                         </select>
                     </fieldset>
                 </div>
                 <p class="px-3 fs-6 color-gray">Giới tính</p>
                 <fieldset class="border-0 px-3 py-4 row row-cols-2">
-                    <div class="">
-                        <input type="radio" name="gender" id="male"> 
-                        <label for="female" class="fs-6 ms-2">Nam</label>
-                    </div>
-                    <div class="">
-                        <input class="" type="radio" name="gender" id="female">
-                        <label class="fs-6 ms-2" for="female">Nữ</label>
-                    </div>
+                    {% if profile.gender == 1 %}
+                        <div>
+                            <input type="radio" name="gender" id="male" value="1" checked> 
+                            <label for="Male" class="fs-6 ms-2">Nam</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="gender" id="female" value="2">
+                            <label for="Female" class="fs-6 ms-2">Nữ</label>
+                        </div>
+                    {% else %}
+                        <div>
+                            <input type="radio" name="gender" id="male" value="1" checked> 
+                            <label for="Male" class="fs-6 ms-2">Nam</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="gender" id="female" value="2" checked>
+                            <label for="Female" class="fs-6 ms-2">Nữ</label>
+                        </div>
+                    {% endif %}
                 </fieldset>
                 <div class="btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
                     <button class="btn-cancel btn border px-3 me-3">HỦY</button>
@@ -221,11 +304,12 @@
                 <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
             </h3>
             <p class="font-WorkSans-Regular fs-14 mx-3">Giới thiệu về bản thân mình để Nhà tuyển dụng hiểu bạn hơn</p>
-            <form action="" class="px-3">
-                <textarea class="w-100 font-WorkSans-Regular my-3 p-2" placeholder="Thêm phần giới thiệu về bản thân bạn" name="" id="" cols="30" rows="5"></textarea>
+            <form id="summaryForm" method="POST" class="px-3">
+                {% csrf_token %}
+                <textarea name="summary" class="w-100 font-WorkSans-Regular my-3 p-2" placeholder="Thêm phần giới thiệu về bản thân bạn" cols="30" rows="5"></textarea>
                 <div class="btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
                     <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                    <button type="submit" class="btn bg-btn px-3">LƯU</button>
+                    <button type="submit" class="btn bg-btn px-3" id="submitSummaryForm">LƯU</button>
                 </div>
             </form>
         </div>
