@@ -36,7 +36,7 @@ def savePost(request):
       if request.method == 'POST':
             form=PostForm(request.POST, author=request.user)
             if form.is_valid():
-                  f=form.save()
+                  form.save()
                   # print(f.id)
                   return HttpResponse('thêm thành công')
             return HttpResponse('không đc validate')
