@@ -19,6 +19,6 @@ class Post(models.Model):
     location=models.CharField(max_length=100)
     content_post=models.CharField(max_length=2000, blank=False, null=False)
     type_job=models.CharField(max_length=100, blank=False, null=False)
-    comfirm= models.BooleanField(default=False)
+    confirm= models.BooleanField(default=False)
     def __str__(self):
         return self.name_post

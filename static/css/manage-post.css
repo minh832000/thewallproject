@@ -131,3 +131,16 @@
       text-transform: uppercase;
       font-size: 14px;
 }
+.post-item{
+      position: relative;
+}
+.approve-btn{
+      position: absolute;
+      right: 20px;
+      border:0;
+      padding: 8px 14px;
+      background: #a41515;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 16px;
+}

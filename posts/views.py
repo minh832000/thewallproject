@@ -13,7 +13,7 @@ CharField.register_lookup(Lower)
 # Create your views here.
 
 def listJob(request):
-      Data = {'Posts': Post.objects.all().order_by('-time_create')}
+      Data = {'Posts': Post.objects.filter(confirm=True).order_by('-time_create')}
       return render(request, 'posts/job_seeker/list_job.html', Data)
 
 def detailJob(request,post_id):
@@ -37,8 +37,8 @@ def savePost(request):
             form=PostForm(request.POST, author=request.user)
             if form.is_valid():
                   form.save()
-                  # print(f.id)
-                  return HttpResponse('thêm thành công')
+                  inform='Thêm thành công'
+                  return redirect('manage-post')
             return HttpResponse('không đc validate')
 
 

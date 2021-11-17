@@ -4,8 +4,11 @@ from django.utils.html import format_html
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
     exclude=()
-    list_display=('name_post','approve')
-    def approve(self, obj):
-        return format_html("<button class='btn-approve'>Duyệt</button>")
+    list_display=('name_post','confirm')
+    actions=['approve_post', 'cancel_approve']
+    def approve_post(self, request, queryset):
+        queryset.update(confirm=True)
+    def cancel_approve(self, request, queryset):
+        queryset.update(confirm=False)
 
 admin.site.register(Post,PostAdmin)
