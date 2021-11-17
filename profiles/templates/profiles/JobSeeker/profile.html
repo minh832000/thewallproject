@@ -228,22 +228,33 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Kinh nghiệm làm việc</p>
-                                    <button id="btn-edit-6" class="add-edit" type="button">
+                                    <button id="btn-edit-3" class="add-edit" type="button">
                                           <i class="icofont-pencil-alt-5"></i>
                                     </button>
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    <!-- Show this block if user have not update information or this fields is empty -->
-                                    <div id="entry_section_WorkExperience">
-                                          <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
-                                          <div class="add-edit justify-content-center d-flex" id="add-edit-3">
-                                                <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                                                <p class="font-NotoSans-Bold fs-14">THÊM KINH NGHIỆM LÀM VIỆC</p>
+                                    {% if not profile.name_of_previous_company %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_WorkExperience">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-3">
+                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM KINH NGHIỆM LÀM VIỆC</p>
+                                                </div>
                                           </div>
-                                    </div>
-                                    <!-- Show this block when user updated -->
-                                    <p id="display_section_WorkExperience" class="d-none"></p>
+                                    {% else %}
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_WorkExperience">
+                                                <p id="display_name_PreviousCompany" class="font-WorkSans-Medium">{{ profile.name_of_previous_company }}</p>
+                                                <p id="display_time_PreviousJob">
+                                                      {{ profile.time_start_previous_job.month }}/{{ profile.time_start_previous_job.year }}
+                                                      -
+                                                      {{ profile.time_end_previous_job.month }}/{{ profile.time_end_previous_job.year }}
+                                                </p>
+                                                <p id="display_title_PreviousJob">{{ profile.previous_job_title }}</p>
+                                         </div>
+                                    {% endif %}
                               </div>
                         </div>
                         <div class="inf-item pb-5">
@@ -471,42 +482,56 @@
                   </h3>
                   <form id="workExperienceForm" method="POST" class="p-3 border-bottom">
                         {% csrf_token %}
-                        <input class="w-100 mx-1 p-2 mb-3" type="text" name="title" placeholder="Chức danh">
-                        <input class="w-100 mx-1 p-2 mb-3" type="text" name="company" placeholder="Công ty">
+                        <!-- Input: Chức danh công việc trước đây -->
+                        <input class="w-100 mx-1 p-2 mb-3" type="text" name="previous_job_title" placeholder="Chức danh công việc trước đây">
+                        <!-- Input: Tên công ty làm việc trước đây -->
+                        <input class="w-100 mx-1 p-2 mb-3" type="text" name="name_of_previous_company" placeholder="Công ty làm việc trước đây">
+                        <!-- Input: Thời gian bắt đầu làm việc tại công ty trước đây -->
                         <p class="ps-1 fs-6 ">Ngày bắt đầu</p>
                         <div class="day-start px-3 gap-2 row d-grid">
                               <fieldset class="px-3 pb-2 my-3">
                                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
-                                    <select class="w-100 border-0" name="" id="month">
-                                          <option value="">1</option>
-                                          <option value="">2</option>
-                                          <option value="">3</option>
+                                    <select class="w-100 border-0" id="month_start_WorkExperienceForm">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
                                     </select>
                               </fieldset>
                               <fieldset class="px-3 pb-2 my-3">
                                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
-                                    <select class="w-100 border-0" name="" id="year">
-                                          <option value="1985">1985</option>
-                                          <option value="1986">1986</option>
-                                          <option value="1987">1987</option>
-                                          <option value="1988">1988</option>
-                                          <option value="1989">1989</option>
-                                          <option value="1990">1990</option>
-                                          <option value="1991">1991</option>
-                                          <option value="1992">1992</option>
-                                          <option value="1993">1993</option>
-                                          <option value="1994">1994</option>
-                                          <option value="1995">1995</option>
-                                          <option value="1996">1996</option>
-                                          <option value="1997">1997</option>
-                                          <option value="1998">1998</option>
-                                          <option value="1999">1999</option>
+                                    <select class="w-100 border-0" id="year_start_WorkExperienceForm">
                                           <option value="2000">2000</option>
                                           <option value="2001">2001</option>
                                           <option value="2002">2002</option>
                                           <option value="2003">2003</option>
                                           <option value="2004">2004</option>
                                           <option value="2005">2005</option>
+                                          <option value="2006">2006</option>
+                                          <option value="2007">2007</option>
+                                          <option value="2008">2008</option>
+                                          <option value="2009">2009</option>
+                                          <option value="2010">2010</option>
+                                          <option value="2011">2011</option>
+                                          <option value="2012">2012</option>
+                                          <option value="2013">2013</option>
+                                          <option value="2014">2014</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
                                     </select>
                               </fieldset>
                         </div>
@@ -514,45 +539,54 @@
                         <div class="day-start px-3 gap-2 row d-grid">
                               <fieldset class="px-3 pb-2 my-3">
                                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
-                                    <select class="w-100 border-0" name="" id="month">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
+                                    <select class="w-100 border-0" id="month_end_WorkExperienceForm">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
                                     </select>
                               </fieldset>
                               <fieldset class="px-3 pb-2 my-3">
                                     <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
-                                    <select class="w-100 border-0" name="" id="year">
-                                          <option value="1985">1985</option>
-                                          <option value="1986">1986</option>
-                                          <option value="1987">1987</option>
-                                          <option value="1988">1988</option>
-                                          <option value="1989">1989</option>
-                                          <option value="1990">1990</option>
-                                          <option value="1991">1991</option>
-                                          <option value="1992">1992</option>
-                                          <option value="1993">1993</option>
-                                          <option value="1994">1994</option>
-                                          <option value="1995">1995</option>
-                                          <option value="1996">1996</option>
-                                          <option value="1997">1997</option>
-                                          <option value="1998">1998</option>
-                                          <option value="1999">1999</option>
+                                    <select class="w-100 border-0" id="year_end_WorkExperienceForm">ư
                                           <option value="2000">2000</option>
                                           <option value="2001">2001</option>
                                           <option value="2002">2002</option>
                                           <option value="2003">2003</option>
                                           <option value="2004">2004</option>
                                           <option value="2005">2005</option>
+                                          <option value="2006">2006</option>
+                                          <option value="2007">2007</option>
+                                          <option value="2008">2008</option>
+                                          <option value="2009">2009</option>
+                                          <option value="2010">2010</option>
+                                          <option value="2011">2011</option>
+                                          <option value="2012">2012</option>
+                                          <option value="2013">2013</option>
+                                          <option value="2014">2014</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
                                     </select>
                               </fieldset>
                         </div>
-                        <input class="ms-1" type="checkbox" name="learning" id=""> 
-                        <label for="learning">Tôi hiện đang theo học</label>
-
+                        <!-- User Actions to the Form -->
                         <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
                               <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                              <button type="submit" class="btn bg-btn px-3">LƯU</button>
+                              <button id="btn_submit_WorkExperienceForm"  type="submit" class="btn bg-btn px-3">LƯU</button>
                         </div>
                   </form>
             </div>

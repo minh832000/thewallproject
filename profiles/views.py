@@ -86,7 +86,7 @@ class Profile(LoginRequiredMixin, View):
                               'summary': instance.summary,
                         }, safe=False, content_type='application/json')
                   if request.POST.get('form') == 'educationForm':
-                        # Get all field date of POST
+                        # Get all field data of POST
                         name_of_school = request.POST.get('name_of_school') if request.POST.get('name_of_school') else None
                         academic_degree = request.POST.get('academic_degree') if request.POST.get('academic_degree') else None
                         name_of_major = request.POST.get('name_of_major') if request.POST.get('name_of_major') else None
@@ -138,6 +138,50 @@ class Profile(LoginRequiredMixin, View):
                               'is_studying': instance.is_studying,
                               'additional_education': instance.additional_education
                         }, safe=False, content_type='application/json')
+                  if request.POST.get('form') == 'workExperienceForm':
+                        # Get all data fields of POST 
+                        name_of_previous_company = request.POST.get('name_of_previous_company') if request.POST.get('name_of_previous_company') else None
+                        previous_job_title       = request.POST.get('previous_job_title') if request.POST.get('previous_job_title') else None
+                        time_start_previous_job  = request.POST.get('time_start_previous_job') if request.POST.get('time_start_previous_job') else None
+                        time_end_previous_job    = request.POST.get('time_end_previous_job') if request.POST.get('time_end_previous_job') else None
+                        # Update fields of the model
+                        if name_of_previous_company:
+                              instance.name_of_previous_company = name_of_previous_company
+                        if previous_job_title:
+                              instance.previous_job_title = previous_job_title
+                        # Handle datetime type in python
+                        if time_start_previous_job:
+                              date_string = time_start_previous_job
+                              date_format = '%Y-%m-%d'
+                              try:
+                                    date_obj = datetime.datetime.strptime(date_string, date_format)
+                              except ValueError:
+                                    print("Incorrect date format, should be YYYY-MM-DD")
+                              try: 
+                                    instance.time_start_previous_job = date_obj
+                              except ValueError:
+                                    print('Cannot save date to model')
+
+                        if time_end_previous_job:
+                              date_string = time_end_previous_job
+                              date_format = '%Y-%m-%d'
+                              try:
+                                    date_obj = datetime.datetime.strptime(date_string, date_format)
+                              except ValueError:
+                                    print("Incorrect date format, should be YYYY-MM-DD")
+                              try: 
+                                    instance.time_end_previous_job = date_obj
+                              except ValueError:
+                                    print('Cannot save date to model')
+                        # Save all things to database
+                        instance.save()
+                        return JsonResponse({
+                              'name_of_previous_company': instance.name_of_previous_company,
+                              'previous_job_title': instance.previous_job_title,
+                              'time_start_previous_job': instance.time_start_previous_job,
+                              'time_end_previous_job': instance.time_end_previous_job,
+                        }, safe=False, content_type='application/json')
+
             return JsonResponse({'error': 'Submit error --------------', }, safe=False)
       
 class RecruiterProfile(LoginRequiredMixin, View):
