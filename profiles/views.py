@@ -10,7 +10,6 @@ import datetime
 from .models import Profile as ProfileModel
 
 UserModel = get_user_model()
-
 class Profile(LoginRequiredMixin, View):
       def get(self, request):
             try:
