@@ -10,7 +10,6 @@ import datetime
 from .models import Profile as ProfileModel
 
 UserModel = get_user_model()
-
 class Profile(LoginRequiredMixin, View):
       def get(self, request):
             try:
@@ -85,6 +84,59 @@ class Profile(LoginRequiredMixin, View):
                         instance.save()
                         return JsonResponse({
                               'summary': instance.summary,
+                        }, safe=False, content_type='application/json')
+                  if request.POST.get('form') == 'educationForm':
+                        # Get all field date of POST
+                        name_of_school = request.POST.get('name_of_school') if request.POST.get('name_of_school') else None
+                        academic_degree = request.POST.get('academic_degree') if request.POST.get('academic_degree') else None
+                        name_of_major = request.POST.get('name_of_major') if request.POST.get('name_of_major') else None
+                        time_admission = request.POST.get('time_admission') if request.POST.get('time_admission') else None
+                        time_graduate = request.POST.get('time_graduate') if request.POST.get('time_graduate') else None
+                        is_studying = True if request.POST.get('is_studying') == '1' else False
+                        additional_education = request.POST.get('additional_education') if request.POST.get('additional_education') else None
+                        # Update fields in Profile model
+                        if name_of_school:
+                              instance.name_of_school = name_of_school.strip()
+                        if academic_degree:
+                              instance.academic_degree = academic_degree.strip()
+                        if name_of_major:
+                              instance.name_of_major = name_of_major.strip()
+                         # Handle with datetime type 
+                        if time_admission:
+                              date_string = time_admission
+                              date_format = '%Y-%m-%d'
+                              try:
+                                    date_obj = datetime.datetime.strptime(date_string, date_format)
+                              except ValueError:
+                                    print("Incorrect date format, should be YYYY-MM-DD")
+                              try: 
+                                    instance.time_admission = date_obj
+                              except ValueError:
+                                    print('Cannot save date to model')
+                        if time_graduate:
+                              date_string = time_graduate
+                              date_format = '%Y-%m-%d'
+                              try:
+                                    date_obj = datetime.datetime.strptime(date_string, date_format)
+                              except ValueError:
+                                    print("Incorrect date format, should be YYYY-MM-DD")
+                              try: 
+                                    instance.time_graduate = date_obj
+                              except ValueError:
+                                    print('Cannot save date to model')
+                        if is_studying:
+                              instance.is_studying = is_studying
+                        if additional_education:
+                              instance.additional_education = additional_education.strip()
+                        instance.save()
+                        return JsonResponse({
+                              'name_of_school': instance.name_of_school,
+                              'academic_degree': instance.academic_degree,
+                              'name_of_major': instance.name_of_major,
+                              'time_admission': instance.time_admission,
+                              'time_graduate': instance.time_graduate,
+                              'is_studying': instance.is_studying,
+                              'additional_education': instance.additional_education
                         }, safe=False, content_type='application/json')
             return JsonResponse({'error': 'Submit error --------------', }, safe=False)
       
