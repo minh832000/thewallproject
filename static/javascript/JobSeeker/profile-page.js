@@ -188,3 +188,50 @@ $(document).on('click', '#btn_submit_EducationForm', (e) => {
         }
     })
 })
+
+$(document).on('click', '#btn_submit_WorkExperienceForm', e => {
+    e.preventDefault();
+    // selecting elements which are related to time start previous job
+    let m_s = $('#month_start_WorkExperienceForm').val();
+    let y_s = $('#year_start_WorkExperienceForm').val();
+    let t_s = `${y_s}-${m_s}-01`;
+    // selecting elements which are related to time end previous job
+    let m_e = $('#month_end_WorkExperienceForm').val();
+    let y_e = $('#year_end_WorkExperienceForm').val();
+    let t_e = `${y_e}-${m_e}-01`;
+    // selecting element form
+    var f = document.getElementById('workExperienceForm');
+    var fd = new FormData(f);
+    fd.append('form', 'workExperienceForm');
+    fd.append('time_start_previous_job', t_s);
+    fd.append('time_end_previous_job', t_e);
+
+    // Make a call ajax
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: (res) => {
+            console.log(res);
+            $('#frame-3').hide();
+            $('.over-edit').remove();
+            $('#display_name_PreviousCompany').text(res['name_of_previous_company']);
+            $('#display_title_PreviousJob').text(res['previous_job_title']);
+            // Convert datetime type of element in object json to datetime in javascript
+            var t_start = new Date(res['time_start_previous_job']);
+            var m_start = t_start.getMonth() + 1;
+
+            var t_end = new Date(res['time_end_previous_job']);
+            var m_end = t_end.getMonth() + 1;
+            // => Result time previous job 
+            var t_str = `${m_start}/${t_start.getFullYear()} - ${m_end}/${t_end.getFullYear()}`;
+            $('#display_time_PreviousJob').text(t_str);
+        },
+        error: error => {
+            console.log(error);
+        }
+    })
+})
