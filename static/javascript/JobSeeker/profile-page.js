@@ -235,3 +235,33 @@ $(document).on('click', '#btn_submit_WorkExperienceForm', e => {
         }
     })
 })
+
+$(document).on('click', '#btn_submit_projectParticipatedForm', e => {
+    e.preventDefault();
+    // selecting form
+    var f = document.getElementById('projectParticipatedForm');
+    var fd = new FormData(f);
+    fd.append('form', 'projectParticipatedForm');
+    // make a ajax call
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: res => {
+            console.log(res);
+            $('#frame-6').hide();
+            $('.over-edit').remove();
+            $('#display_name_ProjectParticipated').text(res['name_of_project_participated']);
+            $('#display_position_ProjectParticipated').text(res['position_in_project_participated']);
+            $('#display_link_ProjectParticipated').text(res['link_of_project_participated']);
+            $('#display_description_ProjectParticipated').text(res['description_project_participated']);
+            $('btn-edit-6').removeClass('d-none');
+        },
+        error: err => {
+            console.log(err);
+        }
+    })
+})

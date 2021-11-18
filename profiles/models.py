@@ -27,6 +27,7 @@ class Profile(models.Model):
       summary           = models.TextField(max_length=1000, blank=True, null=True)
 
       # Form: "Trình độ học vấn"
+      is_updated_education     = models.BooleanField(default=False)
       name_of_school           = models.CharField(max_length=255, blank=True, null=True)
       academic_degree          = models.CharField(max_length=128, blank=True, null=True)
       name_of_major            = models.CharField(max_length=255, blank=True, null=True)
@@ -36,10 +37,22 @@ class Profile(models.Model):
       additional_education     = models.TextField(blank=True, null=True)
 
       # Form: "Kinh nghiệm làm việc"
+      is_updated_previous_job  = models.BooleanField(default=False)
       name_of_previous_company = models.CharField(max_length=128, null=True, blank=True)
       previous_job_title       = models.CharField(max_length=128, null=True, blank=True)
       time_start_previous_job  = models.DateField(null=True, blank=True)
       time_end_previous_job    = models.DateField(null=True, blank=True)
+
+      # Form: "Dự án tham gia"
+      is_updated_project_participated  = models.BooleanField(default=False)
+      name_of_project_participated     = models.CharField(max_length=256, null=True, blank=True)
+      position_in_project_participated = models.CharField(max_length=64, null=True, blank=True)
+      link_of_project_participated     = models.CharField(max_length=512, null=True, blank=True)
+      description_project_participated = models.TextField(max_length=1000, null=True, blank=True)
+
+      # Form: "Hoạt động xã hội"
+      is_updated_volunteering_activity = models.BooleanField(default=False)
+      name_of_volunteering_activity    = models.CharField(max_length=128, null=True, blank=True)
       class Meta:
             verbose_name            = _('Profile')
             verbose_name_plural     = _('Profiles')

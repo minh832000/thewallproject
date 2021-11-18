@@ -246,13 +246,26 @@
                                     {% else %}
                                           <!-- Show this block when user updated -->
                                           <div id="display_section_WorkExperience">
-                                                <p id="display_name_PreviousCompany" class="font-WorkSans-Medium">{{ profile.name_of_previous_company }}</p>
-                                                <p id="display_time_PreviousJob">
+                                                <p    
+                                                      id="display_name_PreviousCompany" 
+                                                      class="font-WorkSans-Medium"
+                                                >
+                                                      {{ profile.name_of_previous_company }}
+                                                </p>
+                                                <p 
+                                                      id="display_time_PreviousJob"
+                                                      class="font-NotoSans-Light"
+                                                >
                                                       {{ profile.time_start_previous_job.month }}/{{ profile.time_start_previous_job.year }}
                                                       -
                                                       {{ profile.time_end_previous_job.month }}/{{ profile.time_end_previous_job.year }}
                                                 </p>
-                                                <p id="display_title_PreviousJob">{{ profile.previous_job_title }}</p>
+                                                <p 
+                                                      id="display_title_PreviousJob"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.previous_job_title }}
+                                                </p>
                                          </div>
                                     {% endif %}
                               </div>
@@ -261,22 +274,58 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Dự án tham gia</p>
-                                    <button id="btn-edit-6" class="add-edit" type="button">
-                                          <i class="icofont-pencil-alt-5"></i>
-                                    </button>
+                                    {% if profile.is_updated_project_participated %}
+                                          <button id="btn-edit-6" class="add-edit" type="button">
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button id="btn-edit-6" class="add-edit d-none" type="button">
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    <!-- Show this block if user have not update information or this fields is empty -->
-                                    <div id="entry_section_ProjectParticipate">
-                                          <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho nhà tuyển dụng thấy kinh nghiệm của bạn qua các dự án mà bạn đã từng tham gia</p>
-                                          <div class="add-edit justify-content-center d-flex"  id="add-edit-6">
-                                                <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                                                <p class="font-NotoSans-Bold fs-14">THÊM DỰ ÁN THAM GIA</p>
+                                    {% if not profile.is_updated_project_participated %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_ProjectParticipate">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho nhà tuyển dụng thấy kinh nghiệm của bạn qua các dự án mà bạn đã từng tham gia</p>
+                                                <div class="add-edit justify-content-center d-flex"  id="add-edit-6">
+                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM DỰ ÁN THAM GIA</p>
+                                                </div>
                                           </div>
-                                    </div>
-                                    <!-- Show this block when user updated -->
-                                    <p id="display_section_ProjectParticipate" class="d-none"></p>
+                                    {% else %}
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_ProjectParticipated">
+                                                <p 
+                                                      id="display_name_ProjectParticipated" 
+                                                      class="font-WorkSans-Medium fs-4"
+                                                >
+                                                      {{ profile.name_of_project_participated }}
+                                                </p>
+                                                <p
+                                                      id="display_position_ProjectParticipated"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.position_in_project_participated }}
+                                                </p>
+                                                {% if profile.link_of_project_participated %}
+                                                      <iframe 
+                                                            id="display_link_ProjectParticipated"
+                                                            src="{{ profile.link_of_project_participated }}" 
+                                                            title="Link to user project"
+                                                            class="iframe_project_participated">
+                                                      </iframe>
+                                                {% endif %}
+                                                <p
+                                                      id="display_description_ProjectParticipated"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.description_project_participated }}
+                                                </p>
+                                          </div>
+                                    {% endif %}
                               </div>
                         </div>
                         <div class="inf-item pb-5">
@@ -599,6 +648,7 @@
                         <i class="icofont-close-line-squared-alt i-close" style="font-size: 16pt;"></i>
                   </h3>
                   <form id="educationForm" method="POST" class="p-3 border-bottom">
+                        {% csrf_token %}
                         <input 
                               name="name_of_school" 
                               class="w-100 mx-1 p-2 mb-3" 
@@ -786,19 +836,65 @@
       <div class="frame" id="frame-6">
             <div class="frame-update-inf bg-white ">
                   <h3 class="fs-5 font-NotoSans-Bold border-bottom p-3 mt-3 position-relative">
-                  DỰ ÁN THAM GIA
-                  <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
+                        DỰ ÁN THAM GIA
+                        <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
                   </h3>
-                  <form action="" class="p-3 border-bottom">
-                  <p class="font-WorkSans-Regular fs-14 pb-2">Mô tả dự án</p>
-                  <input class="w-100  p-2 mb-3" type="text" name="description-project" id="">
-                  <p class="font-WorkSans-Regular fs-14 py-2">Link dự án</p>
-                  <input class="w-100  p-2 mb-3" type="text" name="description-project" id="">
-                  <textarea name="" id="" class="w-100 p-2" cols="30" rows="6" placeholder="Thông tin bổ sung"></textarea>
-                  <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
-                        <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                        <button type="submit" class="btn bg-btn px-3">LƯU</button>
-                  </div>
+                  <!-- Content of the form which is updated Project Participated in the user\'s profile -->
+                  <form 
+                        id="projectParticipatedForm" 
+                        method="POST" 
+                        class="p-3 border-bottom"
+                  >
+                        {% csrf_token %}
+                        <!-- Input: Name of the project participated -->
+                        <p class="font-WorkSans-Regular fs-14 pb-2">Tên dự án</p>
+                        <input
+                              name="name_of_project_participated" 
+                              type="text"
+                              class="w-100 p-2 mb-3"
+                              placeholder="Tên dự án mà bạn đã tham gia"
+                        >
+                        <!-- Input: User\'s position in charge of project -->
+                        <p class="font-WorkSans-Regular fs-14 pb-2">Vị trí phụ trách</p>
+                        <input 
+                              name="position_in_project_participated"
+                              type="text"
+                              class="w-100 p-2 mb-3"
+                              placeholder="Vị trí hoặc chức vụ mà bạn đảm nhiệm"
+                        >
+                        <!-- Input: Link to user\'s project -->
+                        <p class="font-WorkSans-Regular fs-14 py-2">Đường dẫn dự án</p>
+                        <input 
+                              name="link_of_project_participated"
+                              type="text"
+                              class="w-100 p-2 mb-3"
+                              placeholder="Đường dẫn của dự án"
+                        >
+                        <!-- Input: Description of user\'s project -->
+                        <p class="font-WorkSans-Regular fs-14 py-2">Mô tả dự án</p>
+                        <textarea
+                              name="description_project_participated" 
+                              type="text"
+                              class="w-100 p-2" 
+                              cols="30" rows="6" 
+                              placeholder="Thông tin mô tả dự án của bạn">
+                        </textarea>
+                        <!-- Action: -->
+                        <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
+                              <button 
+                                    class="btn-cancel btn border px-3 me-3 text-uppercase"
+                                    type="button"
+                              >
+                                    Hủy
+                              </button>
+                              <button 
+                                    id="btn_submit_projectParticipatedForm" 
+                                    type="submit" 
+                                    class="btn bg-btn px-3 text-uppercase"
+                              >
+                                    Lưu
+                              </button>
+                        </div>
                   </form>
             </div>
       </div>
