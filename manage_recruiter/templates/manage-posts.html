@@ -42,7 +42,14 @@
             <div class="container px-0 mx-120 mt-40">
                   {% for item in Posts%}
                   <div class="wrapper mb-5">
-                        <div class="d-flex">
+                        <div class="d-flex post-item">
+                              <button class="approve-btn">
+                                    {% if item.confirm %}
+                                    Đã Duyệt
+                                    {% else %}
+                                    Chưa Duyệt
+                                    {% endif %}
+                              </button>
                               <div class="logo-company">
                                     <img src="{% static 'image/horror.png' %}" alt="Post - Logo Company">
                               </div>  
@@ -120,14 +127,15 @@
                         <div class="dividing-line"></div>
 
                         <div class="post-actions text-end">
-                              <button 
+                              <a
+                                    href="#"
                                     class="post-button font-NotoSans-Bold"
                                     type="button"
                               
                               >
                                     <i class="icofont-pencil-alt-2"></i>
                                     Chỉnh sửa
-                              </button>
+                        </a>
                         </div>
                         
                   </div>

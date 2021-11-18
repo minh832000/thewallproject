@@ -13,7 +13,7 @@ CharField.register_lookup(Lower)
 # Create your views here.
 
 def listJob(request):
-      Data = {'Posts': Post.objects.all().order_by('-time_create')}
+      Data = {'Posts': Post.objects.filter(confirm=True).order_by('-time_create')}
       return render(request, 'posts/job_seeker/list_job.html', Data)
 
 def detailJob(request,post_id):
@@ -37,8 +37,8 @@ def savePost(request):
             form=PostForm(request.POST, author=request.user)
             if form.is_valid():
                   form.save()
-                  # print(f.id)
-                  return HttpResponse('thêm thành công')
+                  inform='Thêm thành công'
+                  return redirect('manage-post')
             return HttpResponse('không đc validate')
 
 
@@ -132,3 +132,37 @@ def filter(request):
             return render(request, 'posts/job_seeker/list_job.html',{'Posts': Data})
             
       
+def editPost(request, post_id):
+      post=Post.objects.get(pk=post_id)
+      fieldJob=FieldJob.objects.all()
+      a = PostForm()
+      if request.user.id and request.user.is_recruiter:
+            return render(request, 'posts/recruiter/edit_post.html',{ 
+                  'f': a, 
+                  'post':post,
+                  'fields':fieldJob,
+                  'id': post_id
+                  })
+      else: return redirect('accounts:login')
+
+
+def saveEdit(request, post_id):
+      # post = get_object_or_404(Post, pk=pk)
+      if request.method == 'POST':
+            fieldjob=FieldJob.objects.get(id=request.POST.get('field_job'))
+            name_post=request.POST.get('name_post')
+            experient=request.POST.get('experience_required')
+            salary=request.POST.get('salary')
+            location=request.POST.get('location')
+            content=request.POST.get('content_post')
+            Post.objects.update_or_create(id=post_id,
+            defaults={
+                  'name_post':name_post,
+                  'experience_required': experient,
+                  'field_job':fieldjob,
+                  'salary':salary,
+                  'location':location,
+                  'content_post':content
+            })
+            return redirect('manage-post')
+      return HttpResponse('không đc validate')

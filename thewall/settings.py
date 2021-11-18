@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
     'posts',
+    'ckeditor',
     'fields_job',
     'company',
     'manage_recruiter',

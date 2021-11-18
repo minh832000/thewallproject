@@ -38,24 +38,9 @@
             </div>
             <div class="detail-post px-2 py-5">
                 <h3 class="font-NotoSans-Bold fs-5">CHI TIẾT</h3>
-                {{post.content_post}}
-                <!-- <div class="post-content">
-                    <p class="font-WorkSans-Regular">
-                        <strong>Chi tiết công việc SOCIAL MEDIA MANAGER freelance Remote tại Idea Factory</strong><br>
-                        <strong>Job description:</strong> <br>
-                        - Taking care about social media channels ( facebook, reddit, telegram, twitter )<br>
-                        - Scheduling content <br>
-                        - Relevant task ( market research, marketing strategy ) <br>
-                        - Contact KOL <br>
-                        <strong>Requirements:</strong> <br>
-                        - Good at reading and writing English skills.<br>
-                        - Have a passion for blockchain or finance is a plus.<br>
-                        - Majoring in Marketing, finance or any related to economics.<br>
-                        - Have > 6 months experience about marketing or international sale. <br>
-                        Salary : 2mil/week (probation time)  + commission based on KPI per project ( up-to ~$1000/ month )
-                    </p>
-                    
-                </div> -->
+                <div class="post-content">
+                    {{post.content_post}}
+                </div>
             </div>
             <div class="skill">
                 <h3 class="font-NotoSans-Bold fs-5">KỸ NĂNG BẮT BUỘC CÓ</h3>
@@ -92,4 +77,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block linkjs %}
+    <script src="{% static 'javascript/post_description.js' %}" type="text/javascript"></script>
 {% endblock %}

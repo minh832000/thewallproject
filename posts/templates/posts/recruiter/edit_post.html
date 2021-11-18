@@ -1,0 +1,138 @@
+
+{% extends 'base_recruiter.html' %}
+{% load static %}
+
+{% block pagetitle_recruiter %}
+      Chi tiết công việc
+{% endblock %}
+{% block linkcss_recruiter %}
+    <link rel="stylesheet" href="{% static 'css/add-new-post.css' %}" >
+{% endblock %}
+{% block maincontent %}
+
+<!-- =============== Main Content =============== -->
+      <div id="main" class="my-120">
+            <!-- Title of Page -->
+            <h1 class="text-uppercase font-NotoSans-Bold text-center fs-4">Thêm bài đăng mới</h1>
+            <!-- Content of Page -->
+            <div class="container px-0 mt-40">
+                  <form action="{% url 'save-edit' id %}" method="post">
+                        {% csrf_token %}
+                        <div class="mt-40 input-basic-information">
+                              <!-- Heading Field -->
+                              <p class="font-NotoSans-Bold fs-6 text-uppercase">Thông tin cơ bản</p>
+                              <!-- Input Data Field -->
+                              <div class="input-fields mt-3">
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Lĩnh vực công việc</p>
+                                          <div class="input-box input-area">
+                                                
+                                                <select name="field_job" id="" class="input-selected-options border-0">
+                                                      {% for item in fields %}
+                                                      <option value={{item.id}}>{{item.field_name}}</option>
+                                                      {% endfor %}
+                                                </select>
+                                                <!-- <i class="icofont-rounded-down input-icon-show"></i> -->
+                                          </div>
+                                    </div>
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Kinh nghiệm yêu cầu</p>
+                                          <input 
+                                                name="experience_required"
+                                                class="input-area" 
+                                                type="text"
+                                                placeholder="Nhập số năm kinh nghiệm yêu cầu"
+                                                value="{{post.experience_required}}"
+                                          >
+                                    </div>
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Tên công việc tuyển dụng</p>
+                                          <input 
+                                                class="input-area" 
+                                                type="text"
+                                                name="name_post"
+                                                placeholder="Nhập tên công việc tuyển dụng"
+                                                value="{{post.name_post}}"
+                                          >
+                                    </div>
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Mức lương đề xuất</p>
+                                          <input 
+                                                name="salary"
+                                                class="input-area" 
+                                                type="text"
+                                                placeholder="Nhập mức lương đề xuất cho công việc"
+                                                value="{{post.salary}}"
+                                          >
+                                    </div>
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Địa điểm tuyển dụng</p>
+                                          <input 
+                                                name="location"
+                                                class="input-area" 
+                                                type="text"
+                                                placeholder="Nhập tên thành phố hoặc tỉnh tuyển dụng"
+                                                value="{{post.location}}"
+                                          >
+                                    </div>
+                                    <div class="input">
+                                          <p class="font-WorkSans-Regular">Hình thức việc làm</p>
+                                          <select class="input-area"  name="type_job" id="">
+                                                <option value="Intern">Intern</option>
+                                                <option value="Full-time">Full-time</option>
+                                                <option value="Part-time">Part-time</option>
+                                                <option value="Freelance">Freelance</option>
+                                          </select>
+                                    </div>
+                              </div>
+                        </div>
+      
+                        <div class="dividing-line"></div>
+      
+                        <div class="input-details border-bottom pb-5">
+                              <!-- Heading Field -->
+                              <p class="font-NotoSans-Bold fs-6 text-uppercase">Thông tin chi tiết</p>
+                              <div class="mt-3">
+                                    <p class="font-WorkSans-Regular">Chi tiết công việc</p>
+                                    <textarea value="" name="content_post" class="input-job-detail" id="text-job-detail">{{post.content_post}}</textarea>
+                              </div>
+                              <div class="mt-3">
+                                    <p class="font-WorkSans-Regular">Kỹ năng yêu cầu</p>
+                                    <div class="input-required-skills">
+                                          <div class="input-column search-skills">
+                                                      <input
+                                                            id="search-inputt"
+                                                            type="text"
+                                                            class=" height-45 w-100 border px-2 my-3"
+                                                            placeholder="Nhập kỹ năng cần tìm kiếm"
+                                                            class="search-input"
+                                                      >
+                                                <div class="skill-suggestions result-card not-visible" id="result-box">
+                                                      <div class="list-skill row row-cols-2 font-NotoSans-Regular">
+                                                      </div>
+                                                </div> 
+                                          </div>
+                                          <div class="input-column selected-skills">
+                                                <p class="font-WorkSans-Regular">Những kỹ năng đã chọn</p>
+                                                <div id="selected-skills" class="list-selected-skills d-flex flex-wrap justify-content-start">
+                                                      
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- <input type="hidden" name="creater_id" value="{{user.id}}"> -->
+                        <div class="btn-add-post text-end mt-5">
+                              <input type="submit" class="px-4 py-2 bg-btn font-NotoSans-Bold fs-14 border-0 " value="CẬP NHẬT BÀI ĐĂNG">
+                        </div>
+      
+                  </form>
+            </div>
+      </div>
+      <script src="{% static 'vendor/ckeditor/ckeditor.js' %}"></script>
+      
+      <script>CKEDITOR.replace('text-job-detail');</script>
+{% endblock %}
+{% block linkjs %}
+<script src="{% static 'javascript/add-new-post.js' %}"></script>
+{% endblock %}

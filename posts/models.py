@@ -5,6 +5,7 @@ from accounts.models import User
 from fields_job.models import FieldJob
 from tag_skill.models import TagSkill
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Post(models.Model):
@@ -17,8 +18,8 @@ class Post(models.Model):
     experience_required=models.CharField(max_length=100)
     salary=models.CharField(max_length=100)
     location=models.CharField(max_length=100)
-    content_post=models.CharField(max_length=2000, blank=False, null=False)
+    content_post=RichTextField(max_length=2000, blank=False, null=False)
     type_job=models.CharField(max_length=100, blank=False, null=False)
-    comfirm= models.BooleanField(default=False)
+    confirm= models.BooleanField(default=False)
     def __str__(self):
         return self.name_post
