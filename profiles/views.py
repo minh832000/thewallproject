@@ -1,6 +1,7 @@
 from io import FileIO
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import models
 from django.db.models.base import Model
 from django.http.response import JsonResponse
 from django.shortcuts import render
@@ -180,6 +181,33 @@ class Profile(LoginRequiredMixin, View):
                               'previous_job_title': instance.previous_job_title,
                               'time_start_previous_job': instance.time_start_previous_job,
                               'time_end_previous_job': instance.time_end_previous_job,
+                        }, safe=False, content_type='application/json')
+                  if request.POST.get('form') == 'projectParticipatedForm':
+                        # Get all data fields of POST
+                        name_of_project_participated     = request.POST.get('name_of_project_participated') if request.POST.get('name_of_project_participated') else None
+                        position_in_project_participated = request.POST.get('position_in_project_participated') if request.POST.get('position_in_project_participated') else None
+                        link_of_project_participated     = request.POST.get('link_of_project_participated') if request.POST.get('link_of_project_participated') else None
+                        description_project_participated = request.POST.get('description_project_participated') if request.POST.get('description_project_participated') else None
+                        # Update fields of the model
+                        if name_of_project_participated:
+                              instance.name_of_project_participated = name_of_project_participated
+                        if position_in_project_participated:
+                              instance.position_in_project_participated = position_in_project_participated
+                        if link_of_project_participated:
+                              instance.link_of_project_participated = link_of_project_participated
+                        if description_project_participated:
+                              instance.description_project_participated = description_project_participated
+                        if name_of_project_participated or position_in_project_participated or  link_of_project_participated or description_project_participated:
+                              instance.is_updated_project_participated = True
+                        else:
+                              instance.is_updated_project_participated = False
+                        # Save all things to database
+                        instance.save()
+                        return JsonResponse({
+                              'name_of_project_participated': instance.name_of_project_participated,
+                              'position_in_project_participated': instance.position_in_project_participated,
+                              'link_of_project_participated': instance.link_of_project_participated,
+                              'description_project_participated': instance.description_project_participated,
                         }, safe=False, content_type='application/json')
 
             return JsonResponse({'error': 'Submit error --------------', }, safe=False)
