@@ -133,7 +133,14 @@ $(document).on('click', '#submitSummaryForm', (e) => {
         contentType: false,
         processData: false,
         success: (res) => {
-            $('#updateSummaryInformation').addClass('d-none');
+            if(res['is_updated_summary']) {
+                $('#entry_section_Summary').addClass('d-none');
+                $('#display_section_Summary').removeClass('d-none');
+            }
+            else {
+                $('#entry_section_Summary').addClass('d-none');
+                $('#display_section_Summary').removeClass('d-none');
+            }
             $('#displaySummaryInformation').text(res['summary']);
         },
         error: (error) => {
@@ -171,6 +178,14 @@ $(document).on('click', '#btn_submit_EducationForm', (e) => {
             $('#frame-4').hide();
             $('.over-edit').remove();
             // Update the fields which are just changed
+            if(res['is_updated_education']) {
+                $('#entry_section_Education').addClass('d-none');
+                $('#display_section_Education').removeClass('d-none');
+            }
+            else {
+                $('#entry_section_Education').removeClass('d-none');
+                $('#display_section_Education').addClass('d-none');
+            }
             $('#display_NameOfSchool').text(res['name_of_school'])
             $('#display_AcademicDegree').text(res['academic_degree'])
             $('#display_NameOfMajor').text(res['name_of_major'])
@@ -218,6 +233,15 @@ $(document).on('click', '#btn_submit_WorkExperienceForm', e => {
             console.log(res);
             $('#frame-3').hide();
             $('.over-edit').remove();
+            // Update the fields which are just changed
+            if(res['is_updated_previous_job']) {
+                $('#entry_section_workExperience').addClass('d-none');
+                $('#display_section_workExperience').removeClass('d-none');
+            }
+            else {
+                $('#entry_section_workExperience').removeClass('d-none');
+                $('#display_section_workExperience').addClass('d-none');
+            }
             $('#display_name_PreviousCompany').text(res['name_of_previous_company']);
             $('#display_title_PreviousJob').text(res['previous_job_title']);
             // Convert datetime type of element in object json to datetime in javascript
@@ -254,14 +278,82 @@ $(document).on('click', '#btn_submit_projectParticipatedForm', e => {
             console.log(res);
             $('#frame-6').hide();
             $('.over-edit').remove();
+            // Update the fields which are just changed
+            if(res['is_updated_project_participated']) {
+                $('#entry_section_projectParticipated').addClass('d-none');
+                $('#display_section_projectParticipated').removeClass('d-none');
+            }
+            else {
+                $('#entry_section_projectParticipated').removeClass('d-none');
+                $('#display_section_projectParticipated').addClass('d-none');
+            }
             $('#display_name_ProjectParticipated').text(res['name_of_project_participated']);
             $('#display_position_ProjectParticipated').text(res['position_in_project_participated']);
             $('#display_link_ProjectParticipated').text(res['link_of_project_participated']);
             $('#display_description_ProjectParticipated').text(res['description_project_participated']);
-            $('btn-edit-6').removeClass('d-none');
+            $('#btn-edit-6').removeClass('d-none');
         },
         error: err => {
             console.log(err);
         }
+    })
+})
+
+$(document).on('click', '#btn_submit_volunteeringActivityForm', e => {
+    e.preventDefault();
+    // selecting elements which are related to the volunteering start time
+    var m_s = $('#month_start_volunteeringActivityForm').val();
+    var y_s = $('#year_start_volunteeringActivityForm').val();
+    var t_s = `${y_s}-${m_s}-01`;
+    // selecting elements which are related to the volunteering end time
+    var m_e = $('#month_end_volunteeringActivityForm').val();
+    var y_e = $('#year_end_volunteeringActivityForm').val();
+    var t_e = `${y_e}-${m_e}-01`;
+    // selecting form element which is related to the volunteering
+    var f = document.getElementById('volunteeringActivityForm');
+    var fd = new FormData(f);
+    fd.append('form', 'volunteeringActivityForm');
+    fd.append('time_start_volunteering_activity', t_s);
+    fd.append('time_end_volunteering_activity', t_e);
+    //make a ajax call
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: res => {
+            console.log(res);
+            $('#frame-7').hide();
+            $('.over-edit').remove();
+            $('#btn-edit-7').removeClass('d-none');
+            // update the fields which are just changed
+            console.log(typeof(res['is_updated_volunteering_activity']));
+            console.log(res['is_updated_volunteering_activity']);
+            if (!res['is_updated_voluntering_activity']) {
+                $('#display_section_volunteeringActivity').removeClass('d-none');
+                $('#entry_section_volunteeringActivity').addClass('d-none');
+                console.log('true');
+            } else {
+                $('#display_section_volunteeringActivity').addClass('d-none');
+                $('#entry_section_volunteeringActivity').removeClass('d-none');
+                console.log('false');
+            }
+            $('#display_name_volunteeringActivity').text(res['name_of_volunteering_activity']);
+            $('#display_role_volunteeringActivity').text(res['role_in_volunteering_activity']);
+            // convert datetime type in javascript
+            var t_start = new Date(res['time_start_volunteering_activity']);
+            var m_start = t_start.getMonth() + 1;
+
+            var t_end = new Date(res['time_end_volunteering_activity']);
+            var m_end = t_end.getMonth() + 1;
+
+            var t_str = `${m_start}/${t_start.getFullYear()} - ${m_end}/${t_end.getFullYear()}`;
+            $('#display_time_volunteeringActivity').text(t_str);
+        },
+        error: err => {
+            console.log(err);
+        }        
     })
 })

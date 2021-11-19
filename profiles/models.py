@@ -24,7 +24,8 @@ class Profile(models.Model):
       created_at        = models.DateTimeField(auto_now_add=True)
       updated_at        = models.DateTimeField(auto_now=True)
       # Form: "Thông tin chung"
-      summary           = models.TextField(max_length=1000, blank=True, null=True)
+      is_updated_summary = models.BooleanField(default=False)
+      summary            = models.TextField(max_length=1000, blank=True, null=True)
 
       # Form: "Trình độ học vấn"
       is_updated_education     = models.BooleanField(default=False)
@@ -53,6 +54,10 @@ class Profile(models.Model):
       # Form: "Hoạt động xã hội"
       is_updated_volunteering_activity = models.BooleanField(default=False)
       name_of_volunteering_activity    = models.CharField(max_length=128, null=True, blank=True)
+      role_in_volunteering_activity    = models.CharField(max_length=64, null=True, blank=True)
+      time_start_volunteering_activity = models.DateField(null=True, blank=True)
+      time_end_volunteering_activity   = models.DateField(null=True, blank=True)
+      is_joining                       = models.BooleanField(default=False)
       class Meta:
             verbose_name            = _('Profile')
             verbose_name_plural     = _('Profiles')

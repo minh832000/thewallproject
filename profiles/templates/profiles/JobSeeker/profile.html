@@ -11,21 +11,90 @@
 {% endblock %}
 
 {% block pagecontent %}
+<<<<<<< HEAD
       {% include 'components/JobSeeker/header.html' %}
+=======
+      <header class="bg-web position-fixed top-0 w-100">
+            <div class="container px-4 p-0">
+                  <div class="row justify-content-between header">
+                  <a href="{% url 'home:index' %}" class="col-10 col-md-2">
+                        <div class="logo d-flex h-100 align-items-center">
+                              <img class="img-logo" src="{% static 'image/logo.png' %}" alt="logo">
+                              <p class="name text-white mb-0 fs-5">The Wall</p>
+                        </div>
+                  </a>
+                  <div class="icon-menu col-2 align-items-center">
+                        <img src="{% static 'image/menu.png' %}" alt="">
+                  </div>
+                  <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
+                        <div class="icon-close">
+                              <img src="{% static 'image/close-button.png' %}" alt="">
+                        </div>
+                        <div class="nav-menu row col-md-6 col-12 ">
+                              <ul class="list-unstyled mb-0 ">
+                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job'%}">CƠ HỘI VIỆC LÀM</a></li>
+                              <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
+                              </ul>
+                        </div>
+                        <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                              <div class="icon-notify me-3 gx-0">
+                                    <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
+                              </div>
+                              <div class="img-user">
+                                    <img 
+                                          id="header_profilePicture"
+                                          src="{{ profile.profile_picture.url }}" 
+                                          alt="Profile Picture">
+                              </div>
+                              <!--Bảng điều khiên khi đăng nhập user-->
+                              <div class="for-user col-md-4 col-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                                    <div class="control-user accordion accordion-flush" id="accordion">
+                                          <div class="accordion-item bg-transparent  position-relative ">
+                                                <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
+                                                      {{ user.first_name }}
+                                                </button>
+                                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
+                                                      <div class="pt-2">
+                                                            <ul class="list-unstyled">
+                                                                  <li><a href="">Quản lí hồ sơ</a> </li>
+                                                                  <li><a href="">Đơn ứng tuyển của tôi</a> </li>
+                                                                  <li><a href="">Cài đặt tài khoản</a> </li>
+                                                                  <li><a href="">Đăng xuất</a> </li>
+                                                            </ul>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </header>
+>>>>>>> e91d7860a3ba7cb46b7b00f6e064f700338ba5f8
       <!-- Main content of the page -->
-      <div id="content" class="">
-            <div class="container mx-120 p-0">
-                  <h1 class="font-NotoSans-Bold text-center my-5">HỒ SƠ CỦA BẠN</h1>
+      <div id="content">
+            <div class="container">
+                  <h1 class="font-NotoSans-Bold text-center text-uppercase my-5">Hồ sơ của bạn</h1>
                   <div class="name row text-center text-sm-start">
                         <div class="frame-img col-sm-3 col-12">
                               <div class="img-profile overflow-hidden m-auto me-sm-2">
-                                    <input id="changeProfilePicture" type="file" multiple accept="image/*"/>
-                                    <!-- <img id="profilePicture" src="{% static 'image/profile.jpg' %}" alt=""> -->
-                                    <img id="profilePicture" src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+                                    <input 
+                                          id="changeProfilePicture" 
+                                          type="file" 
+                                          multiple accept="image/*">
+                                    <img 
+                                          id="profilePicture" 
+                                          src="{{ profile.profile_picture.url }}" 
+                                          alt="Profile Picture">
                               </div>
                         </div>
                         <div class="col-sm-9">
-                              <h3 id="displayFullName" class="fs-4 font-NotoSans-Bold">{{ profile.full_name }}</h3>
+                              <h3 
+                                    id="displayFullName" 
+                                    class="fs-4 font-NotoSans-Bold"
+                              >
+                                    {{ profile.full_name }}
+                              </h3>
                         </div>
                   </div>
                   <div class="information row px-lg-5 px-0 pt-lg-4 pt-0 mt-3">
@@ -42,8 +111,13 @@
                                           <p class="font-WorkSans-SemiBold fs-14">NGÀY SINH</p>
                                     </div>
                                     <div class="inf-content">
-                                          <p id="displayDateOfBirth" class="font-NotoSans-Regular">
-                                                {{ profile.date_of_birth.day }}/{{ profile.date_of_birth.month }}/{{ profile.date_of_birth.year }}
+                                          <p 
+                                                id="displayDateOfBirth" 
+                                                class="font-WorkSans-Regular"
+                                          >
+                                                {{ profile.date_of_birth.day }}/
+                                                {{ profile.date_of_birth.month }}/
+                                                {{ profile.date_of_birth.year }}
                                           </p>
                                     </div>
                               </div>
@@ -52,21 +126,29 @@
                                           <p class="font-WorkSans-SemiBold fs-14">GIỚI TÍNH</p>
                                     </div>
                                     <div class="inf-content">
-                                          <p id="displayGender" class="font-NotoSans-Regular">
+                                          <p 
+                                                id="displayGender" 
+                                                class="font-NotoSans-Regular"
+                                          >
                                                 {% if profile.gender == 1 %}
-                                                Nam
+                                                      Nam
                                                 {% else %}
-                                                Nữ
+                                                      Nữ
                                                 {% endif %}
                                           </p>
                                     </div>
                               </div>
                               <div class="list-inf d-flex justify-content-between py-2">
                                     <div class="inf-title">
-                                          <p class="font-WorkSans-SemiBold fs-14">Email</p>
+                                          <p class="font-WorkSans-SemiBold text-uppercase fs-14">Email</p>
                                     </div>
                                     <div class="inf-content">
-                                          <p id="displayEmail" class="font-NotoSans-Regular">{{ user.email }}</p>
+                                          <p 
+                                                id="displayEmail" 
+                                                class="font-NotoSans-Regular"
+                                          >
+                                                {{ user.email }}
+                                          </p>
                                     </div>
                               </div>
                               <div class="list-inf d-flex justify-content-between py-2">
@@ -74,7 +156,12 @@
                                           <p class="font-WorkSans-SemiBold fs-14">SỐ ĐIỆN THOẠI</p>
                                     </div>
                                     <div class="inf-content">
-                                          <p id="displayPhoneNumber" class="font-NotoSans-Regular">{{ profile.phone_number }}</p>
+                                          <p 
+                                                id="displayPhoneNumber" 
+                                                class="font-NotoSans-Regular"
+                                          >
+                                                {{ profile.phone_number }}
+                                          </p>
                                     </div>
                               </div>
                               <div class="list-inf d-flex justify-content-between py-2">
@@ -82,7 +169,12 @@
                                           <p class="font-WorkSans-SemiBold fs-14">ĐỊA CHỈ</p>
                                     </div>
                                     <div class="inf-content">
-                                          <p id="displayAddress" class="font-NotoSans-Regular">{{ profile.address }}</p>
+                                          <p 
+                                                id="displayAddress" 
+                                                class="font-WorkSans-Regular"
+                                          >
+                                                {{ profile.address }}
+                                          </p>
                                     </div>
                               </div>
                         </div>
@@ -92,22 +184,52 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Thông tin chung</p>
-                                    <button id="add-edit-2" class="add-edit" type="button">
-                                          <i class="icofont-pencil-alt-5"></i>
-                                    </button>
+                                    {% if not profile.is_updated_summary %}
+                                          <button 
+                                                id="add-edit-2" 
+                                                class="add-edit d-none" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button 
+                                                id="add-edit-2" 
+                                                class="add-edit" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    {% if not profile.summary %}
-                                          <div id="updateSummaryInformation">
+                                    {% if not profile.is_updated_summary %}
+                                          <div id="entry_section_Summary">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
-                                                <div class="add-edit justify-content-center d-flex" id="add-edit-2">
-                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                <div 
+                                                      id="add-edit-2"
+                                                      class="add-edit justify-content-center d-flex" 
+                                                >
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#00c3da;"></i>
                                                       <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
                                                 </div>
                                           </div> 
+                                          <div id="display_section_Summary" class="d-none">
+                                                <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
+                                          </div>
                                     {% else %}
-                                          <div id="displaySummaryInformation">
+                                          <div id="entry_section_Summary" class="d-none">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho Nhà Tuyển dụng biết bạn có thể đem lại giá trị gì</p>
+                                                <div 
+                                                      id="add-edit-2"
+                                                      class="add-edit justify-content-center d-flex"
+                                                >
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#00c3da;"></i>
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM MÔ TẢ BẢN THÂN</p>
+                                                </div>
+                                          </div> 
+                                          <div id="display_section_Summary">
                                                 <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
                                           </div>
                                     {% endif %}
@@ -117,22 +239,59 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Trình độ học vấn</p>
-                                    <button id="btn-edit-4" class="add-edit" type="button">
-                                          <i class="icofont-pencil-alt-5"></i>
-                                    </button>
+                                    {% if not profile.is_updated_education %}
+                                          <button 
+                                                id="btn-edit-4" 
+                                                class="add-edit d-none" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button 
+                                                id="btn-edit-4" 
+                                                class="add-edit" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    {% if not profile.name_of_school %}
+                                    {% if not profile.is_updated_education %}
                                           <!-- Show this block if user have not update information or this fields is empty -->
-                                          <div id="entry_section_Education" class="entry_section">
+                                          <div id="entry_section_Education">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy giúp nhà tuyển dụng hiểu rõ hơn về bạn. Thông tin về quá trình học vấn sẽ giúp tăng cơ hội phỏng vấn của bạn đến 23%.</p>
+                                                <div 
+                                                      id="add-edit-4"
+                                                      class="add-edit justify-content-center d-flex"
+                                                >
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#00c3da;"></i>
+                                                      <p class="font-NotoSans-Bold text-uppercase">Thêm trình độ học vấn</p>
+                                                </div>
+                                          </div>
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_Education" class="d-none">
+                                                <p id="display_NameOfSchool" class="font-WorkSans-Medium">{{ profile.name_of_school }}</p>
+                                                <span id="display_TimeEducation" class="font-WorkSans-Light">
+                                                      {{ profile.time_admission.month }}/{{ profile.time_admission.year }}
+                                                      <span> - </span>
+                                                      {{ profile.time_graduate.month }}/{{ profile.time_graduate.year }}
+                                                </span>
+                                                <p id="display_AcademicDegree">{{ profile.academic_degree }}</p>
+                                                <p id="display_NameOfMajor" class="font-WorkSans-Regular">{{ profile.name_of_major }}</p>
+                                                <p id="display_AdditionalEducation" class="font-WorkSans-Regular">{{ profile.additional_education }}</p>
+                                          </div>
+                                    {% else %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_Education" class="d-none">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy giúp nhà tuyển dụng hiểu rõ hơn về bạn. Thông tin về quá trình học vấn sẽ giúp tăng cơ hội phỏng vấn của bạn đến 23%.</p>
                                                 <div class="add-edit justify-content-center d-flex" id="add-edit-4">
                                                       <i class="icofont-plus-circle" style="font-size: 18pt; color:#00c3da;"></i>
                                                       <p class="font-NotoSans-Bold text-uppercase">Thêm trình độ học vấn</p>
                                                 </div>
                                           </div>
-                                    {% else %}
                                           <!-- Show this block when user updated -->
                                           <div id="display_section_Education" class="display_section">
                                                 <p id="display_NameOfSchool" class="font-WorkSans-Medium">{{ profile.name_of_school }}</p>
@@ -181,18 +340,49 @@
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    {% if not profile.name_of_previous_company %}
+                                    {% if not profile.is_updated_previous_company %}
                                           <!-- Show this block if user have not update information or this fields is empty -->
-                                          <div id="entry_section_WorkExperience">
+                                          <div id="entry_section_workExperience">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
                                                 <div class="add-edit justify-content-center d-flex" id="add-edit-3">
-                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#71CFFF;"></i>
                                                       <p class="font-NotoSans-Bold fs-14">THÊM KINH NGHIỆM LÀM VIỆC</p>
                                                 </div>
                                           </div>
-                                    {% else %}
                                           <!-- Show this block when user updated -->
-                                          <div id="display_section_WorkExperience">
+                                          <div id="display_section_workExperience" class="d-none">
+                                                <p    
+                                                      id="display_name_PreviousCompany" 
+                                                      class="font-WorkSans-Medium"
+                                                >
+                                                      {{ profile.name_of_previous_company }}
+                                                </p>
+                                                <p 
+                                                      id="display_time_PreviousJob"
+                                                      class="font-NotoSans-Light"
+                                                >
+                                                      {{ profile.time_start_previous_job.month }}/{{ profile.time_start_previous_job.year }}
+                                                      -
+                                                      {{ profile.time_end_previous_job.month }}/{{ profile.time_end_previous_job.year }}
+                                                </p>
+                                                <p 
+                                                      id="display_title_PreviousJob"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.previous_job_title }}
+                                                </p>
+                                         </div>
+                                    {% else %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_workExperience">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-3">
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#71CFFF;"></i>
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM KINH NGHIỆM LÀM VIỆC</p>
+                                                </div>
+                                          </div>
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_workExperience">
                                                 <p    
                                                       id="display_name_PreviousCompany" 
                                                       class="font-WorkSans-Medium"
@@ -222,11 +412,19 @@
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Dự án tham gia</p>
                                     {% if profile.is_updated_project_participated %}
-                                          <button id="btn-edit-6" class="add-edit" type="button">
+                                          <button 
+                                                id="btn-edit-6" 
+                                                class="add-edit" 
+                                                type="button"
+                                          >
                                                 <i class="icofont-pencil-alt-5"></i>
                                           </button>
                                     {% else %}
-                                          <button id="btn-edit-6" class="add-edit d-none" type="button">
+                                          <button 
+                                                id="btn-edit-6" 
+                                                class="add-edit d-none" 
+                                                type="button"
+                                          >
                                                 <i class="icofont-pencil-alt-5"></i>
                                           </button>
                                     {% endif %}
@@ -235,14 +433,51 @@
                               <div class="body_information_item">
                                     {% if not profile.is_updated_project_participated %}
                                           <!-- Show this block if user have not update information or this fields is empty -->
-                                          <div id="entry_section_ProjectParticipate">
+                                          <div id="entry_section_projectParticipated">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho nhà tuyển dụng thấy kinh nghiệm của bạn qua các dự án mà bạn đã từng tham gia</p>
                                                 <div class="add-edit justify-content-center d-flex"  id="add-edit-6">
-                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#71CFFF;"></i>
                                                       <p class="font-NotoSans-Bold fs-14">THÊM DỰ ÁN THAM GIA</p>
                                                 </div>
                                           </div>
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_projectParticipated" class="d-none">
+                                                <p 
+                                                      id="display_name_ProjectParticipated" 
+                                                      class="font-WorkSans-Medium fs-4"
+                                                >
+                                                      {{ profile.name_of_project_participated }}
+                                                </p>
+                                                <p
+                                                      id="display_position_ProjectParticipated"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.position_in_project_participated }}
+                                                </p>
+                                                {% if profile.link_of_project_participated %}
+                                                      <iframe 
+                                                            id="display_link_ProjectParticipated"
+                                                            src="{{ profile.link_of_project_participated }}" 
+                                                            title="Link to user project"
+                                                            class="iframe_project_participated">
+                                                      </iframe>
+                                                {% endif %}
+                                                <p
+                                                      id="display_description_ProjectParticipated"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.description_project_participated }}
+                                                </p>
+                                          </div>
                                     {% else %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_ProjectParticipate" class="d-none">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Hãy cho nhà tuyển dụng thấy kinh nghiệm của bạn qua các dự án mà bạn đã từng tham gia</p>
+                                                <div class="add-edit justify-content-center d-flex"  id="add-edit-6">
+                                                      <i class="icofont-plus-circle" style="font-size: 18pt; color:#71CFFF;"></i>
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM DỰ ÁN THAM GIA</p>
+                                                </div>
+                                          </div>
                                           <!-- Show this block when user updated -->
                                           <div id="display_section_ProjectParticipated">
                                                 <p 
@@ -279,28 +514,122 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Hoạt động xã hội</p>
-                                    <button id="btn-edit-7" class="add-edit" type="button">
+                                    {% if profile.is_updated_volunteering_activity %}
+                                          <button 
+                                                id="btn-edit-7" 
+                                                type="button"
+                                                class="add-edit"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button 
+                                                id="btn-edit-7" 
+                                                type="button"
+                                                class="add-edit d-none"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
+                              </div>
+                              <!-- Body of a profile's item -->
+                              <div class="body_information_item">
+                                    {% if not profile.is_updated_volunteering_activity %}
+                                          <div id="entry_section_volunteeringActivity">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Các hoạt động xã hội giúp nhà tuyển dụng biết thêm về kỹ năng mềm của bạn</p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-7">
+                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM HOẠT ĐỘNG XÃ HỘI</p>
+                                                </div>
+                                          </div>
+                                          <div 
+                                                id="display_section_volunteeringActivity" 
+                                                class="d-none"
+                                          >
+                                                <p
+                                                      id="display_name_volunteeringActivity"
+                                                      class="font-WorkSans-Medium fs-4"
+                                                >
+                                                      {{ profile.name_of_volunteering_activity }}
+                                                </p>
+                                                <p 
+                                                      id="display_time_volunteeringActivity"
+                                                      class="font-WorkSans-Light fst-italic"
+                                                >
+                                                      {{ profile.time_start_volunteering_activity.month }}/
+                                                      {{ profile.time_start_volunteering_activity.year }}
+                                                      <span> - </span>
+                                                      {{ profile.time_end_volunteering_activity.month }}
+                                                      {{ profile.time_end_volunteering_activity.year }}
+                                                </p>
+                                                <p
+                                                      id="display_role_volunteeringActivity"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.role_in_volunteering_activity }}
+                                                </p>
+                                          </div>
+                                    {% else %}
+                                          <div 
+                                                id="entry_section_volunteeringActivity"
+                                                class="d-none"
+                                          >
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Các hoạt động xã hội giúp nhà tuyển dụng biết thêm về kỹ năng mềm của bạn</p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-7">
+                                                      <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM HOẠT ĐỘNG XÃ HỘI</p>
+                                                </div>
+                                          </div>
+                                          <div 
+                                                id="display_section_volunteeringActivity" 
+                                                class=""
+                                          >
+                                                <p
+                                                      id="display_name_volunteeringActivity"
+                                                      class="font-WorkSans-Medium fs-4"
+                                                >
+                                                      {{ profile.name_of_volunteering_activity }}
+                                                </p>
+                                                <p 
+                                                      id="display_time_volunteeringActivity"
+                                                      class="font-WorkSans-Light fst-italic"
+                                                >
+                                                      {{ profile.time_start_volunteering_activity.month }}/
+                                                      {{ profile.time_start_volunteering_activity.year }}
+                                                      <span> - </span>
+                                                      {{ profile.time_end_volunteering_activity.month }}/
+                                                      {{ profile.time_end_volunteering_activity.year }}
+                                                </p>
+                                                <p
+                                                      id="display_role_volunteeringActivity"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.role_in_volunteering_activity }}
+                                                </p>
+                                          </div>
+                                    {% endif %}
+                              </div>
+                        </div>
+                        <div class="inf-item pb-5">
+                              <!-- Header of a profile's item -->
+                              <div class="header_information_item">
+                                    <p class="font-NotoSans-Bold">Công việc quan tâm</p>
+                                    <button id="btn-edit-8" class="add-edit" type="button">
                                           <i class="icofont-pencil-alt-5"></i>
                                     </button>
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    <div id="entry_section_VolunteeringActivity">
-                                          <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Các hoạt động xã hội giúp nhà tuyển dụng biết thêm về kỹ năng mềm của bạn</p>
-                                          <div class="add-edit justify-content-center d-flex" id="add-edit-7">
+                                    <div class="entry_section_">
+                                          <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Thêm những công việc mà bạn quan tâm giúp chúng tôi giới thiệu những công việc phù hợp cho bạn</p>
+                                          <div class="add-edit justify-content-center d-flex"  id="add-edit-8">
                                                 <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                                                <p class="font-NotoSans-Bold fs-14">THÊM HOẠT ĐỘNG XÃ HỘI</p>
+                                                <p class="font-NotoSans-Bold fs-14">THÊM CÔNG VIỆC QUAN TÂM</p>
                                           </div>
                                     </div>
-                                    <p id="display_section_VolunteeringActivity" class="d-none"></p>
-                              </div>
-                        </div>
-                        <div class="inf-item pb-5">
-                              <h3 class="fs-5 font-NotoSans-Bold pb-2 position-relative">CÔNG VIỆC QUAN TÂM</h3>
-                              <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Thêm những công việc mà bạn quan tâm giúp chúng tôi giới thiệu những công việc phù hợp cho bạn</p>
-                              <div class="add-edit justify-content-center d-flex"  id="add-edit-8">
-                              <img class="me-2" src="{% static 'image/plus.png' %}" alt="">
-                              <p class="font-NotoSans-Bold fs-14">THÊM CÔNG VIỆC QUAN TÂM</p>
+                                    <div class="display_section_">
+
+                                    </div>
                               </div>
                         </div>
                   </div>
@@ -719,8 +1048,19 @@
                         </textarea>
                         <!-- Scope: User Actions -->
                         <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
-                              <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                              <button id="btn_submit_EducationForm" type="submit" class="btn bg-btn px-3">LƯU</button>
+                              <button 
+                                    type="button" 
+                                    class="btn-cancel btn border px-3 me-3 text-uppercase"
+                              >
+                                    Hủy
+                              </button>
+                              <button 
+                                    id="btn_submit_EducationForm" 
+                                    type="submit" 
+                                    class="btn bg-btn px-3 text-uppercase"
+                              >
+                                    Lưu
+                              </button>
                         </div>
                   </form>
             </div>
@@ -845,62 +1185,183 @@
                   </form>
             </div>
       </div>
-      <!--Bảng Hoạt động xã hội-->
+      <!-- Bảng Hoạt động xã hội -->
       <div class="frame" id="frame-7">
             <div class="frame-update-inf  bg-white">
-                  <h3 class="fs-5 font-NotoSans-Bold border-bottom pb-2 ps-4 pt-3 mt-3 position-relative">
-                  HOẠT ĐỘNG XÃ HỘI
-                  <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
+                  <h3 class="fs-5 font-NotoSans-Bold border-bottom pb-2 ps-4 pt-3 mt-3 position-relative text-uppercase">
+                        Hoạt động xã hội
+                        <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
                   </h3>
-                  <form action="" class="p-4 border-bottom">
-                  <input class="w-100 height-45 p-2 mb-3" type="text" name="name-activity" id="" placeholder="Tên hoạt động">
-                  <input class="w-100 height-45 p-2 mb-3" type="text" name="job-role" id="" placeholder="Vai trò công việc">
-                  <p class="fs-6 ">Ngày bắt đầu</p>
-                  <div class="day-start px-12 gap-2 row d-grid">
-                        <fieldset class="px-3 pb-2 my-3">
-                              <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
-                              <select class="w-100 border-0" name="" id="month">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              </select>
-                        </fieldset>
-                        <fieldset class="px-3 pb-2 my-3">
-                              <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
-                              <select class="w-100 border-0" name="" id="year">
-                              <option value="">2001</option>
-                              <option value="">2002</option>
-                              <option value="">2003</option>
-                              </select>
-                        </fieldset>
-                  </div>
-                  <p class="fs-6 ">Ngày kết thúc</p>
-                  <div class="day-start px-12 gap-2 row d-grid">
-                        <fieldset class="px-3 pb-2 my-3">
-                              <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Tháng</legend>
-                              <select class="w-100 border-0" name="" id="month">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              </select>
-                        </fieldset>
-                        <fieldset class="px-3 pb-2 my-3">
-                              <legend class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray">Năm</legend>
-                              <select class="w-100 border-0" name="" id="year">
-                              <option value="">2001</option>
-                              <option value="">2002</option>
-                              <option value="">2003</option>
-                              </select>
-                        </fieldset>
-                  </div>
-                  <div class="mt-3 pb-4">
-                        <input class="ms-1" type="checkbox" name="attending" id=""> 
-                        <label for="attending">Tôi hiện đang tham gia hoạt động tại đây</label>
-                  </div>
-                  <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
-                        <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                        <button type="submit" class="btn bg-btn px-3">LƯU</button>
-                  </div>
+                  <form 
+                        id="volunteeringActivityForm"
+                        class="p-4 border-bottom"
+                  >
+                        {% csrf_token %}
+                        <!-- Input: The name of volunteering activity that user take part in -->
+                        <input 
+                              name="name_of_volunteering_activity"
+                              type="text"
+                              class="w-100 height-45 p-2 mb-3"
+                              placeholder="Tên hoạt động">
+                        <!-- Input: User\'s role is in the volunteering activity -->
+                        <input
+                              name=" role_in_volunteering_activity" 
+                              type="text"
+                              class="w-100 height-45 p-2 mb-3"
+                              placeholder="Vai trò công việc">
+                        <!-- Input: The volunteering start time -->
+                        <p class="fs-6 ">Ngày bắt đầu</p>
+                        <div class="day-start px-12 gap-2 row d-grid">
+                              <fieldset class="px-3 pb-2 my-3">
+                                    <legend 
+                                          class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray"
+                                    >
+                                          Tháng
+                                    </legend>
+                                    <select 
+                                          id="month_start_volunteeringActivityForm"
+                                          class="w-100 border-0"
+                                    >
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
+                                    </select>
+                              </fieldset>
+                              <fieldset class="px-3 pb-2 my-3">
+                                    <legend 
+                                          class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray"
+                                    >
+                                          Năm
+                                    </legend>
+                                    <select
+                                          id="year_start_volunteeringActivityForm" 
+                                          class="w-100 border-0"
+                                    >
+                                          <option value="2005">2005</option>
+                                          <option value="2006">2006</option>
+                                          <option value="2007">2007</option>
+                                          <option value="2008">2008</option>
+                                          <option value="2009">2009</option>
+                                          <option value="2010">2010</option>
+                                          <option value="2011">2011</option>
+                                          <option value="2012">2012</option>
+                                          <option value="2013">2013</option>
+                                          <option value="2014">2014</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
+                                    </select>
+                              </fieldset>
+                        </div>
+                        <!-- Input: The volunteering end time -->
+                        <p class="fs-6 ">Ngày kết thúc</p>
+                        <div class="day-start px-12 gap-2 row d-grid">
+                              <fieldset class="px-3 pb-2 my-3">
+                                    <legend 
+                                          class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray"
+                                    >
+                                          Tháng
+                                    </legend>
+                                    <select 
+                                          id="month_end_volunteeringActivityForm"
+                                          class="w-100 border-0"
+                                    >
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
+                                    </select>
+                              </fieldset>
+                              <fieldset class="px-3 pb-2 my-3">
+                                    <legend 
+                                          class="fs-14 float-none w-auto px-2 font-NotoSans-Regular color-gray"
+                                    >
+                                          Năm
+                                    </legend>
+                                    <select 
+                                          id="year_end_volunteeringActivityForm"
+                                          class="w-100 border-0"
+                                    >
+                                          <option value="2005">2005</option>
+                                          <option value="2006">2006</option>
+                                          <option value="2007">2007</option>
+                                          <option value="2008">2008</option>
+                                          <option value="2009">2009</option>
+                                          <option value="2010">2010</option>
+                                          <option value="2011">2011</option>
+                                          <option value="2012">2012</option>
+                                          <option value="2013">2013</option>
+                                          <option value="2014">2014</option>
+                                          <option value="2015">2015</option>
+                                          <option value="2016">2016</option>
+                                          <option value="2017">2017</option>
+                                          <option value="2018">2018</option>
+                                          <option value="2019">2019</option>
+                                          <option value="2020">2020</option>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
+                                          <option value="2023">2023</option>
+                                          <option value="2024">2024</option>
+                                          <option value="2025">2025</option>
+                                    </select>
+                              </fieldset>
+                        </div>
+                        <!-- Input: User has joined the volunteering activity -->
+                        <div class="mt-3 pb-4">
+                              <input 
+                                    name="is_joining"
+                                    type="hidden"
+                                    value="0">
+                              <input 
+                                    name="is_joining"
+                                    id="id_isJoining"
+                                    type="checkbox"
+                                    value="1"
+                                    class="ms-1"> 
+                              <label
+                                    for="for_id_isJoining"
+                              >
+                                    Tôi hiện đang tham gia hoạt động tại đây
+                              </label>
+                        </div>
+                        <!-- Actions: User can choose -->
+                        <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
+                              <button 
+                                    type="button"
+                                    class="btn-cancel btn border px-3 me-3 text-uppercase"
+                              >
+                                    Hủy
+                              </button>
+                              <button 
+                                    id="btn_submit_volunteeringActivityForm"
+                                    type="submit" 
+                                    class="btn bg-btn px-3 text-uppercase"
+                              >
+                                    Lưu
+                              </button>
+                        </div>
                   </form>
             </div>
       </div>
