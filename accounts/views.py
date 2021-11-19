@@ -3,7 +3,8 @@ from django.views.generic import CreateView
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, get_user_model, login
-
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 from .models import User
 from .forms import SignUpForm, LoginForm, RecruiterRegisterForm
 
@@ -75,3 +76,7 @@ class RecruiterRegister(CreateView):
 
       def dispatch(self, request, *args, **kwargs):
             return super(RecruiterRegister, self).dispatch(request, *args, **kwargs)
+
+def logout_view(request):
+    logout(request)
+    return redirect('home:index')
