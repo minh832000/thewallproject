@@ -11,60 +11,7 @@
 {% endblock %}
 
 {% block pagecontent %}
-      <header class="bg-web position-fixed top-0 w-100">
-            <div class="container px-4 p-0">
-                  <div class="row justify-content-between header">
-                  <a href="{% url 'home:index' %}" class="col-10 col-md-2">
-                        <div class="logo d-flex h-100 align-items-center">
-                              <img class="img-logo" src="{% static 'image/logo.png' %}" alt="logo">
-                              <p class="name text-white mb-0 fs-5">The Wall</p>
-                        </div>
-                  </a>
-                  <div class="icon-menu col-2 align-items-center">
-                        <img src="{% static 'image/menu.png' %}" alt="">
-                  </div>
-                  <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
-                        <div class="icon-close">
-                              <img src="{% static 'image/close-button.png' %}" alt="">
-                        </div>
-                        <div class="nav-menu row col-md-6 col-12 ">
-                              <ul class="list-unstyled mb-0 ">
-                              <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job'%}">CƠ HỘI VIỆC LÀM</a></li>
-                              <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
-                              </ul>
-                        </div>
-                        <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                              <div class="icon-notify me-3 gx-0">
-                                    <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
-                              </div>
-                              <div class="img-user">
-                                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-                              </div>
-                              <!--Bảng điều khiên khi đăng nhập user-->
-                              <div class="for-user col-md-4 col-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                                    <div class="control-user accordion accordion-flush" id="accordion">
-                                          <div class="accordion-item bg-transparent  position-relative ">
-                                                <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
-                                                      {{ user.first_name }}
-                                                      
-                                                </button>
-                                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
-                                                      <div class="pt-2">
-                                                            <ul class="list-unstyled">
-                                                                  <li><a href="">Quản lí hồ sơ</a> </li>
-                                                                  <li><a href="">Đơn ứng tuyển của tôi</a> </li>
-                                                                  <li><a href="">Cài đặt tài khoản</a> </li>
-                                                                  <li><a href="">Đăng xuất</a> </li>
-                                                            </ul>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-            </div>
-      </header>
+      {% include 'components/JobSeeker/header.html' %}
       <!-- Main content of the page -->
       <div id="content" class="">
             <div class="container mx-120 p-0">

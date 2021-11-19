@@ -8,11 +8,19 @@
 
 {% block style %}
       <link rel="stylesheet" href="{% static 'css/hello.css' %}" />
+      {% if user.is_recruiter %}
+      <link rel="stylesheet" href="{% static 'css/Recruiter/header.css' %}" />
+      {% else %}
       <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+      {% endif %}
 {% endblock %}
 
 {% block pagecontent %}
+      {% if user.is_recruiter %}
+      {% include 'components/Recruiter/header.html' %}
+      {% else %}
       {% include 'components/JobSeeker/header.html' %}
+      {% endif %}
       <div id="content" class="font-NotoSans-Regular pt-5">
             <div class="container">
             <div class="my-5 px-md-0 px-4 search d-flex row justify-content-between gy-3">
