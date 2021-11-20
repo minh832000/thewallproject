@@ -109,7 +109,8 @@
 
 #main .list-required-skills li {
       background-color: #d9d9d9;
-      width: 180px;
+      min-width: 180px;
+      padding: 4px 11px;
       text-align: center;
       padding-top: 7px;
       padding-bottom: 7px;
@@ -139,13 +140,82 @@
 .approve-btn{
       position: absolute;
       right: 20px;
-      border:0;
-      padding: 8px 14px;
-      background: #a41515;
-      color: #fff;
+      border:#a41515 1px solid;
+      padding: 4px 8px;
+      color: #a41515;
       font-size: 14px;
+      font-weight: 600;
       border-radius: 16px;
 }
 .mt-60{
       margin-top: 60px !important;
+}
+.button-add a{
+      
+      line-height: 21px;
+}
+@media (max-width: 768px){
+      .ms-14{
+            margin-left: 14px !important;
+      }
+      .title{
+            width: 70%
+      }
+      .title p{
+            font-size: 16px !important;
+      }
+      .approve-btn {
+            right: -9px;
+            padding: 6px 12px;
+            font-size: 12px;
+      }
+      #main .list-required-skills{
+            padding:0
+      }
+      #main .list-required-skills li {
+            min-width: 100px;
+      }
+      .post-content{
+            font-size:12px;
+      }
+      .button-add a{
+            font-size: 11px !important;
+            line-height: 24px;
+      }
+      .button-add{
+      }
+      .search-box{
+            --bs-gutter-x: 0;
+            margin-left: 8px;
+
+      }
+}
+@media (max-width: 567px){
+      #main .post-basic-information .information-field {
+            width: 100%;
+      }
+      #main .post-basic-information .information-field {
+            font-size: 13px;
+      }
+      .mt-14{
+            margin-top: 14px !important;
+      }
+      #main .post-details {
+            padding:0;
+      }
+      #main .list-required-skills li{
+            font-size: 10px;
+            min-width: 80px;
+      }
+      .approve-btn{
+            
+            border:0;
+      }
+      #main .logo-company img {
+            width: 38px;
+            height: 38px;
+      }
+      #main .wrapper {
+            padding: 15px 15px;
+      }
 }

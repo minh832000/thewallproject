@@ -1,5 +1,4 @@
-// jQuery(document).ready(function($){
-    var content= $('.post-content').text()
-    $('.post-content').empty()
-    $('.post-content').append(content)
-// })
+$.each( $('.post-content'), function( i, l ){
+    var content=l.innerText
+    l.innerHTML=content
+  });
