@@ -35,7 +35,7 @@
                     </div>
                 <!--Bảng điều khiên khi đăng nhập user-->
                 {% else %}
-                <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                <div class="for-user col-md-4 col-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
                     <div class="icon-notify me-3 gx-0">
                         <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
                     </div>
@@ -53,7 +53,7 @@
                                 <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
                                     <div class="pt-2">
                                         <ul class="list-unstyled">
-                                            <li><a href="">Quản lí hồ sơ</a> </li>
+                                            <li><a href="{% url 'profiles:profiles'%}">Quản lí hồ sơ</a> </li>
                                             <li><a href="">Đơn ứng tuyển của tôi</a> </li>
                                             <li><a href="">Cài đặt tài khoản</a> </li>
                                             <li><a href="{% url 'accounts:logout' %}">Đăng xuất</a> </li>
