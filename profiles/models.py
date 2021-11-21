@@ -65,7 +65,20 @@ class Profile(models.Model):
       def __str__(self):
           return f'{self.user.username} profile'
 
- 
-      
-# class RecruiterProfile(models.Model):
-#       username = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+class RecruiterProfile(models.Model):
+      user                                      = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name="profile_recruiter")
+      profile_picture_company                           = models.ImageField(blank=True, null=True, upload_to='profile-picture', default="default-profile-picture.jpg")
+      is_updated_basic_information_company      = models.BooleanField(default=False)
+      name_of_company                           = models.CharField(max_length=128, null=True, blank=True)
+      location_of_company                       = models.TextField(max_length=256, null=True, blank=True)
+      email_of_company                          = models.EmailField(null=True, blank=True)
+      hotline_of_company                        = models.TextField(max_length=20, null=True, blank=True)
+      website_of_company                        = models.TextField(max_length=256, null=True, blank=True)
+      business_field_of_company                 = models.TextField(max_length=128, null=True, blank=True)
+
+      class Meta:
+            verbose_name            = _('Profile Recruiter')
+            verbose_name_plural     = _('Profiles Recruiter')
+       # show how we want it to be displayed
+      def __str__(self):
+          return f'Profile Recruiter-{self.user.username}'
