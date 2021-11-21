@@ -9,14 +9,14 @@ UserModel = get_user_model()
 @receiver(post_save, sender=UserModel)
 def create_profile(sender, instance, created, **kwargs):
       if created:
-            if instance.is_job_seeker:
+            print(instance)
+            try:
+                  user = UserModel.objects.get(username=instance)
+            except UserModel.DoesNotExist:
+                  print('User\'s account does not exist.')
+            if user.is_job_seeker:
+                  print('Is job seeker')
                   ProfileModel.objects.create(user=instance)
-            if instance.is_recruiter:
+            if user.is_recruiter:
+                  print('Is recruiter')
                   RecruiterProfileModel.objects.create(user=instance)
-
-
-
-
-# @receiver(post_save, sender=UserModel)
-# def save_profile(sender, instance, **kwargs):
-#       instance.profile.save()
