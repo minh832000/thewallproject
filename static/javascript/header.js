@@ -5,6 +5,7 @@ jQuery(document).ready(function($){
                 $('.over').remove();
             });
             $('.nav').hide();
+            $('.list-menu').hide()
             $('.header-nav').hide();
             $('.icon-menu').show(100)
         return false;
@@ -12,6 +13,7 @@ jQuery(document).ready(function($){
         $('.icon-menu').click(function(){
             $('.nav').show();
             $('.header-nav').show();
+            $('.list-menu').css('display','block')
             $('body').append('<div class="over">');
             $('.over').fadeIn();
         })

@@ -10,12 +10,8 @@
       right: 0px;
 }
 
-.header {
-      width: 100%;
-      padding: 5px 0px;
-}
 
-.box_header_profile_picture {
+/* .box_header_profile_picture {
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -41,42 +37,7 @@
       top: 9px;
       left: 6px;
 }
-
-.dropdown_menu {
-      border-radius: 3px;
-      margin-top: 3px !important;
-}
-
-.btn_show_notification {
-      margin-left: 6px;
-}
-.btn_show_notification i {
-      font-size: 16pt;
-      color: #ffffff;
-      position: absolute;
-      top: 9px;
-      left: 8px;
-}
-
-.box_circle {
-      background-color: #71cfff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      position: relative;
-}
-
-.btn_show_menu {
-      border: none;
-}
-
-.btn_show_menu i {
-      color: #ffffff;
-      font-size: 16pt;
-      position: absolute;
-      top: 9px;
-      left: 10px;
-}
+ */
 
 .wrapper_top_bottom {
       margin-top: 90px;
