@@ -48,10 +48,12 @@
                                           </button>
                                     </div>
                                     <div class="d-none d-md-flex align-items-center">
-                                          <img 
-                                                id="id_profile_picture_company_header"
-                                                src="{{ recruiter_profile.profile_picture_company.url }}" 
-                                                class="header_profile_picture">
+                                          <div class="box_header_profile_picture">
+                                                <img 
+                                                      id="id_profile_picture_company_header"
+                                                      src="{{ recruiter_profile.profile_picture_company.url }}" 
+                                                      class="profile_picture">
+                                          </div>
                                           <p class="font-NotoSans-Regular text-white ms-3 text-uppercase">{{ account.first_name }}</p>
                                     </div>
                                     <div class="d-flex align-items-center ms-2">
@@ -60,11 +62,33 @@
                                                       <i class="icofont-notification"></i>
                                                 </div>
                                           </div>
-                                          <div 
-                                                id="showAccountConfig" 
-                                                class="btn_show_account_config box_circle"
-                                          >
-                                                <i class="icofont-caret-down"></i>
+                                          <div class="dropdown">
+                                                <button 
+                                                      id="show_Account_Config" 
+                                                      class="btn_show_account_config box_circle dropdown-toggle"
+                                                      data-bs-toggle="dropdown"
+                                                      aria-expanded="false"
+                                                      type="button"
+                                                >
+                                                      <i class="icofont-caret-down"></i>
+                                                </button>
+                                                <ul   
+                                                      class="dropdown-menu dropdown_menu_account_config" 
+                                                      aria-labelledby="show_Account_Config"
+                                                >
+                                                      <li>
+                                                            <a class="dropdown-item" href="{% url 'profiles:recruiter_profile' %}">Quản lí hồ sơ</a> 
+                                                      </li>
+                                                      <li>
+                                                            <a class="dropdown-item" href="">Đơn ứng tuyển của tôi</a> 
+                                                      </li>
+                                                      <li>
+                                                            <a class="dropdown-item" href="">Cài đặt tài khoản</a>
+                                                      </li>
+                                                      <li>
+                                                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">Đăng xuất</a> 
+                                                      </li>
+                                                </ul>
                                           </div>
                                     </div>
                               </div>
@@ -89,8 +113,9 @@
                                                       <div class="body_profile_picture">
                                                             <img
                                                                   id="id_profilePictureCompany" 
+                                                                  class="profile_picture"
                                                                   src="{{ recruiter_profile.profile_picture_company.url }}" 
-                                                                  alt="">
+                                                                  alt="Body Profile Picture">
                                                       </div>
                                                       <div class="box_circle_profile_picture cotrol_change_profile_picture">
                                                             <div class="overlay_box_profile_picture control_change_profile_picture">

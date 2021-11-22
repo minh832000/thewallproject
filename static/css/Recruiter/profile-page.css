@@ -15,22 +15,36 @@
       padding: 5px 0px;
 }
 
-.header_profile_picture {
+.box_header_profile_picture {
       width: 38px;
       height: 38px;
       border-radius: 50%;
       border: 1px solid #71cfff;
 }
 
+.profile_picture {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-position: center;
+      object-fit: cover;
+}
+
 .btn_show_account_config {
       margin-left: 6px;
+      border: none;
 }
 .btn_show_account_config i {
-      font-size: 18pt;
+      font-size: 20pt;
       color: #ffffff;
       position: absolute;
-      top: 10px;
-      left: 8px;
+      top: 9px;
+      left: 6px;
+}
+
+.dropdown_menu_account_config {
+      border-radius: 3px;
+      margin-top: 3px !important;
 }
 
 .btn_show_notification {
