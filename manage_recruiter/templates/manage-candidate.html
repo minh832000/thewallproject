@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý ứng viên</title>
-     <!-- Favicons -->
-     <link rel="shortcut icon" type="image/x-icon" href="../../assets/image/logo.png">
+{% extends 'base_recruiter.html' %}
+{% load static %}
 
-     <!-- Vendor CSS Files -->
-     <link href="../../assets/vendor/bootstrap-5.0.1-dist/css/bootstrap.min.css" rel="stylesheet">
-     <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-
-     <!-- Template CSS Files -->
-     <link href="../../assets/style/typography.css" rel="stylesheet">
-     <link href="../../assets/style/base.css" rel="stylesheet">
-     <link href="../../assets/style/manage-candidate.css" rel="stylesheet">
-</head>
-<body>
+{% block pagetitle_recruiter %}
+      Chi tiết công việc
+{% endblock %}
+{% block linkcss_recruiter %}
+    <link rel="stylesheet" href="{% static 'css/manage-candidate.css' %}" >
+{% endblock %}
+{% block maincontent %}
     <div id="content">
         <div class="container my-5">
             <h1 class="font-WorkSans-Bold text-center fs-2 py-3">QUẢN LÝ ỨNG VIÊN CỦA BẠN</h1>
@@ -105,5 +95,7 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
+{% block linkjs %}
+    <script src="{% static 'javascript/manage-post.js' %}"></script>
+{% endblock %}

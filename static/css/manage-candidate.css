@@ -1,0 +1,112 @@
+.nav-button button{
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    font-weight:600
+}
+.nav-button{
+    padding: 0 1%;
+}
+.btn-wait-confirm{
+    border: 1.5px solid #1E7DC0;
+    color: #193549;
+}
+.btn-accept{
+    border: 1px solid #ECB62A;
+    color: #A46D03;
+}
+.btn-refuse{
+    border: 1px solid #353535;
+}
+.nav-tab select{
+    border: 1px solid #A3A3A3;
+    height: 40px;
+}
+.row {
+    --bs-gutter-x: 0;
+}
+@media(max-width: 766px){
+    .nav-button button{
+        font-size: 11px;
+        height: 30px;
+    }
+}
+.img-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.img-profile img{
+    width:100%;
+
+}
+.list-candidate{
+    border: 1px solid rgba(25, 53, 73, 0.5);
+}
+.candidate-item{
+    max-width:800px;
+    width: 95%;
+    margin: 5% auto;
+    border: 1px solid #ABABAB;
+    border-radius: 5px;
+    padding: 16px;
+}
+.inf .name{
+    font-size: 18px;
+    color: #0037FB;
+    font-weight: 600
+}
+.view-detail{
+    top: 20px;
+    right: 20px;
+    
+}
+.view-detail p{
+    font-weight: 600;
+    font-size: 14px;    
+    color: #0037FB;
+}
+.title{
+    border-bottom: #000 1px solid;
+}
+.title-profile{
+    font-weight:600;
+    font-size: 16px
+}
+.skill{
+    border-bottom: #000 1px solid;
+    padding-bottom: 20px;
+}
+.skill-item{
+    border-radius: 20px;
+    background: #ccc;
+    padding: 6px 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.btn-refuse{
+    background: #FFFFFF;
+    border: 2px solid #71CFFF;
+    width: 160px;
+    height: 36px;
+    font-weight: 600
+}
+.btn-accept-cand{
+    width: 160px;
+    height: 36px;
+    background: #71CFFF;
+    font-weight: 600;
+    border:0;
+}
+@media(max-width: 575px){
+    .btn-refuse{
+        width: 100px;
+        height: 30px;
+        
+    }
+    .btn-accept-cand{
+        width: 100px;
+        height: 30px;
+    }
+}
