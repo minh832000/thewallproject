@@ -42,10 +42,32 @@
                         </div>
                         <div class="col-6 col-md-6 col-lg-3">
                               <div class="h-100 d-flex align-items-center justify-content-end">
-                                    <div class="box_circle me-3 d-lg-none">
-                                          <button class="btn_show_menu" type="button"> 
-                                                <i class="icofont-navigation-menu"></i>
-                                          </button>
+                                    <div class="me-3 d-lg-none">
+                                          <div class="dropdown">
+                                                <button 
+                                                      id="id_dropdown_Menu"
+                                                      class="btn_show_menu box_circle dropdown-toggle" 
+                                                      type="button"
+                                                      data-bs-toggle="dropdown"
+                                                      aria-expanded="false"
+                                                > 
+                                                      <i class="icofont-navigation-menu"></i>
+                                                </button>
+                                                <ul 
+                                                      class="dropdown-menu dropdown_menu" 
+                                                      aria-labelledby="id_dropdown_Menu"
+                                                >
+                                                      <li>
+                                                            <a class="dropdown-item" href="#">Bảng thông tin</a>
+                                                      </li>
+                                                      <li>
+                                                            <a href="#" class="dropdown-item">Quản lý ứng viên</a>
+                                                      </li>
+                                                      <li>
+                                                            <a href="#" class="dropdown-item">Quản lý đăng tuyển</a>
+                                                      </li>
+                                                </ul>
+                                          </div>
                                     </div>
                                     <div class="d-none d-md-flex align-items-center">
                                           <div class="box_header_profile_picture">
@@ -73,7 +95,7 @@
                                                       <i class="icofont-caret-down"></i>
                                                 </button>
                                                 <ul   
-                                                      class="dropdown-menu dropdown_menu_account_config" 
+                                                      class="dropdown-menu dropdown_menu" 
                                                       aria-labelledby="show_Account_Config"
                                                 >
                                                       <li>
