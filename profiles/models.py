@@ -67,7 +67,7 @@ class Profile(models.Model):
 
 class RecruiterProfile(models.Model):
       user                                      = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name="profile_recruiter")
-      profile_picture_company                           = models.ImageField(blank=True, null=True, upload_to='profile-picture', default="default-profile-picture.jpg")
+      profile_picture_company                   = models.ImageField(blank=True, null=True, upload_to='profile-picture', default="default-profile-picture.jpg")
       is_updated_basic_information_company      = models.BooleanField(default=False)
       name_of_company                           = models.CharField(max_length=128, null=True, blank=True)
       location_of_company                       = models.TextField(max_length=256, null=True, blank=True)
