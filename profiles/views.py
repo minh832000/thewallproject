@@ -293,7 +293,7 @@ class RecruiterProfile(LoginRequiredMixin, View):
                   except RecruiterProfileModel.DoesNotExist:
                         recruiter_profile = RecruiterProfileModel.objects.create(user=username)
 
-                  return render(request, 'profiles/Recruiter/profile.html', {
+                  return render(request, 'profiles/Recruiter/profile-page.html', {
                                                                               'recruiter_profile': recruiter_profile,
                                                                               'account': user,
                                                                             })
