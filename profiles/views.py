@@ -1,15 +1,12 @@
-from io import FileIO
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.checks import messages
-from django.db import models
-from django.db.models.base import Model
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import Http404, JsonResponse
 from django.shortcuts import render
 from django.views.generic.base import View
 import datetime
 
 from .models import Profile as ProfileModel
+from .models import RecruiterProfile as RecruiterProfileModel
 
 UserModel = get_user_model()
 class Profile(LoginRequiredMixin, View):
@@ -283,4 +280,86 @@ class Profile(LoginRequiredMixin, View):
       
 class RecruiterProfile(LoginRequiredMixin, View):
       def get(self, request):
-            return render(request, 'profiles/Recruiter/profile.html')
+            # Get username of user's account
+            username = request.user
+            # Check user'account
+            try:
+                  user = UserModel.objects.get(username=username)
+            except UserModel.DoesNotExist:
+                  print('User\'s account does not exist.')
+            if user.is_recruiter:
+                  try:
+                        recruiter_profile = RecruiterProfileModel.objects.get(user=username)
+                  except RecruiterProfileModel.DoesNotExist:
+                        recruiter_profile = RecruiterProfileModel.objects.create(user=username)
+
+                  return render(request, 'profiles/Recruiter/profile.html', {
+                                                                              'recruiter_profile': recruiter_profile,
+                                                                              'account': user,
+                                                                            })
+            return Http404('Tài khoản đăng nhập không phù hợp.')
+
+      def post(self, request):
+            if request.method == 'POST' and request.is_ajax():
+                  # Get username
+                  username = request.user
+                  print(request.POST)
+                  # Check user account
+                  try:
+                        user = UserModel.objects.get(username=username)
+                  except UserModel.DoesNotExist:
+                        print('User account does not exist')
+                  if user.is_recruiter:
+                        print(request.POST)
+                        try:
+                              instance = RecruiterProfileModel.objects.get(user=username)
+                        except RecruiterProfileModel.DoesNotExist:
+                              instance = RecruiterProfileModel.objects.create(user=username)
+                        # Get name of the form
+                        form_name = request.POST.get('form')
+                        # Check form_name to choose the function
+                        if form_name == 'form_basic_information_company':
+                              name_of_company           = request.POST.get('name_of_company') if request.POST.get('name_of_company') else None
+                              email_of_company          = request.POST.get('email_of_company') if request.POST.get('email_of_company') else None
+                              hotline_of_company        = request.POST.get('hotline_of_company') if request.POST.get('hotline_of_company') else None
+                              website_of_company        = request.POST.get('website_of_company') if request.POST.get('website_of_company') else None
+                              location_of_company       = request.POST.get('location_of_company') if request.POST.get('location_of_company') else None
+                              business_field_of_company = request.POST.get('business_field_of_company') if request.POST.get('business_field_of_company') else None
+                             
+                              if name_of_company:
+                                    instance.name_of_company = name_of_company
+                              if email_of_company:
+                                    instance.email_of_company = email_of_company
+                              if hotline_of_company:
+                                    instance.hotline_of_company = hotline_of_company
+                              if website_of_company:
+                                    instance.website_of_company = website_of_company
+                              if location_of_company:
+                                    instance.location_of_company = location_of_company
+                              if business_field_of_company:
+                                    instance.business_field_of_company = business_field_of_company
+                              if name_of_company or email_of_company or hotline_of_company or website_of_company or location_of_company or business_field_of_company:
+                                    instance.is_updated_basic_information_company = True
+                              else:
+                                    instance.is_updated_basic_information_company = False
+
+                              instance.save()
+
+                              return JsonResponse({
+                                    'name_of_company': instance.name_of_company,
+                                    'email_of_company': instance.email_of_company,
+                                    'hotline_of_company': instance.hotline_of_company,
+                                    'website_of_company': instance.website_of_company,
+                                    'location_of_company': instance.location_of_company,
+                                    'business_field_of_company': instance.business_field_of_company,
+                              }, safe=False, content_type='application/json')
+                        if form_name == 'form_change_profile_picture':
+                              print(request.FILES)
+                              img = request.FILES.get('profile_picture') if request.FILES.get('profile_picture') else None
+                              if img:
+                                    instance.profile_picture_company = img
+                              instance.save()
+                              return JsonResponse({ 'message': 'Uploaded'}, safe=False)
+
+                  return JsonResponse({'message': 'Tài khoản người dụng không phù hợp.'})
+            return JsonResponse({'message': 'Có lỗi phát sinh.'})
