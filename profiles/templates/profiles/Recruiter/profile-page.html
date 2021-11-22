@@ -381,47 +381,57 @@
       <!-- =============== Footer ================ -->
       <footer class="footer bg-web">
             <div class="container">
-                  <div class="row mx-120 py-5 text-white">
-                        <div class="col-md-4 col-12 pe-5">
-                              <div class="box-logo">
-                                    <img class="img-fluid" src="../../assets/image/main-logo.png" alt="">
+                  <div class="row text-white">
+                        <div class="col-12 col-sm-12 col-md-4">
+                              <div class="footer_box_logo">
+                                    <img 
+                                          class="img-fluid" 
+                                          src="{% static 'image/main-logo.png' %}" 
+                                          alt="Footer Logo">
                               </div>
-
-                              <div class="mt-3">
+                              <div class="mt-1">
                                     <p class="font-WorkSans-Regular text-justify">
                                           The Wall là nền tảng tuyển dụng và phát triển sự nghiệp hàng đầu Châu Á dành cho các tài năng trẻ. 
                                           Sứ mệnh của The Wall là giúp người trẻ khám phá và theo đuổi đam mê nghề nghiệp.
                                     </p>
                               </div>
-
-                              <div class="d-flex align-items-center social-icon mt-3">
-                                    <img src="../../assets/image/facebook.png" alt="">
-                                    <img src="../../assets/image/linkedin-sign.png" alt="" class="mx-5">
-                                    <img src="../../assets/image/twitter-sign.png" alt="">
-                              </div>
                         </div>
 
-                        <div class="col-md-4 col-12 px-2">
-                              <p class="fs-6 font-NotoSans-Bold">LIÊN HỆ</p>
-                              <div class="mt-3">
-                                    <p class="font-WorkSans-Regular text-justify">
-                                    <strong>Địa chỉ:</strong> 
-                                    Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
+                        <div class="col-12 col-sm-12 col-md-4 space_block">
+                              <p class="fs-6 font-NotoSans-Bold text-uppercase">Liên hệ</p>
+                              <div class="mt-3 font-WorkSans-Regular text-justify">
+                                    <p>
+                                          <strong>Địa chỉ:</strong> 
+                                          Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
                                     </p>
-                                    <p class="font-WorkSans-Regular">
+                                    <p>
                                           <strong>Email:</strong> 
                                           sales-vn@glints.com
                                     </p>
-                                    <p class="font-WorkSans-Regular">
+                                    <p>
                                           <strong>Hotline:</strong> 
                                           (028) 7100 3030
                                     </p>
                               </div>
+                              <div class="icon_social_group d-flex align-items-center justify-content-between mt-3">
+                                    <div class="box_circle_icon_social">
+                                          <i class="icofont-facebook"></i>
+                                    </div>
+                                    <div class="box_circle_icon_social">
+                                          <i class="icofont-linkedin"></i>
+                                    </div>
+                                    <div class="box_circle_icon_social">
+                                          <i class="icofont-twitter"></i>
+                                    </div>
+                                    <div class="box_circle_icon_social">
+                                          <i class="icofont-instagram"></i>
+                                    </div>
+                              </div>
                         </div>
 
-                        <div class="col-md-4 col-12 ps-5">
-                              <p class="fs-6 font-NotoSans-Bold">CÁC TRANG LIÊN KẾT</p>
-                              <ul class="list-unstyled text-decoration-none font-WorkSans-Regular">
+                        <div class="col-12 col-sm-12 col-md-4 space_block">
+                              <p class="fs-6 font-NotoSans-Bold text-uppercase">Các trang liên kết</p>
+                              <ul class="list-unstyled text-decoration-none font-WorkSans-Regular mt-3">
                                     <li>
                                           <a href="">Cơ hội việc làm</a>
                                     </li>
@@ -437,8 +447,6 @@
             </div>
       </footer>
       <!-- End Footer -->
-
-      
 {% endblock %}
 
 {% block javascript %}
