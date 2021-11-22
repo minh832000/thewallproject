@@ -297,7 +297,7 @@ class RecruiterProfile(LoginRequiredMixin, View):
                                                                               'recruiter_profile': recruiter_profile,
                                                                               'account': user,
                                                                             })
-            return Http404('Tài khoản đăng nhập không phù hợp.')
+            return JsonResponse({'message': 'Tài khoản đăng nhập không phù hợp.'})
 
       def post(self, request):
             if request.method == 'POST' and request.is_ajax():

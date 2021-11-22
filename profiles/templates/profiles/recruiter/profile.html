@@ -11,111 +11,387 @@
 {% endblock %}
 
 {% block pagecontent %}
-      {% include 'components/Recruiter/header.html' %}
-
-      <div id="main" class="my-120 mx-120">
-            <div class="wrapper">
-                  <div class="d-flex align-items-start position-relative">
-                        <div class="box">
-                              <img src="{% static 'image/upload.png' %}" alt="">
+       <!-- =============== Header =============== -->
+       <header class="header bg-web">
+            <div class="container">
+                  <div class="row">
+                        <div class="col-6 col-md-6 col-lg-2">
+                              <a class="d-flex align-items-center text-decoration-none">
+                                    <img src="{% static 'image/logo.png' %}" alt="Logo The Wall" width="40px" height="40px">
+                                    <span class="font-NotoSans-Bold ms-2" style="font-size: 14pt;">
+                                          The Wall
+                                          <span class="font-NotoSans-Regular d-block" style="font-size: 10pt;">
+                                                for Employers
+                                          </span>
+                                    </span>
+                              </a>
                         </div>
-                        <div class="ms-40">
-                              <h3 class="font-NotoSans-Bold fs-4 mb-4">Tên của công ty</h3>
-                              <span class="font-WorkSans-Regular fst-italic">Viết một số câu giới thiệu về công ty...</span>
-
-                              <div class="d-flex align-items-center mt-40 font-WorkSans-Regular">
-                                    <div class="text-gray">
-                                          <p class="mb-2">Địa điểm</p>
-                                          <p class="mb-2">Lĩnh vực kinh doanh</p>
-                                          <p class="mb-2">Website</p>
+                        
+                        <div class="col-lg-7 d-none d-lg-block">
+                              <div class="h-100 d-flex align-items-center">
+                                    <div class="font-NotoSans-Regular text-uppercase">
+                                          <a href="#">Bảng thông tin</a>
                                     </div>
-                                    <div class="ms-40">
-                                          <p class="fst-italic mb-2">Nhập vị trí công ty</p>
-                                          <p class="fst-italic mb-2">Nhập lĩnh vực kinh doanh công ty</p>
-                                          <p class="fst-italic mb-2">Nhập địa chỉ website công ty</p>
+                                    <div class="font-NotoSans-Regular text-uppercase ms-5">
+                                          <a href="#">Quản lý ứng viên</a>
+                                    </div>
+                                    <div class="font-NotoSans-Regular text-uppercase ms-5">
+                                          <a href="#">Quản lý đăng tuyển</a>
                                     </div>
                               </div>
                         </div>
-                        <div class="position-absolute icon-edit">
-                              <div class="box-small">
-                                    <i class="icofont-pencil-alt-2"></i>
+                        <div class="col-6 col-md-6 col-lg-3">
+                              <div class="h-100 d-flex align-items-center justify-content-end">
+                                    <div class="box_circle me-3 d-lg-none">
+                                          <button class="btn_show_menu" type="button"> 
+                                                <i class="icofont-navigation-menu"></i>
+                                          </button>
+                                    </div>
+                                    <div class="d-none d-md-flex align-items-center">
+                                          <img 
+                                                id="id_profile_picture_company_header"
+                                                src="{{ recruiter_profile.profile_picture_company.url }}" 
+                                                class="header_profile_picture">
+                                          <p class="font-NotoSans-Regular text-white ms-3 text-uppercase">{{ account.first_name }}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center ms-2">
+                                          <div class="btn_show_notification">
+                                                <div class="box_circle">
+                                                      <i class="icofont-notification"></i>
+                                                </div>
+                                          </div>
+                                          <div 
+                                                id="showAccountConfig" 
+                                                class="btn_show_account_config box_circle"
+                                          >
+                                                <i class="icofont-caret-down"></i>
+                                          </div>
+                                    </div>
                               </div>
                         </div>
                   </div>
             </div>
-            
-            <div class="wrapper mt-40">
-                  <div class="position-relative">
-                        <p class="font-NotoSans-Bold text-uppercase fs-6">Chi tiết công ty</p>
-                        <div class="mt-4">
-                              <p class="text-center font-WorkSans-Regular">Nội dung giới thiệu về công ty</p>
-                        </div>
-      
-                        <div class="position-absolute icon-edit">
-                              <div class="box-small">
-                                    <i class="icofont-pencil-alt-2"></i>
+      </header>
+      <!-- End Header -->
+      <!-- =============== Main Content =============== -->
+      <div id="main" class="wrapper_top_bottom">
+            <div class="container">
+                  <!-- Header: Title of the page -->
+                  <p class="font-NotoSans-Bold title_page">Hồ sơ công ty</p>
+                  <!-- Body: Main content -->
+                  <div class="row">
+                        <div class="col-12 col-sm-12 col-lg-4">
+                              <div class="wrapper">
+                                    <div class="section_basic_information_company position-relative">
+                                          <div class="header_section_basic_information_company">
+                                                <div class="box_profile_picture">
+                                                      <input type="file" id="id_changeProfilePicture" style="display: none;">
+                                                      <div class="body_profile_picture">
+                                                            <img
+                                                                  id="id_profilePictureCompany" 
+                                                                  src="{{ recruiter_profile.profile_picture_company.url }}" 
+                                                                  alt="">
+                                                      </div>
+                                                      <div class="box_circle_profile_picture cotrol_change_profile_picture">
+                                                            <div class="overlay_box_profile_picture control_change_profile_picture">
+                                                                  <div class="box_circle_icon control_change_profile_picture">
+                                                                        <i class="icofont-camera"></i>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                                <h3 
+                                                      id="id_display_name_of_company"
+                                                      class="font-NotoSans-Bold fs-5 mt-4 mb-4 text-center"
+                                                >
+                                                      {{ recruiter_profile.name_of_company }}
+                                                </h3>
+                                          </div>
+                                          <div class="body_section_basic_information_company">
+                                                <div class="group_item">
+                                                      <p class="name_item font-WorkSans-Medium">Vị trí:</p>
+                                                      <p 
+                                                            id="id_display_location_of_company"
+                                                            class="content_item font-WorkSans-Regular"
+                                                      >
+                                                            {{ recruiter_profile.location_of_company }}
+                                                      </p>
+                                                </div>
+                                                <div class="group_item">
+                                                      <p class="name_item font-WorkSans-Medium">Email:</p>
+                                                      <p 
+                                                            id="id_display_email_of_company"
+                                                            class="content_item font-WorkSans-Regular"
+                                                      >
+                                                            {{ recruiter_profile.email_of_company }}
+                                                      </p>
+                                                </div>
+                                                <div class="group_item">
+                                                      <p class="name_item font-WorkSans-Medium">Hotline:</p>
+                                                      <p 
+                                                            id="id_display_hotline_of_company"
+                                                            class="content_item font-WorkSans-Regular"
+                                                      >
+                                                            {{ recruiter_profile.hotline_of_company }}
+                                                      </p>
+                                                </div>
+                                                <div class="group_item">
+                                                      <p class="name_item font-WorkSans-Medium">Website:</p>
+                                                      <p 
+                                                            id="id_display_website_of_company"
+                                                            class="content_item font-WorkSans-Regular"
+                                                      >
+                                                            {{ recruiter_profile.website_of_company }}
+                                                      </p>
+                                                </div>
+                                                <div class="group_item">
+                                                      <p class="name_item font-WorkSans-Medium">Lĩnh vực kinh doanh</p>
+                                                      <p 
+                                                            id="id_display_business_field_of_company"
+                                                            class="content_item font-WorkSans-Regular"
+                                                      >
+                                                            {{ recruiter_profile.business_field_of_company }}
+                                                      </p>
+                                                </div>
+                                          </div>
+                                          <div class="position-absolute icon-edit">
+                                                <button 
+                                                      type="button"
+                                                      data-bs-target="#modal_basicInformationCompany"
+                                                      data-bs-toggle="modal"  
+                                                      class="modal_btn_control"    
+                                                >
+                                                      <i class="icofont-pencil-alt-2"></i>
+                                                </button>
+                                          </div>
+                                    </div>
                               </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-lg-8 mt-4 mt-lg-0">
+                              <div class="wrapper">
+                                    <div class="position-relative">
+                                          <div class="header_section_item">
+                                                <p class="font-NotoSans-Bold text-uppercase fs-6">Giới thiệu về công ty</p>
+                                          </div>
+                                          <div class="body_section_item mt-4">
+                                                <p class="text-center font-WorkSans-Regular">Nội dung giới thiệu về công ty</p>
+                                          </div>
+                        
+                                          <div class="position-absolute icon-edit">
+                                                <button 
+                                                      type="button"
+                                                      data-bs-target="#modal_basicInformationCompany"
+                                                      data-bs-toggle="modal"  
+                                                      class="modal_btn_control"    
+                                                >
+                                                      <i class="icofont-pencil-alt-2"></i>
+                                                </button>
+                                          </div>
+                                    </div>
+                              </div>
+                              <div class="wrapper mt-4">
+                                    <div class="header_section_item">
+                                          <p class="font-NotoSans-Bold text-uppercase fs-6">Công việc liên quan</p>
+                                    </div>
+                                    <div class="body-section_item mt-4">
+                                          <p class="text-center font-WorkSans-Regular">Nội dung giới thiệu về công ty</p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <!-- Modal: Basic Information Company -->
+      <div
+            id="modal_basicInformationCompany"
+            class="modal" 
+            role="dialog"
+      >
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                  <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                              <p class="font-NotoSans-Bold model-title fs-6 text-uppercase">Thông tin cơ bản</p>
+                              <button 
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                              </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                              <form
+                                    id="form_basicInformationCompany"
+                                    method="POST"      
+                              >
+                                    <div class="form-group mb-3">
+                                          <label 
+                                                for="id_nameOfCompany" 
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Tên công ty
+                                          </label>
+                                          <input 
+                                                name="name_of_company"
+                                                id="id_nameOfCompany"
+                                                type="text" 
+                                                class="form-control font-WorkSans-Light"
+                                                placeholder="Tên công ty">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                          <label 
+                                                for="id_emailOfCompany" 
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Email
+                                          </label>
+                                          <input
+                                                name="email_of_company"
+                                                id="id_emailOfCompany"
+                                                type="email" 
+                                                class="form-control font-WorkSans-Light"
+                                                placeholder="Địa chỉ Email công ty">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                          <label 
+                                                for="id_hotlineOfCompany" 
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Hotline
+                                          </label>
+                                          <input
+                                                name="hotline_of_company"
+                                                id="id_hotlineOfCompany"
+                                                type="text" 
+                                                class="form-control font-WorkSans-Light"
+                                                placeholder="Tổng đài liên lạc công ty">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                          <label 
+                                                for="id_websiteOfComapany" 
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Website
+                                          </label>
+                                          <input 
+                                                name="website_of_company"
+                                                id="id_websiteOfCompany"
+                                                type="text" 
+                                                class="form-control font-WorkSans-Light"
+                                                placeholder="Đường liên kết đến website công ty">
+                                    </div>  
+                                    <div class="form-group mb-3">
+                                          <lable 
+                                                for="id_locationOfCompany"
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Vị trí công ty
+                                          </lable>
+                                          <input 
+                                                name="location_of_company"
+                                                id="id_locationOfCompany"
+                                                type="text" 
+                                                class="form-control"
+                                                placeholder="Địa điểm tọa lạc công ty">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                          <label 
+                                                for="id_businessFieldOfCompany" 
+                                                class="form-label font-WorkSans-Medium"
+                                          >
+                                                Lĩnh vực kinh doanh                                    
+                                          </label>
+                                          <input
+                                                name="business_field_of_company"
+                                                id="id_businessFieldOfCompany" 
+                                                type="text" 
+                                                class="form-control font-WorkSans-Light"
+                                                placeholder="Lĩnh vực kinh doanh của công ty">
+                                    </div>                
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                              <button 
+                                    type="button" 
+                                    data-bs-dismiss="modal"
+                                    class="modal_btn font-NotoSans-Regular"
+                              >
+                                    Hủy
+                              </button>
+                              <button 
+                                    id="btn_submit_basicInformationCompany"
+                                    type="button" 
+                                    class="ms-4 modal_btn font-NotoSans-Regular"
+                              >  
+                                    Lưu
+                              </button> 
+                              <!-- data-bs-dismiss="modal" -->
                         </div>
                   </div>
             </div>
       </div>
 
       <!-- =============== Footer ================ -->
-      <footer class="container-fluid px-0 bg-web">
-            <div class="row mx-120 py-5 text-white">
-                  <div class="col-md-4 col-12 pe-5">
-                        <div class="box-logo">
-                              <img class="img-fluid" src="{% static 'image/main-logo.png' %}" alt="">
+      <footer class="footer bg-web">
+            <div class="container">
+                  <div class="row mx-120 py-5 text-white">
+                        <div class="col-md-4 col-12 pe-5">
+                              <div class="box-logo">
+                                    <img class="img-fluid" src="../../assets/image/main-logo.png" alt="">
+                              </div>
+
+                              <div class="mt-3">
+                                    <p class="font-WorkSans-Regular text-justify">
+                                          The Wall là nền tảng tuyển dụng và phát triển sự nghiệp hàng đầu Châu Á dành cho các tài năng trẻ. 
+                                          Sứ mệnh của The Wall là giúp người trẻ khám phá và theo đuổi đam mê nghề nghiệp.
+                                    </p>
+                              </div>
+
+                              <div class="d-flex align-items-center social-icon mt-3">
+                                    <img src="../../assets/image/facebook.png" alt="">
+                                    <img src="../../assets/image/linkedin-sign.png" alt="" class="mx-5">
+                                    <img src="../../assets/image/twitter-sign.png" alt="">
+                              </div>
                         </div>
 
-                        <div class="mt-3">
-                              <p class="font-WorkSans-Regular text-justify">
-                                    The Wall là nền tảng tuyển dụng và phát triển sự nghiệp hàng đầu Châu Á dành cho các tài năng trẻ. 
-                                    Sứ mệnh của The Wall là giúp người trẻ khám phá và theo đuổi đam mê nghề nghiệp.
-                              </p>
+                        <div class="col-md-4 col-12 px-2">
+                              <p class="fs-6 font-NotoSans-Bold">LIÊN HỆ</p>
+                              <div class="mt-3">
+                                    <p class="font-WorkSans-Regular text-justify">
+                                    <strong>Địa chỉ:</strong> 
+                                    Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
+                                    </p>
+                                    <p class="font-WorkSans-Regular">
+                                          <strong>Email:</strong> 
+                                          sales-vn@glints.com
+                                    </p>
+                                    <p class="font-WorkSans-Regular">
+                                          <strong>Hotline:</strong> 
+                                          (028) 7100 3030
+                                    </p>
+                              </div>
                         </div>
 
-                        <div class="d-flex align-items-center social-icon mt-3">
-                              <img src="{% static 'image/facebook.png' %}" alt="">
-                              <img src="{% static 'image/linkedin-sign.png' %}" alt="" class="mx-5">
-                              <img src="{% static 'image/twitter-sign.png' %}" alt="">
+                        <div class="col-md-4 col-12 ps-5">
+                              <p class="fs-6 font-NotoSans-Bold">CÁC TRANG LIÊN KẾT</p>
+                              <ul class="list-unstyled text-decoration-none font-WorkSans-Regular">
+                                    <li>
+                                          <a href="">Cơ hội việc làm</a>
+                                    </li>
+                                    <li class="mt-3">
+                                          <a href="">Danh sách công ty</a>
+                                    </li>
+                                    <li class="mt-3">
+                                          <a href="">Vị trí ứng tuyển</a>
+                                    </li>
+                              </ul>
                         </div>
-                  </div>
-
-                  <div class="col-md-4 col-12 px-2">
-                        <p class="fs-6 font-NotoSans-Bold">LIÊN HỆ</p>
-                        <div class="mt-3">
-                              <p class="font-WorkSans-Regular text-justify">
-                                  <strong>Địa chỉ:</strong> 
-                                  Tầng 6, Số 100, Đường Nguyễn Thị Minh Khai, Phường 06, Quận 3, Thành phố Hồ Chí Minh, Việt Nam
-                              </p>
-                              <p class="font-WorkSans-Regular">
-                                    <strong>Email:</strong> 
-                                    sales-vn@glints.com
-                              </p>
-                              <p class="font-WorkSans-Regular">
-                                    <strong>Hotline:</strong> 
-                                    (028) 7100 3030
-                              </p>
-                        </div>
-                  </div>
-
-                  <div class="col-md-4 col-12 ps-5">
-                        <p class="fs-6 font-NotoSans-Bold">CÁC TRANG LIÊN KẾT</p>
-                        <ul class="list-unstyled text-decoration-none font-WorkSans-Regular">
-                              <li>
-                                    <a href="">Cơ hội việc làm</a>
-                              </li>
-                              <li class="mt-3">
-                                    <a href="">Danh sách công ty</a>
-                              </li>
-                              <li class="mt-3">
-                                    <a href="">Vị trí ứng tuyển</a>
-                              </li>
-                        </ul>
                   </div>
             </div>
       </footer>
-      
+      <!-- End Footer -->
 {% endblock %}
-     
+
+{% block javascript %}
+      <script src="{% static 'javascript/Recruiter/profile-page.js' %}" type="text/javascript"></script>
+{% endblock %}
