@@ -1,0 +1,22 @@
+.change-pass,
+.change-email{
+    border: #ccc 2px solid;
+}
+.change-pass p,
+.change-email>p{
+    font-weight: 600;
+    line-height: 50px;
+    background:#f5f3f4;
+}
+.change-pass input,
+.change-email input{
+    border: #ccc 1px solid;
+    padding: 8px 6px;
+    width: 100%;
+}
+@media (max-width: 767px){
+    input[type='submit']{
+        width: 96% !important;
+    }
+
+}
