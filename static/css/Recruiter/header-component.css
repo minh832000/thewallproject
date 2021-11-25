@@ -256,12 +256,13 @@
         display: block;
     }
 
-    .nav_item a:last-child {
+    /* .nav_item a:last-child {
         margin-top: 10px;
-    }
+    } */
 
     .nav_item_link {
         margin-left: 0px !important;
+        padding: 7px 0;
     } 
 
     .nav_item_link_group {
@@ -277,6 +278,8 @@
         background-color: transparent !important;
         box-shadow: none;
         border-top: 1px solid #c6c6c6;
+        padding-top: 10px;
+        margin-top: 10px;
     }
     .dropdown ul li a,
     .dropdown ul li a i {
