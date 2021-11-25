@@ -36,12 +36,15 @@ class RecruiterIndex(View):
 
             # Get information of the user from database
             user = UserModel.objects.get(username=username)
-            profile = RecruiterProfileModel.objects.get(user=username)
+            try:
+                  recruiter_profile = RecruiterProfileModel.objects.get(user=username)
+            except RecruiterProfileModel.DoesNotExist:
+                  return redirect('/')
 
             # Send data needed by the user
             context = {
                   'user': user,
-                  'profile_picture_company_link': profile.profile_picture_company.url,
+                  'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
             }
             return render(request, 'Recruiter/index.html', context)
             
