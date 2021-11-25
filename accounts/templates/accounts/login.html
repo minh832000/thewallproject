@@ -7,49 +7,15 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/Shared/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Shared/login-page.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-    <header class="position-fixed top-0 w-100 bg-web">
-        <div class="header-group">
-            <div class="header-scope">
-                <div class="logo-scope">
-                    <img src="{% static 'image/logo.png' %}" alt="Logo The Wall">
-                    <p class="font-NotoSans-Bold name-site">The Wall</p>
-                </div>
-                <div id="showMenu" class="icon-show-menu">
-                    <img src="{% static 'image/menu.png' %}" alt="">
-                </div>
-                <div id="mainMenu" class="actions-scope">
-                    <div class="icon-close-menu">
-                        <img src="{% static 'image/close-button.png' %}" alt="">
-                    </div>
-                    <a 
-                        href="{% url 'accounts:login' %}" 
-                        class="action-item font-NotoSans-Regular" 
-                        style="margin-left: -30px;"
-                    >
-                        Đăng nhập
-                    </a>
-                    <a 
-                        href="{% url 'accounts:register' %}" 
-                        class="action-item font-NotoSans-Regular"
-                    >
-                        Đăng ký
-                    </a>
-                    <a 
-                        href="{% url 'accounts:recruiter_register' %}" 
-                        class="redirect-recruiter font-NotoSans-Bold"
-                    >
-                        Nhà tuyển dụng
-                        <img src="{% static 'image/arrow-right.png' %}" alt="icon arrow right">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-    
+    <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
+        {% include 'components/JobSeeker/header.html' %}
+    <!-- ===== End Header ===== -->
+     
     <div class="container font-NotoSans-Regular">
         <div class="login-form mx-auto position-relative">
             <!-- Title of Form -->
