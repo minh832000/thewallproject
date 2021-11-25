@@ -20,3 +20,18 @@
     }
 
 }
+.fieldWrapper ul{
+    list-style-type: none;
+}
+.error{
+    color: #9d0208;
+    background:#fae1dd;
+    padding: 4px 8px;
+    list-style-type: none;
+}
+.success{
+    color:#40916c;
+    background:#d8f3dc;
+    padding: 8px 8px;
+    list-style-type: none;
+}
