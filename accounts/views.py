@@ -5,6 +5,9 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 from .models import User
 from .forms import SignUpForm, LoginForm, RecruiterRegisterForm
 
@@ -80,3 +83,24 @@ class RecruiterRegister(CreateView):
 def logout_view(request):
     logout(request)
     return redirect('home:index')
+
+
+def settingAccount(request):
+      return render(request, 'accounts/setting_account.html')
+
+
+def change_password(request):
+      if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                  user = form.save()
+                  update_session_auth_hash(request, user)  # Important!
+                  messages.success(request, 'Your password was successfully updated!')
+                  return redirect('accounts:setting')
+            else:
+                  messages.error(request, 'Please correct the error below.')
+      else:
+            form = PasswordChangeForm(request.user)
+      return render(request, 'accounts/setting_account.html', {
+            'form': form
+    })

@@ -1,61 +1,109 @@
 {% load static %}
-
-<header class="container-fluid px-0 bg-web overlow-hidden">
-      <div class="container">
-            <div class="d-flex align-items-center py-2 text-white">
-                    <a class="d-flex col-md-2 align-items-center text-decoration-none">
-                          <img src="{% static 'image/logo.png' %}" alt="Logo The Wall" width="40px" height="40px">
-                          <span class="font-NotoSans-Bold ms-2 name-web" style="font-size: 14pt;">
-                                The Wall
-                                <span class="font-NotoSans-Regular d-block" style="font-size: 10pt;">
-                                    for Employers
-                                </span>
-                          </span>
-                    </a>
-                    <img class="d-md-none d-block icon-menu" src="{% static 'image/menu.png' %}" alt="">
-                  
-                    <div class="header-nav ms-4 ms-lg-5 d-md-flex justify-content-between align-items-center font-NotoSans-Regular me-0">
-                          <div class="list-menu text-uppercase w-75">
-                                <div class="icon-close d-md-none">
-                                      <img src="{% static 'image/close-button.png' %}" alt="">
+<!-- =============== Header =============== -->
+<header class="header bg-web">
+    <div class="container">
+          <div class="row position-relative">
+                <div class="col-6 col-md-6 col-lg-2">
+                      <a class="d-flex align-items-center text-decoration-none">
+                            <img src="{% static 'image/logo.png' %}" alt="Logo The Wall" width="40px" height="40px">
+                            <span class="font-NotoSans-Bold ms-2" style="font-size: 14pt;">
+                                  The Wall
+                                  <span class="font-NotoSans-Regular d-block" style="font-size: 10pt;">
+                                        for Employers
+                                  </span>
+                            </span>
+                      </a>
+                </div>
+                
+                <div class="col-lg-7 d-none d-lg-block">
+                      <div class="h-100 d-flex align-items-center">
+                            <div class="font-NotoSans-Regular text-uppercase">
+                                  <a href="#">Bảng thông tin</a>
+                            </div>
+                            <div class="font-NotoSans-Regular text-uppercase ms-5">
+                                  <a href="#">Quản lý ứng viên</a>
+                            </div>
+                            <div class="font-NotoSans-Regular text-uppercase ms-5">
+                                  <a href="{% url 'manage-post' %}">Quản lý đăng tuyển</a>
+                            </div>
+                      </div>
+                </div>
+                <div class="col-6 col-md-6 col-lg-3">
+                      <div class="h-100 d-flex align-items-center justify-content-end">
+                            <div class="me-3 d-lg-none">
+                                  <div class="menu">
+                                        <button 
+                                              id=""
+                                              class="btn_show_menu box_circle icon-menu" 
+                                              type="button"
+                                             
+                                             
+                                        > 
+                                              <i class="icofont-navigation-menu"></i>
+                                        </button>
+                                        <ul 
+                                              class="list-menu" 
+                                              
+                                        >
+                                            <img src="{% static 'image/close-button.png' %}" alt="" class="icon-close">
+                                              <li>
+                                                    <a class="" href="#">Bảng thông tin</a>
+                                              </li>
+                                              <li>
+                                                    <a href="#" class="">Quản lý ứng viên</a>
+                                              </li>
+                                              <li>
+                                                    <a href="#" class="">Quản lý đăng tuyển</a>
+                                              </li>
+                                        </ul>
                                   </div>
-                                <a href="">Bảng thông tin</a>
-                                <a href="#" class="ms-10 ms-40 ">Quản lý ứng viên</a>
-                                <a href="{% url 'manage-post' %}" class="ms-10 ms-40 ">Quản lý đăng tuyển</a>
-                          </div>
-                          
-                          <div class="d-flex align-items-center w-25">
-                                <div>
-                                <img src="{% static 'image/bell.png' %}" alt="Notification" style="width:20px; height:20px;">  
-                                </div>
-                                <div class=" ms-40 d-flex align-items-center">
-                                      <img src="{% static 'image/horror.png' %}" width="40px" height="40px">
-                                      <!-- <span class="ms-2 font-NotoSans-Bold">Minh</span>
-                                      <span class="ms-1">
-                                            <i class="icofont-rounded-down"></i>
-                                      </span> -->
-                                      <div class="control-user accordion accordion-flush" id="accordion">
-                                            <div class="accordion-item bg-transparent  position-relative ">
-                                                <h2 class="accordion-header" id="flush-headingOne">
-                                                    <button class="name-user accordion-button fs-14 text-white bg-transparent collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
-                                                    MINH VO
-                                                    </button>
-                                                </h2>
-                                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
-                                                    <div class="pt-2">
-                                                        <ul class="list-unstyled">
-                                                            <li><a href="">Quản lí hồ sơ</a> </li>
-                                                            <li><a href="">Đơn ứng tuyển của tôi</a> </li>
-                                                            <li><a href="">Cài đặt tài khoản</a> </li>
-                                                            <li><a href="{% url 'accounts:logout' %}">Đăng xuất</a> </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            </div>
+                            <div class="d-none d-md-flex align-items-center">
+                                  <div class="box_header_profile_picture">
+                                        <img 
+                                              id="id_profile_picture_company_header"
+                                              src="{{ recruiter_profile.profile_picture_company.url }}" 
+                                              class="profile_picture">
+                                  </div>
+                                  <p class="font-NotoSans-Regular text-white ms-3 text-uppercase">{{ account.first_name }}</p>
+                            </div>
+                            <div class="me-50 d-flex align-items-center ms-2">
+                                  <div class="btn_show_notification">
+                                        <div class="box_circle">
+                                              <i class="icofont-notification"></i>
                                         </div>
-                                </div>
-                          </div>
-                    </div>
-            </div>
-      </div>
+                                  </div>
+                                  <div class="dropdown">
+                                        <button 
+                                              id="show_Account_Config" 
+                                              class="btn_show_account_config box_circle dropdown-toggle"
+                                              data-bs-toggle="dropdown"
+                                              aria-expanded="false"
+                                              type="button"
+                                        >
+                                              <i class="icofont-caret-down"></i>
+                                        </button>
+                                        <ul   
+                                              class="dropdown-menu dropdown_menu" 
+                                              aria-labelledby="show_Account_Config"
+                                        >
+                                              <li>
+                                                    <a class="dropdown-item" href="{% url 'profiles:recruiter_profile' %}">Quản lí hồ sơ</a> 
+                                              </li>
+                                              <li>
+                                                    <a class="dropdown-item" href="">Đơn ứng tuyển của tôi</a> 
+                                              </li>
+                                              <li>
+                                                    <a class="dropdown-item" href="">Cài đặt tài khoản</a>
+                                              </li>
+                                              <li>
+                                                    <a class="dropdown-item" href="{% url 'accounts:logout' %}">Đăng xuất</a> 
+                                              </li>
+                                        </ul>
+                                  </div>
+                            </div>
+                      </div>
+                </div>
+          </div>
+    </div>
 </header>

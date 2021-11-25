@@ -1,0 +1,37 @@
+.change-pass,
+.change-email{
+    border: #ccc 2px solid;
+}
+.change-pass p,
+.change-email>p{
+    font-weight: 600;
+    line-height: 50px;
+    background:#f5f3f4;
+}
+.change-pass input,
+.change-email input{
+    border: #ccc 1px solid;
+    padding: 8px 6px;
+    width: 100%;
+}
+@media (max-width: 767px){
+    input[type='submit']{
+        width: 96% !important;
+    }
+
+}
+.fieldWrapper ul{
+    list-style-type: none;
+}
+.error{
+    color: #9d0208;
+    background:#fae1dd;
+    padding: 4px 8px;
+    list-style-type: none;
+}
+.success{
+    color:#40916c;
+    background:#d8f3dc;
+    padding: 8px 8px;
+    list-style-type: none;
+}
