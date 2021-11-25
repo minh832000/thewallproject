@@ -56,6 +56,30 @@
                         </div>
                     </div>
                 {% else %}
+                <div class="for-user col-md-4 col-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                    <div class="icon-notify me-3 gx-0">
+                        <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
+                    </div>
+                    <div class="img-user">
+                        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+                    </div>
+                <!--Bảng điều khiên khi đăng nhập user-->
+                    <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
+                        <div class="control-user accordion accordion-flush" id="accordion">
+                            <div class="accordion-item bg-transparent  position-relative ">
+                                <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
+                                        {{ user.first_name }}
+                                        
+                                </button>
+                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
+                                    <div class="pt-2">
+                                        <ul class="list-unstyled">
+                                            <li><a href="{% url 'profiles:profiles'%}">Quản lí hồ sơ</a> </li>
+                                            <li><a href="">Đơn ứng tuyển của tôi</a> </li>
+                                            <li><a href="{% url 'accounts:setting' %}">Cài đặt tài khoản</a> </li>
+                                            <li><a href="{% url 'accounts:logout' %}">Đăng xuất</a> </li>
+                                        </ul>
+                                    </div>
                     <div class="nav nav_bar">
                         <div class="d-block d-md-none">
                             <div class="icon_close_menu">
