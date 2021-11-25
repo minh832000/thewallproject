@@ -1,18 +1,21 @@
-{% extends 'base_jobseeker.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
-{% block pagetitle_jobseeker %}
+{% block pagetitle %}
       Đăng ký | Người tìm việc
 {% endblock %}
 
-{% block linkcss_jobseeker %}
+{% block style %}
+      <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
       <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
 {% endblock %}
 
-{% block maincontent %}
-      
-      <!-- End HEADER -->
+{% block pagecontent %}
+      <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
+      {% include 'components/JobSeeker/header.html' %}
+      <!-- ===== End Header ===== -->
+
       <div class="container font-NotoSans-Regular">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">
                   <h2 class="text-noto-b text-center fs-3">Đăng ký tài khoản The Wall</h2>
@@ -65,6 +68,4 @@
                   <button class="btn-gg d-block border-0 text-white w-100 p-2 mb-4 fs-14 text-noto-b" type="submit">Đăng ký với Google</button>
             </div>
       </div> 
-
-      
 {% endblock %}

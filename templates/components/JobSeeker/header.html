@@ -25,7 +25,7 @@
                     </div>
                 </div>
    
-                {% if not user.is_authenticated %}
+                {% if not user.is_authenticated  or request.path == '/accounts/login/' or request.path == '/accounts/register/' %}
                     <div class="nav d-md-flex align-items-center justify-content-end h-100">
                         <div class="d-block d-md-none">
                             <div class="icon_close_menu">

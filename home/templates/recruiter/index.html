@@ -7,86 +7,82 @@
 {% endblock %}
 
 {% block style %}
-      <link rel="stylesheet" href="{% static 'css/hello-hr.css' %}">
+    <!-- Style Header Component -->
+    <link rel="stylesheet" href="{% static 'css/Recruiter/header-component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hello-hr.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-        <!------------HEADER------------------>
-        <header class="bg-web position-fixed top-0 w-100">
-            <div class="container">
-                <div class=" header d-flex row justify-content-between align-content-center">
-                    <a href="{% url 'home:index' %}" class="col-5">
-                        <div class="logo   d-flex align-items-center">
-                            <img class="img-logo me-2" src="{% static 'image/logo.png' %}" alt="">
-                            <p class="name text-white mb-0 fs-5">The Wall</p>
-                        </div>
-                    </a>
-                    <div class="button-header pt-2 col-7 align-content-center justify-content-end d-flex fs-14">
-                        <a href="{% url 'accounts:login'%}"><button class="btn-sign-up bg-transparent fs-14 me-md-4 me-1 text-light">ĐĂNG NHẬP</button></a>
-                        <a href="{% url 'accounts:recruiter_register'%}"><button class="btn-sign-in fs-14 border-0 bg-white">ĐĂNG KÝ</button></a> 
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div id="content">
-            <div class="banner">
-                <div class="content-banner text-center text-white"
-                    data-aos="fade-up"
-                    data-aos-offset="200"
-                    data-aos-delay="50"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                >
-                    <h1 class="text-noto-b text-shadow">
-                        TÌM ỨNG VIÊN TÀI NĂNG CÙNG<br> THE WALL NGAY BÂY GIỜ!
-                    </h1>
-                    <p class="mb-5 text-shadow">Nền tảng tuyển dụng miễn phí với hơn 10.000 lượt ứng tuyển mỗi tháng</p>
-                    <button class="border-0 bg-btn text-dark text-noto-b p-2 fs-14">ĐĂNG TUYỂN NHANH NHẬN CV TỐT</button>
-                </div>
-            </div>
-            <div class="container">
-                <!---------------------SỐ LIỆU QUẢNG BÁ--------------------------->
-                <div class="card-number d-flex row my-5 pb-5 justify-content-center"
-                    data-aos="fade-up"
-                    data-aos-offset="200"
-                    data-aos-delay="50"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                >
-                    <h2 class="fs-3 text-center mb-5 py-4"><span>THE WALL</span> QUA NHỮNG CON SỐ</h2>
-                    <div class="col-md col-10 card-number-member p-4">
-                        <p>Chúng tôi đã giúp</p>
-                        <h2 class="text-noto-b">2.042.899</h2>
-                        <p class="text-medium">bạn trẻ khám phá nghề nghiệp mơ ước</p>
-                    </div>
-                    <div class="col-md my-4 my-md-0 col-10 card-number-member mx-md-5 p-4">
-                        <p>Chúng tôi đã đồng hành cùng</p>
-                        <h2 class="text-noto-b">40.590</h2>
-                        <p class="text-medium">công ty trên toàn cầu xây dựng 
-                            thành công đội ngũ nhân lực tài năng</p>
-                    </div>
-                    <div class="col-md col-10 card-number-member p-4">
-                        <p>Khám phá ngay</p>
-                        <h2 class="text-noto-b">90.139</h2>
-                        <p class="text-medium">cơ hội việc làm mới nhất được 
-                            cập nhật hàng tháng</p>
-                    </div>
-                </div>
-                <div class="adv-solution text-center"
-                    data-aos="fade-up"
-                    data-aos-offset="200"
-                    data-aos-delay="50"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                >
-                    <h2 class="fs-3 text-center pb-4 text-uppercase">
-                        <span class="fs-2"> 1,000+ </span>Doanh nghiệp tại việt nam đang tuyển dụng<br> cùng THE WALL. Bạn đã thử chưa?
-                    </h2>
-                    <p class="fs-14">
-                        The Wall mang đến giải pháp toàn diện: Đăng tin tuyển dụng miễn phí; Giải pháp tuyển dụng cao cấp; Offshore chiến lược và Thương hiệu nhà tuyển dụng cho tài năng trẻ. 
-                        Xây dựng đội ngũ của bạn với các chuyên gia và tài năng trẻ hàng đầu hôm nay!
-                    </p>
-                </div>
+    <!-- Header Component in Recruiter's index page -->
+        {% include 'components/Recruiter/header.html' %}
+    <!-- End Header -->
+
+    <div id="content">
+        <div class="banner">
+            <div 
+                class="content-banner text-center text-white"
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+            >
+                <h1 class="text-noto-b text-shadow">
+                    TÌM ỨNG VIÊN TÀI NĂNG CÙNG 
+                    <br> THE WALL NGAY BÂY GIỜ!
+                </h1>
+                <p class="mb-5 text-shadow">Nền tảng tuyển dụng miễn phí với hơn 10.000 lượt ứng tuyển mỗi tháng</p>
+                <button class="border-0 bg-btn text-dark p-2 fs-14 font-NotoSans-Bold">ĐĂNG TUYỂN NHANH NHẬN CV TỐT</button>
             </div>
         </div>
-    {% endblock %}
+        <div class="container">
+            <!---------------------SỐ LIỆU QUẢNG BÁ--------------------------->
+            <div 
+                class="card-number d-flex row my-5 pb-5 justify-content-center"
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+            >
+                <h2 class="fs-3 text-center mb-5 py-4"><span>THE WALL</span> QUA NHỮNG CON SỐ</h2>
+                <div class="col-md col-10 card-number-member p-4">
+                    <p>Chúng tôi đã giúp</p>
+                    <h2 class="text-noto-b">2.042.899</h2>
+                    <p class="text-medium">bạn trẻ khám phá nghề nghiệp mơ ước</p>
+                </div>
+                <div class="col-md my-4 my-md-0 col-10 card-number-member mx-md-5 p-4">
+                    <p>Chúng tôi đã đồng hành cùng</p>
+                    <h2 class="text-noto-b">40.590</h2>
+                    <p class="text-medium">công ty trên toàn cầu xây dựng 
+                        thành công đội ngũ nhân lực tài năng</p>
+                </div>
+                <div class="col-md col-10 card-number-member p-4">
+                    <p>Khám phá ngay</p>
+                    <h2 class="text-noto-b">90.139</h2>
+                    <p class="text-medium">cơ hội việc làm mới nhất được cập nhật hàng tháng</p>
+                </div>
+            </div>
+            <div 
+                class="adv-solution text-center"
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+            >
+                <h2 class="fs-3 text-center pb-4 text-uppercase">
+                    <span class="fs-2"> 1,000+ </span>Doanh nghiệp tại việt nam đang tuyển dụng<br> cùng THE WALL. Bạn đã thử chưa?
+                </h2>
+                <p class="fs-14">
+                    The Wall mang đến giải pháp toàn diện: Đăng tin tuyển dụng miễn phí; Giải pháp tuyển dụng cao cấp; Offshore chiến lược và Thương hiệu nhà tuyển dụng cho tài năng trẻ. 
+                    Xây dựng đội ngũ của bạn với các chuyên gia và tài năng trẻ hàng đầu hôm nay!
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'javascript/Recruiter/header-component.js' %}"></script>
+{% endblock %}
