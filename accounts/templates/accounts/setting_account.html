@@ -3,15 +3,21 @@
 
 {% load static %}
 
-{% block pagetitle_jobseeker %}
-     Cài đặt tài khoản
+{% block pagetitle %}
+    Cài đặt tài khoản
 {% endblock %}
 
-{% block linkcss_jobseeker %}
-      <link rel="stylesheet" href="{% static 'css/setting-account.css' %}">
+{% block style %}
+    <!-- Style Header Component -->
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/setting-account.css' %}">
 {% endblock %}
 
-{% block maincontent %}
+{% block pagecontent %}
+    <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
+    {% include 'components/JobSeeker/header.html' %}
+    <!-- ===== End Header ===== -->
       
     <div class="content pt-5">
         <h3 class="text-center pt-5 fs-2 fw-bold">Cài đặt tài khoản</h3>
@@ -46,6 +52,7 @@
         
     </div>
 {% endblock %}
-{% block linkjs %}
+
+{% block javascript %}
     <script src="{% static 'javascript/header.js' %}"></script>
 {% endblock %}

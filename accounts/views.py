@@ -59,6 +59,7 @@ class Login(FormView):
       def dispatch(self, request, *args, **kwargs):
             print(self.request)
             print(self.request.user)
+            print(request.path)
             return super(Login, self).dispatch(request, *args, **kwargs)
 
 class RecruiterRegister(CreateView):

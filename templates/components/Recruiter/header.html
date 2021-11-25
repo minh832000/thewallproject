@@ -1,109 +1,177 @@
 {% load static %}
-<!-- =============== Header =============== -->
-<header class="header bg-web">
-    <div class="container">
-          <div class="row position-relative">
-                <div class="col-6 col-md-6 col-lg-2">
-                      <a class="d-flex align-items-center text-decoration-none">
-                            <img src="{% static 'image/logo.png' %}" alt="Logo The Wall" width="40px" height="40px">
-                            <span class="font-NotoSans-Bold ms-2" style="font-size: 14pt;">
-                                  The Wall
-                                  <span class="font-NotoSans-Regular d-block" style="font-size: 10pt;">
-                                        for Employers
-                                  </span>
-                            </span>
-                      </a>
-                </div>
+
+<header class="header">
+      <div class="container">
+            <div class="row">
+                  <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                        <a
+                              href="{% url 'home:recruiter_index' %}"
+                              class="d-flex align-items-center text-decoration-none h-100"
+                        >
+                              <img 
+                                    src="{% static 'image/logo.png' %}" 
+                                    alt="Logo The Wall" 
+                                    class="header_logo_picture">
+                              <p class="font-NotoSans-Bold header_site_name">
+                                    The Wall
+                                    <span class="font-NotoSans-Regular header_site_sub_name">
+                                          for Employers
+                                    </span>
+                              </p>
+                        </a>
+                  </div>  
                 
-                <div class="col-lg-7 d-none d-lg-block">
-                      <div class="h-100 d-flex align-items-center">
-                            <div class="font-NotoSans-Regular text-uppercase">
-                                  <a href="#">Bảng thông tin</a>
-                            </div>
-                            <div class="font-NotoSans-Regular text-uppercase ms-5">
-                                  <a href="#">Quản lý ứng viên</a>
-                            </div>
-                            <div class="font-NotoSans-Regular text-uppercase ms-5">
-                                  <a href="{% url 'manage-post' %}">Quản lý đăng tuyển</a>
-                            </div>
-                      </div>
-                </div>
-                <div class="col-6 col-md-6 col-lg-3">
-                      <div class="h-100 d-flex align-items-center justify-content-end">
-                            <div class="me-3 d-lg-none">
-                                  <div class="menu">
-                                        <button 
-                                              id=""
-                                              class="btn_show_menu box_circle icon-menu" 
-                                              type="button"
+                  <div class="col-6 col-sm-6 col-md-9 col-lg-10">
+                        <div class="d-flex justify-content-end d-md-none">
+                              <div class="icon_notify">
+                                    <i class="icofont-notification"></i>
+                              </div>
+                              <div class="icon_show_menu ms-1">
+                                    <i class="icofont-navigation-menu"></i>
+                              </div>
+                        </div>
+
+                        {% if not user.is_authenticated or request.path == '/accounts/login' or request.path == 'accounts/recruiter/register/' %}
+                              <div class="nav d-md-flex align-items-center justify-content-end h-100">
+                                    <div class="d-block d-md-none">
+                                          <div class="icon_close_menu">
+                                              <i class="icofont-close-circled"></i>    
+                                          </div>
+                                    </div>
+                                    <div class="nav_item font-NotoSans-Regular">
+                                          <a 
+                                                href="{% url 'accounts:login' %}"
+                                                class="nav_item_link" 
+                                          >
+                                                Đăng nhập
+                                          </a>
+                                    </div>
+                                    <div class="nav_item font-NotoSans-Regular">
+                                          <a 
+                                                href="{% url 'accounts:recruiter_register' %}"
+                                                class="nav_item_link" 
+                                          >
+                                                Đăng ký
+                                          </a>
+                                    </div>
+                              </div>
+                        {% else %}
+                              <div class="nav nav_bar">
+                                    <div class="d-block d-md-none">
+                                          <div class="icon_close_menu">
+                                              <i class="icofont-close-circled"></i>    
+                                          </div>
+                                    </div>
+                                    <div class="nav_item order-2">
+                                          <div class="d-flex align-items-center">
+                                                <div class="icon_notify d-none d-md-block">
+                                                      <i class="icofont-notification"></i>
+                                                </div>
                                              
-                                             
-                                        > 
-                                              <i class="icofont-navigation-menu"></i>
-                                        </button>
-                                        <ul 
-                                              class="list-menu" 
-                                              
-                                        >
-                                            <img src="{% static 'image/close-button.png' %}" alt="" class="icon-close">
-                                              <li>
-                                                    <a class="" href="#">Bảng thông tin</a>
-                                              </li>
-                                              <li>
-                                                    <a href="#" class="">Quản lý ứng viên</a>
-                                              </li>
-                                              <li>
-                                                    <a href="#" class="">Quản lý đăng tuyển</a>
-                                              </li>
-                                        </ul>
-                                  </div>
-                            </div>
-                            <div class="d-none d-md-flex align-items-center">
-                                  <div class="box_header_profile_picture">
-                                        <img 
-                                              id="id_profile_picture_company_header"
-                                              src="{{ recruiter_profile.profile_picture_company.url }}" 
-                                              class="profile_picture">
-                                  </div>
-                                  <p class="font-NotoSans-Regular text-white ms-3 text-uppercase">{{ account.first_name }}</p>
-                            </div>
-                            <div class="me-50 d-flex align-items-center ms-2">
-                                  <div class="btn_show_notification">
-                                        <div class="box_circle">
-                                              <i class="icofont-notification"></i>
-                                        </div>
-                                  </div>
-                                  <div class="dropdown">
-                                        <button 
-                                              id="show_Account_Config" 
-                                              class="btn_show_account_config box_circle dropdown-toggle"
-                                              data-bs-toggle="dropdown"
-                                              aria-expanded="false"
-                                              type="button"
-                                        >
-                                              <i class="icofont-caret-down"></i>
-                                        </button>
-                                        <ul   
-                                              class="dropdown-menu dropdown_menu" 
-                                              aria-labelledby="show_Account_Config"
-                                        >
-                                              <li>
-                                                    <a class="dropdown-item" href="{% url 'profiles:recruiter_profile' %}">Quản lí hồ sơ</a> 
-                                              </li>
-                                              <li>
-                                                    <a class="dropdown-item" href="">Đơn ứng tuyển của tôi</a> 
-                                              </li>
-                                              <li>
-                                                    <a class="dropdown-item" href="{% url 'accounts:setting' %}">Cài đặt tài khoản</a>
-                                              </li>
-                                              <li>
-                                                    <a class="dropdown-item" href="{% url 'accounts:logout' %}">Đăng xuất</a> 
-                                              </li>
-                                        </ul>
-                                  </div>
-                            </div>
-                      </div>
-                </div>
-          </div>
-    </div>
+                                                <div class="accordion_group">
+                                                      <button 
+                                                            id="id_header_AccountSetting" 
+                                                            class="accordion-button bg-transparent collapsed" 
+                                                            type="button" 
+                                                            data-bs-toggle="collapse" 
+                                                            data-bs-target="#id_collapse_AccountSetting" 
+                                                            aria-expanded="false" 
+                                                            aria-controls="id_collapse_AccountSetting"
+                                                      >
+                                                            <a 
+                                                                  href="{% url 'profiles:profiles' %}"
+                                                                  class="nav_item_link_group"
+                                                            >
+                                                                  <div class="box_header_profile_picture">
+                                                                        <img 
+                                                                              id="id_profile_picture_company_header"
+                                                                              src="{{ profile_picture_company_link }}" 
+                                                                              class="profile_picture">
+                                                                  </div>
+                                                                  <p class="font-NotoSans-Regular header_name_of_user">
+                                                                        {{ user.first_name }}
+                                                                  </p>
+                                                            </a>                                                                
+                                                      </button>
+                                                      <div 
+                                                            id="id_collaon-copse_AccountSetting" 
+                                                            class="dropdown accordillapse collapse"  
+                                                            aria-labelledby="id_header_AccountSetting"
+                                                      >
+                                                            <ul class="list-unstyled font-NotoSans-Regular">
+                                                                  <li>
+                                                                        <a 
+                                                                              class="dropdown_item_link"
+                                                                              href="{% url 'profiles:profiles'%}"
+                                                                        >
+                                                                              <i class="icofont-id-card"></i>
+                                                                              <span class="font-NotoSans-Regular">
+                                                                                    Quản lý hồ sơ
+                                                                              </span>
+                                                                        </a> 
+                                                                  </li>
+                                                                  <li>
+                                                                        <a 
+                                                                              class="dropdown_item_link"
+                                                                              href=""
+                                                                        >
+                                                                              <i class="icofont-attachment"></i>
+                                                                              <span class="font-NotoSans-Regular">
+                                                                                    Đơn ứng tuyển của tôi
+                                                                              </span>
+                                                                        </a>
+                                                                  </li>
+                                                                  <li>
+                                                                        <a 
+                                                                              class="dropdown_item_link"
+                                                                              href=""
+                                                                        >
+                                                                              <i class="icofont-gear"></i>
+                                                                              <span class="font-NotoSans-Regular">
+                                                                                    Cài đặt tài khoản
+                                                                              </span>
+                                                                        </a>
+                                                                  </li>
+                                                                  <li>
+                                                                        <a 
+                                                                              class="dropdown_item_link"
+                                                                              href="{% url 'accounts:logout' %}"
+                                                                        >
+                                                                              <i class="icofont-logout"></i>
+                                                                              <span class="font-NotoSans-Regular">
+                                                                                    Đăng xuất
+                                                                              </span>
+                                                                        </a> 
+                                                                  </li>
+                                                            </ul>
+                                                      </div>                                                
+                                                </div>                               
+                                          </div>
+                                    </div>
+                                    <div class="nav_item">
+                                          <a
+                                                href=""
+                                                class="nav_item_link"
+                                                style="margin-left: -35px;"
+                                          >
+                                                Bảng thông tin
+                                          </a>
+                                          <a
+                                                href="{% url 'manage-post' %}"
+                                                class="nav_item_link"
+                                          >
+                                                Quản lý ứng viên
+                                          </a>
+                                          <a
+                                                href=""
+                                                class="nav_item_link"
+                                          >
+                                                Quản lý đăng tuyển
+                                          </a>
+                                    </div>                                   
+                              </div>
+                        {% endif %}
+                  </div>
+            </div>
+      </div>
 </header>

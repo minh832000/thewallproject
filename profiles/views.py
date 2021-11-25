@@ -19,6 +19,7 @@ class Profile(LoginRequiredMixin, View):
             context = {
                   'user': user,
                   'profile': profile,
+                  'profile_picture_link': profile.profile_picture.url
             }
             return render(request, 'profiles/JobSeeker/profile.html', context)
 
