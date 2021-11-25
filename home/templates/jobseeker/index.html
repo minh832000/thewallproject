@@ -7,20 +7,17 @@
 {% endblock %}
 
 {% block style %}
-      <link rel="stylesheet" href="{% static 'css/hello.css' %}" />
-      {% if user.is_recruiter %}
-      <link rel="stylesheet" href="{% static 'css/Recruiter/header.css' %}" />
-      {% else %}
-      <link rel="stylesheet" href="{% static 'css/header.css' %}" />
-      {% endif %}
+      <link rel="stylesheet" href="{% static 'css/hello.css' %}"/>
+      <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+      <link rel="stylesheet" href="{% static 'css/JobSeeker/footer.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-      {% if user.is_recruiter %}
-      {% include 'components/Recruiter/header.html' %}
-      {% else %}
+      <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
       {% include 'components/JobSeeker/header.html' %}
-      {% endif %}
+      <!-- ===== End Header ===== -->
+      
+      <!-- =====+===== Body Component in JobSeeker's index page =====+===== -->
       <div id="content" class="font-NotoSans-Regular pt-5">
             <div class="container">
             <div class="my-5 px-md-0 px-4 search d-flex row justify-content-between gy-3">
@@ -207,7 +204,7 @@
                         <div class="img-introduce px-5">
                               <div class="swiper-container mt-4 pt-5 frame-swiper mySwiper-slide items-center w-7/12 mx-auto my-14">
                                     <div class="swiper-wrapper ">
-                                    <div class=" swiper-slide " style="width:160px">
+                                    <div class="swiper-slide " style="width:160px">
                                           <img class="scale-img" src="{% static 'image/hello/fin-1.jpg' %}" alt="">
                                     </div>
                                     <div class=" swiper-slide" style="width:160px">
@@ -354,4 +351,7 @@
       </div>
 
       {% include 'components/JobSeeker/footer.html' %}      
+{% endblock %}
+{% block javascript %}
+      <script type="text/javascript" src="{% static 'javascript/JobSeeker/header-component.js' %}"></script>
 {% endblock %}

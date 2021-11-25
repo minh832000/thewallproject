@@ -1,68 +1,168 @@
 {% load static %}
-<header class="bg-web position-fixed top-0 w-100">
-    <div class="container px-4 p-0">
-        <div class="row justify-content-between header">
-            <a href="{% url 'home:index' %}" class="col-10 col-md-2">
-                <div class="logo d-flex h-100 align-items-center">
-                    <img class="img-logo" src="{% static 'image/logo.png' %}" alt="logo">
-                    <p class="name text-white mb-0 fs-5">The Wall</p>
-                </div>
-            </a>
-            <div class="icon-menu col-2 align-items-center">
-                <img src="{% static 'image/menu.png' %}" alt="">
+
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                <a
+                    href="{% url 'home:index' %}"
+                    class="d-flex align-items-center text-decoration-none h-100">
+                    <img 
+                        src="{% static 'image/logo.png' %}"
+                        alt="Logo Site The Wall"
+                        class="header_logo_picture">
+                    <span class="header_site_name font-NotoSans-Bold">The Wall</span>
+                </a>                
             </div>
-            <div class="nav d-md-flex col-md-10 col-9 row justify-content-between align-items-center">
-                <div class="icon-close">
-                    <img src="{% static 'image/close-button.png' %}" alt="">
+            
+            <div class="col-6 col-sm-6 col-md-9 col-lg-10">
+                <div class="d-flex justify-content-end d-md-none">
+                    <div class="icon_notify">
+                        <i class="icofont-notification"></i>
+                    </div>
+                    <div class="icon_show_menu ms-1">
+                        <i class="icofont-navigation-menu"></i>
+                    </div>
                 </div>
-                <div class="nav-menu row col-md-6 col-12 ">
-                    <ul class="list-unstyled mb-0 ">
-                        <li class="d-inline-block me-4"><a class="text-decoration-none text-light" href="{% url 'list-job'%}">CƠ HỘI VIỆC LÀM</a></li>
-                        <li class="d-inline-block"><a class="text-decoration-none text-light" href="{% url 'list-company' %}">DANH SÁCH CÔNG TY</a></li>
-                    </ul>
-                </div>
+   
                 {% if not user.is_authenticated %}
-                    <div class="col-md-6 row justify-content-between align-items-center">
-                        <div class="sign-up col-md-6 col-12">
-                            <a class=" fs-14 text-decoration-none me-4 text-light font-NotoSans-Regular" href="{% url 'accounts:login' %}">ĐĂNG NHẬP</a>
-                            <a class=" fs-14 text-decoration-none text-light" href="{% url 'accounts:register' %}">ĐĂNG KÝ</a> 
+                    <div class="nav d-md-flex align-items-center justify-content-end h-100">
+                        <div class="d-block d-md-none">
+                            <div class="icon_close_menu">
+                                <i class="icofont-close-circled"></i>    
+                            </div>
                         </div>
-                        <div class="col-md-6 col-12 ">
+                        <div class="nav_item font-NotoSans-Regular">
+                            <a 
+                                href="{% url 'accounts:login' %}"
+                                class="nav_item_link" 
+                            >
+                                Đăng nhập
+                            </a>
+                            <a 
+                                href="{% url 'accounts:register' %}"
+                                class="nav_item_link" 
+                            >
+                                Đăng ký
+                            </a> 
+                        </div>
+                        <div class="nav_item" style="margin-left: 70px;">
                             <a href="{% url 'home:recruiter_index' %}">
-                                <button class="float-md-end p-2 fs-14 btn-employer bg-btn border-0">NHÀ TUYỂN DỤNG <img src="{% static 'image/Arrow 1.png' %}" alt=""></button>
+                                <button class="nav_btn_recruiter">
+                                    Nhà tuyển dụng
+                                    <i class="icofont-long-arrow-right"></i>
+                                </button>
                             </a>
                         </div>
                     </div>
-                <!--Bảng điều khiên khi đăng nhập user-->
                 {% else %}
-                <div class="for-user col-md-4 col-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                    <div class="icon-notify me-3 gx-0">
-                        <img class="w-100" src="{% static 'image/bell.png' %}" alt="">
-                    </div>
-                    <div class="img-user">
-                        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-                    </div>
-                <!--Bảng điều khiên khi đăng nhập user-->
-                    <div class="for-user col-md-6 row justify-content-md-end ps-4 justify-content-start align-items-center">
-                        <div class="control-user accordion accordion-flush" id="accordion">
-                            <div class="accordion-item bg-transparent  position-relative ">
-                                <button id="flush-headingOne" class="accordion-header name-user accordion-button font-NotoSans-Regular text-white text-uppercase bg-transparent collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseHeader" aria-expanded="false" aria-controls="flush-collapseHeader">
-                                        {{ user.first_name }}
-                                        
-                                </button>
-                                <div id="flush-collapseHeader" class=" dropdown bg-white accordion-collapse collapse position-absolute"  aria-labelledby="flush-headinHeader" data-bs-parent="#accordionFilter">
-                                    <div class="pt-2">
-                                        <ul class="list-unstyled">
-                                            <li><a href="{% url 'profiles:profiles'%}">Quản lí hồ sơ</a> </li>
-                                            <li><a href="">Đơn ứng tuyển của tôi</a> </li>
-                                            <li><a href="">Cài đặt tài khoản</a> </li>
-                                            <li><a href="{% url 'accounts:logout' %}">Đăng xuất</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                    <div class="nav nav_bar">
+                        <div class="d-block d-md-none">
+                            <div class="icon_close_menu">
+                                <i class="icofont-close-circled"></i>    
                             </div>
                         </div>
-                    </div>
+                        <div class="nav_item order-2">
+                            <div class="d-flex align-items-center">
+                                <div class="icon_notify d-none d-md-block">
+                                    <i class="icofont-notification"></i>
+                                </div>
+                               
+                                <div class="accordion_group">
+                                    <button 
+                                        id="id_header_AccountSetting" 
+                                        class="accordion-button bg-transparent collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#id_collapse_AccountSetting" 
+                                        aria-expanded="false" 
+                                        aria-controls="id_collapse_AccountSetting"
+                                    >
+                                        <a 
+                                            href="{% url 'profiles:profiles' %}"
+                                            class="nav_item_link_group"
+                                        >
+                                            <div class="box_header_profile_picture">
+                                                <img 
+                                                    src="{{ profile_picture_link }}" 
+                                                    alt="Profile Picture"
+                                                    class="profile_picture">
+                                            </div>
+                                            <p class="font-NotoSans-Regular header_name_of_user">
+                                                {{ user.first_name }}
+                                            </p>
+                                            </a>                                                                
+                                    </button>
+                                    <div 
+                                        id="id_collapse_AccountSetting" 
+                                        class="dropdown accordion-collapse collapse"  
+                                        aria-labelledby="id_header_AccountSetting"
+                                    >
+                                        <ul class="list-unstyled font-NotoSans-Regular">
+                                            <li>
+                                                <a 
+                                                    class="dropdown_item_link"
+                                                    href="{% url 'profiles:profiles'%}"
+                                                >
+                                                    <i class="icofont-id-card"></i>
+                                                    <span class="font-NotoSans-Regular">
+                                                        Quản lý hồ sơ
+                                                    </span>
+                                                </a> 
+                                            </li>
+                                            <li>
+                                                <a 
+                                                    class="dropdown_item_link"
+                                                    href=""
+                                                >
+                                                    <i class="icofont-attachment"></i>
+                                                    <span class="font-NotoSans-Regular">
+                                                        Đơn ứng tuyển của tôi
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a 
+                                                    class="dropdown_item_link"
+                                                    href=""
+                                                >
+                                                    <i class="icofont-gear"></i>
+                                                    <span class="font-NotoSans-Regular">
+                                                        Cài đặt tài khoản
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a 
+                                                    class="dropdown_item_link"
+                                                    href="{% url 'accounts:logout' %}"
+                                                >
+                                                    <i class="icofont-logout"></i>
+                                                    <span class="font-NotoSans-Regular">
+                                                        Đăng xuất
+                                                    </span>
+                                                </a> 
+                                            </li>
+                                        </ul>
+                                    </div>                                                
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="nav_item order-1">
+                            <a
+                                href="{% url 'list-job'%}"
+                                class="nav_item_link"
+                            >
+                                Cơ hội việc làm
+                            </a>
+                            <a
+                                href="{% url 'list-company' %}"
+                                class="nav_item_link"
+                            >
+                                Danh sách công ty
+                            </a>
+                        </div>
+                    </div>        
                 {% endif %}
             </div>
         </div>
