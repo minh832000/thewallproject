@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http.response import Http404, JsonResponse
-from django.shortcuts import render
+from django.http.response import JsonResponse
+from django.shortcuts import redirect, render
 from django.views.generic.base import View
+from django.urls import reverse_lazy
 import datetime
 
 from .models import Profile as ProfileModel
@@ -11,17 +12,27 @@ from .models import RecruiterProfile as RecruiterProfileModel
 UserModel = get_user_model()
 class Profile(LoginRequiredMixin, View):
       def get(self, request):
+            # Get username
+            username = request.user
             try:
-                  user = UserModel.objects.get(username=request.user)
-                  profile = ProfileModel.objects.get(user=request.user)
+                  user = UserModel.objects.get(username=username)
             except UserModel.DoesNotExist:
-                  return render(request, 'profiles/JobSeeker/profile.html', {'username': 'Unknown'})
-            context = {
-                  'user': user,
-                  'profile': profile,
-                  'profile_picture_link': profile.profile_picture.url
-            }
-            return render(request, 'profiles/JobSeeker/profile.html', context)
+                  print('User\'s account does not exist')
+            # Check user's account
+            if user.is_job_seeker:
+                  try:
+                        profile = ProfileModel.objects.get(user=username)
+                  except ProfileModel.DoesNotExist:
+                        print('User\'s profile does not exist')
+                  # Prepare data needed for user
+                  context = {
+                        'user': user,
+                        'profile': profile,
+                        'profile_picture_link': profile.profile_picture.url
+                  }
+                  return render(request, 'profiles/JobSeeker/profile.html', context)
+            if user.is_recruiter:
+                  return redirect('/profiles/recruiter/')
 
       def post(self, request, *args, **kwargs):
             if request.method == 'POST' and request.is_ajax():
@@ -293,11 +304,16 @@ class RecruiterProfile(LoginRequiredMixin, View):
                         recruiter_profile = RecruiterProfileModel.objects.get(user=username)
                   except RecruiterProfileModel.DoesNotExist:
                         recruiter_profile = RecruiterProfileModel.objects.create(user=username)
-
-                  return render(request, 'profiles/Recruiter/profile-page.html', {
-                                                                              'recruiter_profile': recruiter_profile,
-                                                                              'account': user,
-                                                                            })
+                  
+                  # Send data needed to user
+                  context = {
+                        'account': user,
+                        'recruiter_profile': recruiter_profile,
+                        'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+                  }
+                  return render(request, 'profiles/Recruiter/profile-page.html', context)
+            if user.is_job_seeker:
+                  return redirect('/profiles/')
             return JsonResponse({'message': 'Tài khoản đăng nhập không phù hợp.'})
 
       def post(self, request):
@@ -361,6 +377,15 @@ class RecruiterProfile(LoginRequiredMixin, View):
                                     instance.profile_picture_company = img
                               instance.save()
                               return JsonResponse({ 'message': 'Uploaded'}, safe=False)
+                        if form_name == 'form_summary_company':
+                              print(request)
+                              summary_company = request.POST.get('summary_company') if request.POST.get('summary_company') else None
+                              if summary_company:
+                                    instance.summary_company = summary_company
+                              instance.save()
+                              return JsonResponse({
+                                    'summary_company': instance.summary_company,
+                              }, safe=False, content_type='application/json')
 
                   return JsonResponse({'message': 'Tài khoản người dụng không phù hợp.'})
             return JsonResponse({'message': 'Có lỗi phát sinh.'})

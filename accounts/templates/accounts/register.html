@@ -7,14 +7,16 @@
 {% endblock %}
 
 {% block style %}
+      <!-- Style Header Component -->
       <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+      <!-- Style Register Page -->
       <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-      <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
+      <!-- ----- Header Component ----- -->
       {% include 'components/JobSeeker/header.html' %}
-      <!-- ===== End Header ===== -->
+      <!-- ----- End Header ----- -->
 
       <div class="container font-NotoSans-Regular">
             <div class="sign-up-site mx-auto p-sm-5 p-4 position-relative">

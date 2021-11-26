@@ -1,13 +1,17 @@
-{% extends 'base_jobseeker.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
-{% block pagetitle_jobseeker %}
-      Đăng ký thành công
+{% block pagetitle %}
+    Đăng ký thành công
 {% endblock %}
 
+{% block style %}
+    <!-- Style Header Component -->
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+{% endblock %}
 
-{% block maincontent %}
+{% block pagecontent %}
     <div class="content height-90vh pt-5">
         <div class="container">
             <div class="my-5">

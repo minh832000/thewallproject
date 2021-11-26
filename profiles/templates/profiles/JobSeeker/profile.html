@@ -6,8 +6,11 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/JobSeeker/profile-page.css' %}"/>
+    <!-- Style Header and Footer Component -->
     <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/footer-component.css' %}">
+    <!-- Style Profile Page -->
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/profile-page.css' %}"/>
 {% endblock %}
 
 {% block pagecontent %}
@@ -1359,9 +1362,19 @@
                   </form>
             </div>
       </div>
+
+      <!-- ----- Footer Component ----- -->
+      {% include 'components/JobSeeker/footer-component.html' %}
+      <!-- ----- End Footer ----- -->
 {% endblock %}
 
 {% block javascript %}
-    <script src="{% static 'javascript/JobSeeker/profile-page.js' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="{% static 'javascript/JobSeeker/header-component.js' %}"></script>
+      <script 
+            src="{% static 'javascript/JobSeeker/profile-page.js' %}" 
+            type="text/javascript">
+      </script>
+      <script 
+            src="{% static 'javascript/JobSeeker/header-component.js' %}"
+            type="text/javascript">
+      </script>
 {% endblock %}

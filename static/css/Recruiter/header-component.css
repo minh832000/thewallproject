@@ -192,6 +192,7 @@
     .dropdown {
         right: 50px;
     }
+<<<<<<< HEAD
     .col-20{
         flex: 0 0 auto;
         width: 20%;
@@ -215,12 +216,17 @@
     .icon_notify {
         width: 34px;
         height: 35px;
+=======
+    .nav {
+        display: none;
+>>>>>>> dce6f706c23aad1429de35948024903c173c7b85
     }
 }
 @media (min-width: 813px) and (max-width: 991) {
     .dropdown {
         right: 100px;
     }
+<<<<<<< HEAD
     .nav_item_link{
         margin-left:22px !important;
         font-size: 12px;
@@ -240,6 +246,10 @@
     .icon_notify {
         width: 34px;
         height: 35px;
+=======
+    .nav {
+        display: none;
+>>>>>>> dce6f706c23aad1429de35948024903c173c7b85
     }
 }
 @media (min-width: 992px) and (max-width: 1199px) {

@@ -10,14 +10,14 @@
 {% block style %}
     <!-- Style Header Component -->
     <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
-
+    <!-- Style Setting Account Page -->
     <link rel="stylesheet" href="{% static 'css/setting-account.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-    <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
+    <!-- ----- Header Component ----- -->
     {% include 'components/JobSeeker/header.html' %}
-    <!-- ===== End Header ===== -->
+    <!-- ----- End Header ----- -->
       
     <div class="content pt-5">
         <h3 class="text-center pt-5 fs-2 fw-bold">Cài đặt tài khoản</h3>
@@ -47,12 +47,14 @@
                 {% endfor %}
                 <input class="w-25 my-4" type="submit" value="THAY ĐỔI MẬT KHẨU">
             </form>
-            
         </div>
-        
     </div>
+
+    <!-- ----- Footer Component ----- -->
+    {% include 'components/JobSeeker/footer-component.html' %}
+    <!-- ----- End Footer ----- -->
 {% endblock %}
 
 {% block javascript %}
-    <script src="{% static 'javascript/header.js' %}"></script>
+    <script src="{% static 'javascript/JobSeeker/header-component.js' %}"></script>
 {% endblock %}

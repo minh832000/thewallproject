@@ -66,5 +66,33 @@ $(document).on('change', '#id_changeProfilePicture', function(){
       } else {
             alert('Hình ảnh không hợp lệ');
       }
+})
+
+$(document).on('click', '#btn_submit_SummaryCompany', e => {
+      e.preventDefault();
+      var f = document.getElementById('id_form_SummaryCompany');
+      var fd = new FormData(f);
+      fd.append('form', 'form_summary_company');
+      
+      // Make a ajax call
+      $.ajax({
+            url: 'http://127.0.0.1:8000/profiles/recruiter/',
+            type: 'POST',
+            data: fd,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            processData: false,
+            success: res => {
+                  $('#id_modal_SummaryCompany').modal('hide');
+                  // Change elements show
+                  $('#id_entry_summary_company').addClass('d-none');
+                  $('#id_display_summary_company').removeClass('d-none');
+                  // Update data
+                  $('#id_display_summary_company').text(res['summary_company']);             
+            },
+            error: err => {
+                  console.log(err)
+            }
+      })
 
 })

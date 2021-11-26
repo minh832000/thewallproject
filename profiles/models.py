@@ -76,6 +76,9 @@ class RecruiterProfile(models.Model):
       website_of_company                        = models.TextField(max_length=256, null=True, blank=True)
       business_field_of_company                 = models.TextField(max_length=128, null=True, blank=True)
 
+      # Form: "Thông tin tổng quát"
+      summary_company                           = models.TextField(max_length=1000, blank=True, null=True)
+
       class Meta:
             verbose_name            = _('Profile Recruiter')
             verbose_name_plural     = _('Profiles Recruiter')

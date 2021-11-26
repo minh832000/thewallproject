@@ -9,12 +9,15 @@
 {% block style %}
     <!-- Style Header Component -->
     <link rel="stylesheet" href="{% static 'css/Recruiter/header-component.css' %}">
-    <link rel="stylesheet" href="{% static 'css/hello-hr.css' %}">
+    <!-- Style Footer Component -->
+    <link rel="stylesheet" href="{% static 'css/Recruiter/footer-component.css' %}">
+    <!-- Style Recruiter Home Page -->
+    <link rel="stylesheet" href="{% static 'css/Recruiter/home-page.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
     <!-- Header Component in Recruiter's index page -->
-        {% include 'components/Recruiter/header.html' %}
+        {% include 'components/Recruiter/header-component.html' %}
     <!-- End Header -->
 
     <div id="content">
@@ -27,11 +30,11 @@
                 data-aos-duration="1000"
                 data-aos-easing="ease-in-out"
             >
-                <h1 class="text-noto-b text-shadow">
-                    TÌM ỨNG VIÊN TÀI NĂNG CÙNG 
-                    <br> THE WALL NGAY BÂY GIỜ!
+                <h1 class="font-NotoSans-Bold text-shadow text-uppercase">
+                    Tìm ứng viên tài năng cùng <br>
+                    The Wall ngay bây giờ!
                 </h1>
-                <p class="mb-5 text-shadow">Nền tảng tuyển dụng miễn phí với hơn 10.000 lượt ứng tuyển mỗi tháng</p>
+                <p class="text-shadow mb-3">Nền tảng tuyển dụng miễn phí với hơn 10.000 lượt ứng tuyển mỗi tháng</p>
                 <button class="border-0 bg-btn text-dark p-2 fs-14 font-NotoSans-Bold">ĐĂNG TUYỂN NHANH NHẬN CV TỐT</button>
             </div>
         </div>
@@ -48,7 +51,7 @@
                 <h2 class="fs-3 text-center mb-5 py-4"><span>THE WALL</span> QUA NHỮNG CON SỐ</h2>
                 <div class="col-md col-10 card-number-member p-4">
                     <p>Chúng tôi đã giúp</p>
-                    <h2 class="text-noto-b">2.042.899</h2>
+                    <h2 class="font-NotoSans-Bold">2.042.899</h2>
                     <p class="text-medium">bạn trẻ khám phá nghề nghiệp mơ ước</p>
                 </div>
                 <div class="col-md my-4 my-md-0 col-10 card-number-member mx-md-5 p-4">
@@ -81,6 +84,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Component -->
+    {% include 'components/Recruiter/footer-component.html' %}
+    <!-- End Footer -->
 {% endblock %}
 
 {% block javascript %}
