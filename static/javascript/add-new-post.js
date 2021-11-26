@@ -51,7 +51,7 @@ const sendSkillData=(name,id)=>{
         },
         success: (res) => {
             const data =res.data
-            selectedSkill.innerHTML += `<span class="px-3 py-1 me-2 id=${data[0].id}">${data[0].name}</span>`
+            selectedSkill.innerHTML += `<input class="px-3 py-1 me-2 id=${data[0].id}" value=${data[0].name}>`
 
         },
         error: (err) => {
