@@ -1,4 +1,4 @@
-{% extends 'base_recruiter.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
@@ -6,13 +6,20 @@
       Trang thông tin người dùng | Nhà Tuyển Dụng
 {% endblock %}
 
-{% block linkcss_recruiter %}
+{% block style %}
+      <!-- Style Header and Footer Component -->
+      <link rel="stylesheet" href="{% static 'css/Recruiter/header-component.css' %}">
+      <link rel="stylesheet" href="{% static 'css/Recruiter/footer-component.css' %}">
+      <!-- Style Profile Page-->
       <link rel="stylesheet" href="{% static 'css/Recruiter/profile-page.css' %}" />
 {% endblock %}
 
-{% block maincontent %}
+{% block pagecontent %}
+      <!-- ----- Header Component ----- -->
+      {% include 'components/Recruiter/header-component.html' %}
       <!-- End Header -->
-      <!-- =============== Main Content =============== -->
+
+      <!-- ----- Main Content ----- -->
       <div id="main" class="wrapper_top_bottom">
             <div class="container">
                   <!-- Header: Title of the page -->
@@ -120,7 +127,7 @@
                                           <div class="position-absolute icon-edit">
                                                 <button 
                                                       type="button"
-                                                      data-bs-target="#modal_basicInformationCompany"
+                                                      data-bs-target="#id_modal_SummaryCompany"
                                                       data-bs-toggle="modal"  
                                                       class="modal_btn_control"    
                                                 >
@@ -265,14 +272,84 @@
                               >  
                                     Lưu
                               </button> 
-                              <!-- data-bs-dismiss="modal" -->
                         </div>
                   </div>
             </div>
       </div>
 
+      <!-- Modal: Summary -->
+      <div
+            id="id_modal_SummaryCompany"
+            class="modal"
+            role="dialog"
+      >
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                  <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                              <p class="font-NotoSans-Bold text-uppercase fs-6 modal-title">
+                                    Thông tin tổng quát
+                              </p>
+                              <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal">
+                              </button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                              <form 
+                                    id="id_form_SummaryCompany"
+                                    method="POST"
+                              >
+                                    <div class="mb-3">
+                                          <label
+                                                for="id_SummaryCompany"
+                                                class="form-label font-WorkSans-Medium">
+                                          </label>
+                                          <textarea
+                                                name="summary_company"
+                                                id="id_SummartCompany"
+                                                class="form-control font-WorkSans-Light"
+                                                type="text"
+                                                placeholder="Thông tin tổng quát về công ty">
+                                          </textarea>
+                                    </div>
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                              <button 
+                                    type="button" 
+                                    data-bs-dismiss="modal"
+                                    class="modal_btn font-NotoSans-Regular"
+                              >
+                                    Hủy
+                              </button>
+                              <button 
+                                    id="btn_submit_SummaryCompany"
+                                    type="button" 
+                                    class="ms-4 modal_btn font-NotoSans-Regular"
+                              >  
+                                    Lưu
+                              </button> 
+                        </div>
+                  </div>
+            </div>
+      </div>
+
+      <!-- ----- Footer Component ----- -->
+      {% include 'components/Recruiter/footer-component.html' %}
+      <!-- ----- End Footer ----- -->
+
 {% endblock %}
 
 {% block javascript %}
-      <script src="{% static 'javascript/Recruiter/profile-page.js' %}" type="text/javascript"></script>
+      <script
+            src="{% static 'javascript/Recruiter/header-component.js' %}"
+            type="text/javascript">
+      </script>
+      <script 
+            src="{% static 'javascript/Recruiter/profile-page.js' %}" 
+            type="text/javascript">
+      </script>
 {% endblock %}

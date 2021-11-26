@@ -293,11 +293,15 @@ class RecruiterProfile(LoginRequiredMixin, View):
                         recruiter_profile = RecruiterProfileModel.objects.get(user=username)
                   except RecruiterProfileModel.DoesNotExist:
                         recruiter_profile = RecruiterProfileModel.objects.create(user=username)
+                  
+                  # Send data needed to user
+                  context = {
+                        'account': user,
+                        'recruiter_profile': recruiter_profile,
+                        'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+                  }
 
-                  return render(request, 'profiles/Recruiter/profile-page.html', {
-                                                                              'recruiter_profile': recruiter_profile,
-                                                                              'account': user,
-                                                                            })
+                  return render(request, 'profiles/Recruiter/profile-page.html', context)
             return JsonResponse({'message': 'Tài khoản đăng nhập không phù hợp.'})
 
       def post(self, request):

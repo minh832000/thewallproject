@@ -7,14 +7,16 @@
 {% endblock %}
 
 {% block style %}
+    <!-- Style Header Component -->
     <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+    <!-- Style Login Page -->
     <link rel="stylesheet" href="{% static 'css/Shared/login-page.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-    <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
-        {% include 'components/JobSeeker/header.html' %}
-    <!-- ===== End Header ===== -->
+    <!-- ----- Header Component ----- -->
+        {% include 'components/JobSeeker/header-component.html' %}
+    <!-- ----- End Header ----- -->
      
     <div class="container font-NotoSans-Regular">
         <div class="login-form mx-auto position-relative">

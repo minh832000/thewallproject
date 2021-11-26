@@ -7,15 +7,17 @@
 {% endblock %}
 
 {% block style %}
-      <link rel="stylesheet" href="{% static 'css/hello.css' %}"/>
+      <!-- Style Header and Footer Component -->
       <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
-      <link rel="stylesheet" href="{% static 'css/JobSeeker/footer.css' %}">
+      <link rel="stylesheet" href="{% static 'css/JobSeeker/footer-component.css' %}">
+      <!-- Style Index Page -->
+      <link rel="stylesheet" href="{% static 'css/JobSeeker/home-page.css' %}">
 {% endblock %}
 
 {% block pagecontent %}
-      <!-- =====+===== Header Component in JobSeeker's index page =====+===== -->
-      {% include 'components/JobSeeker/header.html' %}
-      <!-- ===== End Header ===== -->
+      <!-- ----- Header Component ----- -->
+      {% include 'components/JobSeeker/header-component.html' %}
+      <!-- ----- End Header ----- -->
       
       <!-- =====+===== Body Component in JobSeeker's index page =====+===== -->
       <div id="content" class="font-NotoSans-Regular pt-5">
@@ -350,8 +352,11 @@
             </div>
       </div>
 
-      {% include 'components/JobSeeker/footer.html' %}      
+      <!-- ----- Footer Component ----- -->
+      {% include 'components/JobSeeker/footer-component.html' %}      
+      <!-- ----- End Header ----- -->
 {% endblock %}
 {% block javascript %}
       <script type="text/javascript" src="{% static 'javascript/JobSeeker/header-component.js' %}"></script>
+      <script type="text/javascript" src="{% static 'javascript/JobSeeker/home-page.js' %}"></script>
 {% endblock %}
