@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header-component.css' %}">
     {% block linkcss_jobseeker %}
 
     {% endblock %}
@@ -27,5 +27,6 @@
 
 {% block javascript %}
     {% block linkjs %}
+  <script src="{% static 'javascript/Jobseeker/header-component.js' %}" type="text/javascript"></script>
     {% endblock %}
 {% endblock %}
