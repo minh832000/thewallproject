@@ -35,7 +35,30 @@
                 </div>
             </div>
             <div class="list-company row row-cols-lg-3 row-cols-sm-2 row-cols-1 ">
-                <div class="card-inf-company my-3">
+                {% for company in list_of_companies %}
+                    <div class="card-inf-company my-3">
+                        <div class="card p-4">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img 
+                                        src="{{ company.profile_picture_company.url }}" 
+                                        class="w-100" 
+                                        alt="Logo Company {{ company.name_of_company }}">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">{{ company.name_of_company }}</p>                                 
+                                    <p class="fs-14 text-worksans-l color-gray-light m-0">{{ company.location_of_company }}</p>
+                                </div>
+                            </div>
+                            <div class="content-card p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="{% static 'image/building.png' %}" alt="">{{ company.business_field_of_company }}</p>
+                                <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+                <!-- <div class="card-inf-company my-3">
                     <div class="card p-4">
                         <div class="title-card d-flex">
                             <div class="img-company">
@@ -170,7 +193,7 @@
                             <p class="color-blue mb-1"><img class="me-2" src="{% static 'image/gps.png' %}" alt="">4 vị trí đang tuyển</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
         </div>

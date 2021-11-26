@@ -14,17 +14,24 @@ class Index(View):
             # Check if the user is logged in
             if not request.user.is_authenticated:
                   return render(request, 'JobSeeker/index.html')
-
-            user = UserModel.objects.get(username=username)
+            # Check user's account
             try:
-                  profile = ProfileModel.objects.get(user=username)
-            except ProfileModel.DoesNotExist:
+                  user = UserModel.objects.get(username=username)
+            except UserModel.DoesNotExist:
+                  print('User\'s account does not exist')
+            if user.is_job_seeker:
+                  try:
+                        profile = ProfileModel.objects.get(user=username)
+                  except ProfileModel.DoesNotExist:
+                        print('User\'s Profile does not exist')
+                  # Prepare data needed for user
+                  context = {
+                        'user': user,
+                        'profile_picture_link': profile.profile_picture.url,
+                  }
+                  return render(request, 'JobSeeker/index.html', context)
+            if user.is_recruiter:
                   return redirect('/recruiter')
-
-            return render(request, 'JobSeeker/index.html', {
-                  'user': user,
-                  'profile_picture_link': profile.profile_picture.url,
-            })
 
 class RecruiterIndex(View):
       def get(self, request):
@@ -35,18 +42,24 @@ class RecruiterIndex(View):
                   return render(request, 'Recruiter/index.html')
 
             # Get information of the user from database
-            user = UserModel.objects.get(username=username)
             try:
-                  recruiter_profile = RecruiterProfileModel.objects.get(user=username)
-            except RecruiterProfileModel.DoesNotExist:
-                  return redirect('/')
+                  user = UserModel.objects.get(username=username)
+            except UserModel.DoesNotExist:
+                  print('User\'s account does not exist')
 
-            # Send data needed by the user
-            context = {
-                  'user': user,
-                  'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
-            }
-            return render(request, 'Recruiter/index.html', context)
+            if user.is_recruiter:
+                  try:
+                        recruiter_profile = RecruiterProfileModel.objects.get(user=username)
+                  except RecruiterProfileModel.DoesNotExist:
+                        print('User\'s profile does not exist')
+                  # Prepare data needed for user
+                  context = {
+                        'user': user,
+                        'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+                  }
+                  return render(request, 'Recruiter/index.html', context)
+            if user.is_job_seeker:
+                  return redirect('/')
             
 
 
