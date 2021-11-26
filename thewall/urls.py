@@ -19,13 +19,16 @@ from django.urls.conf import include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Profiles App
+from profiles import views as Profiles_Views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('accounts/', include('accounts.urls')),
     path('profiles/', include('profiles.urls')),
-    path('company/', include('company.urls')),
+    path('company/', Profiles_Views.CompanyListing.as_view(), name='company_listing'),
     path('manage/', include('manage_recruiter.urls')),
     path('auth/', include(('social_django.urls', 'social_django'), namespace='social')),
     path('posts/', include('posts.urls')),

@@ -1,15 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http.response import JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import View
-from django.urls import reverse_lazy
 import datetime
 
 from .models import Profile as ProfileModel
 from .models import RecruiterProfile as RecruiterProfileModel
 
 UserModel = get_user_model()
+
+# Clase-based Views Handle Job Seeker's Profile
 class Profile(LoginRequiredMixin, View):
       def get(self, request):
             # Get username
@@ -30,7 +31,7 @@ class Profile(LoginRequiredMixin, View):
                         'profile': profile,
                         'profile_picture_link': profile.profile_picture.url
                   }
-                  return render(request, 'profiles/JobSeeker/profile.html', context)
+                  return render(request, 'profiles/JobSeeker/profile-page.html', context)
             if user.is_recruiter:
                   return redirect('/profiles/recruiter/')
 
@@ -289,7 +290,8 @@ class Profile(LoginRequiredMixin, View):
 
                   return JsonResponse({'message': 'Not type user',})
             return JsonResponse({'error': 'Submit error --------------', }, safe=False)
-      
+
+# Class-based Views Handle Recruiter's Profile      
 class RecruiterProfile(LoginRequiredMixin, View):
       def get(self, request):
             # Get username of user's account
@@ -389,3 +391,33 @@ class RecruiterProfile(LoginRequiredMixin, View):
 
                   return JsonResponse({'message': 'Tài khoản người dụng không phù hợp.'})
             return JsonResponse({'message': 'Có lỗi phát sinh.'})
+
+# Class-based Views Handle Company Listing
+class CompanyListing(LoginRequiredMixin, View):
+      def get(self, request):
+            # Get username
+            username = request.user
+            # Check user's account
+            try:
+                  user = UserModel.objects.get(username=username)
+            except UserModel.DoesNotExist:
+                  print('User\'s account does not exist')
+
+            if user.is_job_seeker:
+                  # Get the information of the user sending request
+                  try:
+                        sender_profile = ProfileModel.objects.get(user=username)
+                  except ProfileModel.DoesNotExist:
+                        print('User\'s profile does not exist')
+                  # Get data of all recruiter profile
+                  try:
+                        list_recruiter_profile = list(RecruiterProfileModel.objects.all())
+                  except ValueError:
+                        print('Error')
+                  
+                  # Prepare data needed fo user
+                  context = {
+                        'list_of_companies': list_recruiter_profile,
+                        'profile_picture_link': sender_profile.profile_picture.url,
+                  }
+                  return render(request, 'profiles/JobSeeker/company-listing-page.html', context)
