@@ -377,6 +377,15 @@ class RecruiterProfile(LoginRequiredMixin, View):
                                     instance.profile_picture_company = img
                               instance.save()
                               return JsonResponse({ 'message': 'Uploaded'}, safe=False)
+                        if form_name == 'form_summary_company':
+                              print(request)
+                              summary_company = request.POST.get('summary_company') if request.POST.get('summary_company') else None
+                              if summary_company:
+                                    instance.summary_company = summary_company
+                              instance.save()
+                              return JsonResponse({
+                                    'summary_company': instance.summary_company,
+                              }, safe=False, content_type='application/json')
 
                   return JsonResponse({'message': 'Tài khoản người dụng không phù hợp.'})
             return JsonResponse({'message': 'Có lỗi phát sinh.'})

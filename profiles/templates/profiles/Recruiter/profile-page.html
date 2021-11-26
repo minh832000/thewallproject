@@ -121,9 +121,27 @@
                                                 <p class="font-NotoSans-Bold text-uppercase fs-6">Giới thiệu về công ty</p>
                                           </div>
                                           <div class="body_section_item mt-4">
-                                                <p class="text-center font-WorkSans-Regular">Nội dung giới thiệu về công ty</p>
+                                                {% if not recruiter_profile.summary_company %}
+                                                      <p    
+                                                            id="id_entry_summary_company"
+                                                            class="text-center font-WorkSans-Regular">
+                                                            Nội dung giới thiệu về công ty
+                                                      </p>
+                                                      <p 
+                                                            id="id_display_summary_company"
+                                                            class="font-WorkSans-Regular text-justify d-none"
+                                                      >
+                                                            {{ recruiter_profile.summary_company }}
+                                                      </p>
+                                                {% else %}
+                                                      <p 
+                                                            id="id_display_summary_company"
+                                                            class="font-WorkSans-Regular text-justify"
+                                                      >
+                                                            {{ recruiter_profile.summary_company }}
+                                                      </p>
+                                                {% endif %}
                                           </div>
-                        
                                           <div class="position-absolute icon-edit">
                                                 <button 
                                                       type="button"
@@ -303,13 +321,9 @@
                                     method="POST"
                               >
                                     <div class="mb-3">
-                                          <label
-                                                for="id_SummaryCompany"
-                                                class="form-label font-WorkSans-Medium">
-                                          </label>
                                           <textarea
                                                 name="summary_company"
-                                                id="id_SummartCompany"
+                                                id="id_SummaryCompany"
                                                 class="form-control font-WorkSans-Light"
                                                 type="text"
                                                 placeholder="Thông tin tổng quát về công ty">
