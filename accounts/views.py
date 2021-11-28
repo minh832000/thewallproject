@@ -112,9 +112,9 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
       template_name = 'accounts/password/password_reset.html'
       email_template_name = 'accounts/password/password_reset_email.html'
       subject_template_name = 'accounts/password/password_reset_subject'
-      success_message = "We've emailed you instructions for setting your password, " \
-                        "if an account exists with the email you entered. You should receive them shortly." \
-                        " If you don't receive an email, " \
-                        "please make sure you've entered the address you registered with, and check your spam folder."
+      success_message = "Chúng tôi đã gửi cho bạn hướng dẫn về cách đặt mật khẩu của bạn qua email, " \
+                        "nếu tài khoản tồn tại với email bạn đã nhập. Bạn sẽ sớm nhận được chúng." \
+                        "Nếu bạn không nhận được email, " \
+                        "hãy đảm bảo rằng bạn đã nhập địa chỉ mà bạn đã đăng ký và kiểm tra thư mục spam của bạn."
       success_url = reverse_lazy('home:index')
 
