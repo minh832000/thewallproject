@@ -1,14 +1,19 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import query
 from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
+
+from django.contrib.auth import get_user_model
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
 from tag_skill.models import TagSkill
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.db.models.functions import Lower
-
+from profiles.models import Profile as ProfileModel
+from django.views.generic.base import View
+from profiles.models import RecruiterProfile as RecruiterProfileModel
 CharField.register_lookup(Lower)
 # Create your views here.
 
@@ -18,7 +23,21 @@ def listJob(request):
 
 def detailJob(request,post_id):
       post=Post.objects.get(pk=post_id)
-      return render(request, 'posts/job_seeker/job_description.html', {'post':post})
+      auther=post.author_id
+      # iduser = request.user.id
+      # username = request.user
+      # user = UserModel.objects.get(id=auther)
+      profile =  RecruiterProfileModel.objects.get(user_id=auther)
+      # print(profile) 
+      # user_current = ProfileModel.objects.get(user_id=iduser)
+      return render(request, 'posts/job_seeker/job_description.html', {
+            'post':post,
+            'company':profile,
+            
+            })
+
+
+
 
 def addNewPost(request):
       fieldJob=FieldJob.objects.all()

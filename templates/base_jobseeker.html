@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/header-component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Jobseeker/header-component.css' %}">
     {% block linkcss_jobseeker %}
 
     {% endblock %}
@@ -17,12 +17,12 @@
 
 {% block pagecontent %}
 <!-- ========== HEADER ========== -->
-    {% include 'components/JobSeeker/header.html' %}
+    {% include 'components/JobSeeker/header-component.html' %}
  
     {% block maincontent %}
     {% endblock %}
 
-    {% include 'components/JobSeeker/footer.html' %}
+    {% include 'components/JobSeeker/footer-component.html' %}
 {% endblock %}
 
 {% block javascript %}
