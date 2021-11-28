@@ -4,7 +4,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import View
 import datetime
-
+from posts.models import Post 
 from .models import Profile as ProfileModel
 from .models import RecruiterProfile as RecruiterProfileModel
 
@@ -34,6 +34,7 @@ class Profile(LoginRequiredMixin, View):
                   return render(request, 'profiles/JobSeeker/profile-page.html', context)
             if user.is_recruiter:
                   return redirect('/profiles/recruiter/')
+            
 
       def post(self, request, *args, **kwargs):
             if request.method == 'POST' and request.is_ajax():
@@ -421,3 +422,12 @@ class CompanyListing(LoginRequiredMixin, View):
                         'profile_picture_link': sender_profile.profile_picture.url,
                   }
                   return render(request, 'profiles/JobSeeker/company-listing-page.html', context)
+
+
+def detailCompany(request, company_id):
+      company=RecruiterProfileModel.objects.get(id=company_id)
+      post = Post.objects.filter(author_id=company.user_id)
+      return render(request, 'profiles/Jobseeker/detail-company.html', {
+            'company':company,
+            'post':post
+            })
