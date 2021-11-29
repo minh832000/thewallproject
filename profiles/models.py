@@ -1,7 +1,8 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
+from django.utils.encoding import force_text
 
 UserModel = get_user_model()
 
@@ -58,6 +59,22 @@ class Profile(models.Model):
       time_start_volunteering_activity = models.DateField(null=True, blank=True)
       time_end_volunteering_activity   = models.DateField(null=True, blank=True)
       is_joining                       = models.BooleanField(default=False)
+
+      # Form: "Công việc quan tâm"
+      is_updated_interested_job           = models.BooleanField(default=False)
+      name_of_interested_job              = models.CharField(max_length=64, null=True, blank=True)
+      list_type_of_job                    = ArrayField(
+                                                models.CharField(max_length= 16,null=True, blank=True),
+                                                size=4,
+                                                null=True,
+                                          )
+      desired_salary                      = models.PositiveIntegerField(null=True)
+      desired_working_location            = models.CharField(max_length=64, null=True, blank=True)
+
+      def get_list_type_of_job_display(self):
+        values = self.list_type_of_job
+        return [force_text(dict(self.list_type_of_job.flatchoices).get(value, value), strings_only=True) 
+                for value in values]
       class Meta:
             verbose_name            = _('Profile')
             verbose_name_plural     = _('Profiles')

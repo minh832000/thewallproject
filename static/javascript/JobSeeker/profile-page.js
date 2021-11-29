@@ -331,7 +331,7 @@ $(document).on('click', '#btn_submit_volunteeringActivityForm', e => {
             // update the fields which are just changed
             console.log(typeof(res['is_updated_volunteering_activity']));
             console.log(res['is_updated_volunteering_activity']);
-            if (!res['is_updated_voluntering_activity']) {
+            if (res['is_updated_voluntering_activity']) {
                 $('#display_section_volunteeringActivity').removeClass('d-none');
                 $('#entry_section_volunteeringActivity').addClass('d-none');
                 console.log('true');
@@ -355,5 +355,57 @@ $(document).on('click', '#btn_submit_volunteeringActivityForm', e => {
         error: err => {
             console.log(err);
         }        
+    })
+})
+
+$(document).on('click', '#btn_submit_Interested-Job', e => {
+    e.preventDefault();
+    
+    // selecting form element
+    var f = document.getElementById('id_form_Interested-Job');
+    // create new formdata object
+    var fd = new FormData(f);
+    fd.append('form', 'interested_job_form');
+    // make a ajax call
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: res => {
+            console.log(res);
+            // close modal
+            $('#frame-8').hide();
+            $('.over-edit').remove();
+            $('#btn-edit-8').removeClass('d-none');
+            // update the fields which are just changed
+            if(res['is_updated_interested_job']){
+                // change elements
+                $('#id_entry_section_Interested_Job').addClass('d-none')
+                $('#id_display_section_Interested_Job').removeClass('d-none')
+                $('#btn-edit-8').removeClass('d-none');
+                // change text of elements
+                $('#id_display_name_of_interested_job').text(res['name_of_interested_job']);
+                $('#id_display_desired_salary').text(res['desired_salary']);
+                $('#id_display_desired_working_location').text(res['desired_working_location']);
+                // check the array "list type of job"
+                if(res['list_type_of_job']) {
+                    for(var i of res['list_type_of_job']) {
+                        $('id_display_list_type_job').append(`<li>${i}</li>`);
+                    };
+                };
+            }
+            else {
+                // change elements
+                $('#id_entry_section_Interested_Job').removeClass('d-none')
+                $('#id_display_section_Interested_Job').addClass('d-none')
+                $('#btn-edit-8').addClass('d-none');
+            }
+        },
+        error: err => {
+            console.log(err);
+        }
     })
 })
