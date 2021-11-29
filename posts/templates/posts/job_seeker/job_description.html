@@ -12,7 +12,7 @@
         <div class="container">
             <div class="inf-post border-bottom pb-5 d-flex">
                 <div class="img-company col-2">
-                    <img class="w-100" src="{% static 'image/line_icon_200_v3.jpg' %}" alt="">
+                    <img class="w-100" src="{{ company.profile_picture_company.url }}" alt="">
                 </div>
                 <div class="main-post col-10 ps-5">
                     <div class="main-inf">
@@ -61,11 +61,11 @@
                 <h3 class="font-NotoSans-Bold fs-5">GIỚI THIỆU VỀ CÔNG TY</h3>
                 <div class="inf-post pb-5 d-flex">
                     <div class="img-company col-2">
-                        <img class="w-100" src="{% static 'image/line_icon_200_v3.jpg' %}" alt="">
+                        <img class="w-100" src="{{ company.profile_picture_company.url }}" alt="">
                     </div>
                     <div class="detail-comp col-10 ps-5">
                         <div class="inf-company">
-                            <p class="name-company font-NotoSans-Bold color-blue mb-2">Line Corporation</p>
+                            <p class="name-company font-NotoSans-Bold color-blue mb-2">{{ company.name_of_company }}</p>
                             <p class="fs-14 font-WorkSans-Light">Internet Company</p>
                             <div class="web-img">
                                 <img class="w-100" src="{% static 'image/world-wide-web.png' %}" alt="">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <p>With the LINE messaging app as the cornerstone,LINE Corporation's business encompasses development and operation of a wide range of mobile-first services—including communication, content, and entertainment—and advertising, as well as new businesses in Fintech, AI, and other domains. Under its corporate mission of "Closing the Distance," LINE Corporation strives to bring people around the world closer to each other, to information, and to services. </p>
+                <p>{{company.summary_company}}</p>
             </div>
         </div>
     </div>

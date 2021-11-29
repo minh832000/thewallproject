@@ -32,6 +32,8 @@ class Index(View):
                   return render(request, 'JobSeeker/index.html', context)
             if user.is_recruiter:
                   return redirect('/recruiter')
+            else:
+                  return render(request, 'JobSeeker/index.html')
 
 class RecruiterIndex(View):
       def get(self, request):

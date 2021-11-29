@@ -192,3 +192,11 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# email configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'thaonhu1240@gmail.com'
+EMAIL_HOST_PASSWORD = 'thaonhu1240@gm'
+#  EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))

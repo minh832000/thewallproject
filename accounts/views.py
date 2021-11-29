@@ -10,7 +10,9 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from .models import User
 from .forms import SignUpForm, LoginForm, RecruiterRegisterForm
-
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 UserModel = get_user_model()
 
 def view_register_success(request):
@@ -105,3 +107,14 @@ def change_password(request):
       return render(request, 'accounts/setting_account.html', {
             'form': form
     })
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+      template_name = 'accounts/password/password_reset.html'
+      email_template_name = 'accounts/password/password_reset_email.html'
+      subject_template_name = 'accounts/password/password_reset_subject'
+      success_message = "Chúng tôi đã gửi cho bạn hướng dẫn về cách đặt mật khẩu của bạn qua email, " \
+                        "nếu tài khoản tồn tại với email bạn đã nhập. Bạn sẽ sớm nhận được chúng." \
+                        "Nếu bạn không nhận được email, " \
+                        "hãy đảm bảo rằng bạn đã nhập địa chỉ mà bạn đã đăng ký và kiểm tra thư mục spam của bạn."
+      success_url = reverse_lazy('home:index')
+
