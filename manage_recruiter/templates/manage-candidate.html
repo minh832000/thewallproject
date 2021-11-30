@@ -9,12 +9,14 @@
 {% endblock %}
 {% block maincontent %}
     <div id="content">
-        <div class="container my-5">
-            <h1 class="font-WorkSans-Bold text-center fs-2 py-3">QUẢN LÝ ỨNG VIÊN CỦA BẠN</h1>
+        <div class="container my-5 pt-5">
+            <h1 class="font-WorkSans-Bold text-center fs-2 py-3 mt-5">QUẢN LÝ ỨNG VIÊN CỦA BẠN</h1>
             <div class="nav-tab row row-cols-md-2 row-cols-sm-1 px-3 px-md-0 mt-5">
-                <select class="col-sm-12 col-md-3" name="" id="">
+                <select class="col-sm-12 col-md-3" name="select-job" id="select-job">
                     <option value="" selected>Chọn công việc</option>
-                    <option value=""></option>
+                    {% for name in list_job %}
+                    <option value="{{name.id}}">{{name.name_post}}</option>
+                    {% endfor %}
                 </select>
                 <div class="row row-cols-3 col-md-9 col-12 mt-3 mt-md-0">
                     <div class="nav-button">
@@ -97,5 +99,5 @@
     </div>
 {% endblock %}
 {% block linkjs %}
-    <script src="{% static 'javascript/manage-post.js' %}"></script>
+    <script src="{% static 'javascript/manage_candidate.js' %}"></script>
 {% endblock %}

@@ -209,11 +209,18 @@ def applyPost(request):
 
 def myApply(request):
       id_user=request.user.id
-      list_apply_wait_accept=Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait-accept')
-      list_post=[]
-      print(list_apply_wait_accept)
+      list_apply_wait_accept=Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait_accept')
+      list_post_wait_accept=[]
+      list_post_accepted=[]
+      list_apply_accepted=Post_apply.objects.filter(user_apply_id=id_user, status_apply='accept')
       for post in list_apply_wait_accept:
             apply=Post.objects.get(id=post.post_apply_id)
-            list_post.append(apply)
-      print(list_post)
-      return render(request, 'posts/JobSeeker/my-application.html',{'list_apply': list_post})
+            list_post_wait_accept.append(apply)
+
+      for post in list_apply_accepted:
+            apply=Post.objects.get(id=post.post_apply_id)
+            list_post_accepted.append(apply)
+      return render(request, 'posts/JobSeeker/my-application.html',{
+            'list_apply': list_post_wait_accept,
+            'list_apply_accept': list_post_accepted
+      })
