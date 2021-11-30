@@ -25,13 +25,24 @@
                     <p class="time-post fs-14"> <img src="{% static 'image/clock.png' %}" alt="">{{post.time_create}}</p>
                     <div class="btn-post justify-content-start row">
                         <div class="button-apply col-lg-3 col-md-4 my-2">
-                            <button class="bg-btn font-NotoSans-Bold fs-14 px-3 py-2 border-0">ỨNG TUYỂN NGAY</button>
+                            <input class='id-post' type="hidden" name="id-post" value={{post.id}}>
+                            <input type="submit" class="btn-apply bg-bt font-NotoSans-Bold fs-14 px-3 py-2 border-0" value='ỨNG TUYỂN NGAY'>
                         </div>
                         <div class="button-mark col-lg-3 col-md-4 my-2">
                             <button class="bg-white font-NotoSans-Bold fs-14 px-3 py-1"> <img class="me-2" src="{% static 'image/bookmark.png' %}" alt=""> ĐÁNH DẤU</button>
                         </div>
-                        <div class="button-share col-lg-3 col-md-4 my-2">
-                            <button class="bg-white font-NotoSans-Bold fs-14 px-3 py-1"><img class="me-2" src="{% static 'image/share.png' %}" alt=""> SHARE</button>
+                        <div class="button-share col-lg-3 col-md-4 my-2 position-relative">
+                            <button class="btn-share bg-white font-NotoSans-Bold fs-14 px-3 py-1"><img class="me-2" src="{% static 'image/share.png' %}" alt=""> SHARE</button>
+                            <div class="table-share  position-absolute bg-white px-5 py-4 shadow">
+                                <p class="py-2">Sao chép đường dẫn bài viết</p>
+                                <div class="d-flex">
+                                    <input class="link px-2"  readonly type="text" name="" id="url-web" value="" >
+                                    <div class="img-cp ms-2">
+                                        <img class="cp-btn" src="{% static 'image/copy.png' %}" alt="">
+                                    </div>
+                                </div>
+                                <div ><p class="copied"></p></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,5 +90,6 @@
     </div>
 {% endblock %}
 {% block linkjs %}
+    <script src="{% static 'vendor/jquery/jquery_clickout.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'javascript/post_description.js' %}" type="text/javascript"></script>
 {% endblock %}

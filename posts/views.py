@@ -1,10 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import query
 from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 from django.contrib.auth import get_user_model
+
+from accounts.models import User
+from .models import Post_apply
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
@@ -185,3 +186,14 @@ def saveEdit(request, post_id):
             })
             return redirect('manage-post')
       return HttpResponse('không đc validate')
+
+def applyPost(request):
+      if request.method=='POST':
+            post_id=request.POST.get('id-post')
+            user=User.objects.get(pk=request.user.id)
+            apply=Post.objects.get(id=post_id)
+            p=Post_apply.objects.create(user_apply_id=user.id, post_apply_id=post_id)
+            apply.user_apply_id=p.id
+            apply.save()
+            return JsonResponse({'data':'success'})
+      return JsonResponse({})

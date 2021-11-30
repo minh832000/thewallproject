@@ -53,3 +53,12 @@
 .introduce-company p{
     text-align: justify;
 }
+.link{
+    border: #71CFFF 1px solid;
+}
+.table-share{
+    display:none;
+}
+.show-table{
+    display: block;
+}
