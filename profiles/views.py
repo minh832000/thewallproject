@@ -8,6 +8,8 @@ from posts.models import Post
 from .models import Profile as ProfileModel
 from .models import RecruiterProfile as RecruiterProfileModel
 
+from fields_job.models import FieldJob as FieldJobModel
+
 UserModel = get_user_model()
 
 # Clase-based Views Handle Job Seeker's Profile
@@ -25,11 +27,17 @@ class Profile(LoginRequiredMixin, View):
                         profile = ProfileModel.objects.get(user=username)
                   except ProfileModel.DoesNotExist:
                         print('User\'s profile does not exist')
+
+                  try:
+                        list_job_fields = list(FieldJobModel.objects.all())
+                  except ValueError:
+                        print('Get data from field job model is fail')
                   # Prepare data needed for user
                   context = {
                         'user': user,
                         'profile': profile,
-                        'profile_picture_link': profile.profile_picture.url
+                        'profile_picture_link': profile.profile_picture.url,
+                        'list_job_fields': list_job_fields,
                   }
                   return render(request, 'profiles/JobSeeker/profile-page.html', context)
             if user.is_recruiter:
@@ -44,13 +52,16 @@ class Profile(LoginRequiredMixin, View):
                   try:
                         user = UserModel.objects.get(username=username)
                   except UserModel.DoesNotExist:
-                        print('User not existing')
+                        print('User\'s account does not exist')
                   if user.is_job_seeker:
                         print(request.POST)
+                        name_of_form = request.POST.get('form')
+
                         try:
                               instance = ProfileModel.objects.get(user=username)
                         except ProfileModel.DoesNotExist:
                               instance = ProfileModel.objects.create(user=username)
+                              
                         if request.POST.get('form') == 'basicInformationForm':
                               # Get all field date of POST
                               full_name = request.POST.get('full_name') if request.POST.get('full_name') else None
@@ -240,7 +251,6 @@ class Profile(LoginRequiredMixin, View):
                                     'link_of_project_participated': instance.link_of_project_participated,
                                     'description_project_participated': instance.description_project_participated,
                               }, safe=False, content_type='application/json')
-
                         if request.POST.get('form') == 'volunteeringActivityForm':
                               # Get all data fields of POST
                               name_of_volunteering_activity    = request.POST.get('name_of_volunteering_activity') if request.POST.get('name_of_volunteering_activity') else None
@@ -288,9 +298,39 @@ class Profile(LoginRequiredMixin, View):
                                     'time_end_volunteering_activity': instance.time_end_volunteering_activity,
                                     'is_updated_volunteering_activity': instance.is_updated_volunteering_activity,
                               }, safe=False, content_type='application/json')
+                        if name_of_form == 'interested_job_form':
+                              # Get all data fields of POST
+                              name_of_interested_job   = request.POST.get('name_of_interested_job') if request.POST.get('name_of_interested_job') else None
+                              desired_salary           = request.POST.get('desired_salary') if request.POST.get('desired_salary') else None
+                              desired_working_location = request.POST.get('desired_working_location') if request.POST.get('desired_working_location') else None
+                              list_type_of_job         = request.POST.getlist('list_type_of_job') if request.POST.getlist('list_type_of_job') else None
 
-                  return JsonResponse({'message': 'Not type user',})
-            return JsonResponse({'error': 'Submit error --------------', }, safe=False)
+                              # Update fields of the model
+                              if name_of_interested_job:
+                                    instance.name_of_interested_job = name_of_interested_job.strip()
+                              if desired_salary:
+                                    instance.desired_salary = desired_salary.strip()
+                              if desired_working_location:
+                                    instance.desired_working_location = desired_working_location.strip()
+                              if list_type_of_job:
+                                    instance.list_type_of_job = list_type_of_job                              
+                              if name_of_interested_job or list_type_of_job or desired_salary or desired_working_location:
+                                    instance.is_updated_interested_job = True
+                              else: 
+                                    instance.is_updated_interested_job = False
+                              # Save all thing to database
+                              instance.save()
+                              return JsonResponse({
+                                    'name_of_interested_job': instance.name_of_interested_job,
+                                    'desired_salary': instance.desired_salary,
+                                    'desired_working_location': instance.desired_working_location,
+                                    'list_type_of_job': instance.list_type_of_job,
+                                    'is_updated_interested_job': instance.is_updated_interested_job,
+                              }, safe=False, content_type='application/json')
+
+                  if user.is_recruiter:
+                        return redirect('/profiles/recruiter/')
+            return JsonResponse({'error': 'Submit error', }, safe=False)
 
 # Class-based Views Handle Recruiter's Profile      
 class RecruiterProfile(LoginRequiredMixin, View):
@@ -381,7 +421,6 @@ class RecruiterProfile(LoginRequiredMixin, View):
                               instance.save()
                               return JsonResponse({ 'message': 'Uploaded'}, safe=False)
                         if form_name == 'form_summary_company':
-                              print(request)
                               summary_company = request.POST.get('summary_company') if request.POST.get('summary_company') else None
                               if summary_company:
                                     instance.summary_company = summary_company

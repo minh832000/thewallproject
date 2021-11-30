@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'social_django',    
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'fields_job',
     'manage_recruiter',
     'tag_skill',
-    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
