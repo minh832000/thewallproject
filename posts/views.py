@@ -1,43 +1,57 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import query
 from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render, get_object_or_404
-
+from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
 from tag_skill.models import TagSkill
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.db.models.functions import Lower
-from profiles.models import Profile as ProfileModel
-from django.views.generic.base import View
-from profiles.models import RecruiterProfile as RecruiterProfileModel
 CharField.register_lookup(Lower)
-# Create your views here.
 
+from profiles.models import Profile as ProfileModel
+from profiles.models import RecruiterProfile as RecruiterProfileModel
+
+UserModel = get_user_model()
+
+@login_required
 def listJob(request):
-      Data = {'Posts': Post.objects.filter(confirm=True).order_by('-time_create')}
-      return render(request, 'posts/job_seeker/list_job.html', Data)
+      # Get username of the user
+      username = request.user
+      # Get url of user's profile picture
+      try:
+            profile = ProfileModel.objects.get(user=username)
+      except ProfileModel.DoesNotExist:
+            print('User\'s profile does not exist')
+      # Get first name of the user
+      try:
+            user = UserModel.objects.get(username=username)
+      except UserModel.DoesNotExist:
+            print('User\'s account does not exist')
 
-def detailJob(request,post_id):
-      post=Post.objects.get(pk=post_id)
-      auther=post.author_id
-      # iduser = request.user.id
-      # username = request.user
-      # user = UserModel.objects.get(id=auther)
-      profile =  RecruiterProfileModel.objects.get(user_id=auther)
-      # print(profile) 
-      # user_current = ProfileModel.objects.get(user_id=iduser)
-      return render(request, 'posts/job_seeker/job_description.html', {
-            'post':post,
-            'company':profile,
-            
-            })
+      # Prepare data needed 
+      context = {
+            'first_name_of_user': user.first_name,
+            'profile_picture_link': profile.profile_picture.url,
+            'list_of_job_postings': Post.objects.filter(is_confirmed=True).order_by('-time_create'),
+      }
+      return render(request, 'posts/JobSeeker/job-listing-page.html', context)
 
-
-
+@login_required
+def detailJob(request, post_id):
+      post = Post.objects.get(pk=post_id)
+      author = post.author_id
+     
+      profile =  RecruiterProfileModel.objects.get(user_id=author)
+      
+      # Prepare data needed
+      context = {
+            'post': post,
+            'company': profile,
+      }
+      return render(request, 'posts/job_seeker/job_description.html', context)
 
 def addNewPost(request):
       fieldJob=FieldJob.objects.all()
@@ -49,7 +63,6 @@ def addNewPost(request):
                   'fields':fieldJob})
       else: return redirect('accounts:login')
 
-
 def savePost(request):
       # post = get_object_or_404(Post, pk=pk)
       if request.method == 'POST':
@@ -59,8 +72,6 @@ def savePost(request):
                   inform='Thêm thành công'
                   return redirect('manage-post')
             return HttpResponse('không đc validate')
-
-
 
 def search_result(request):
       if request.is_ajax():
@@ -119,15 +130,12 @@ def search_post(request):
             return JsonResponse({'data':res})
       return JsonResponse({})
 
-
-
 def search(request):
       if request.method == 'POST':
             post=request.POST.get('post')
             location=request.POST.get('location')
             Data = {'Posts': Post.objects.filter(name_post__unaccent__icontains=post, location__unaccent__icontains=location)}
       return render(request, 'posts/job_seeker/list_job.html', Data)
-
 
 def filter(request):
       if request.method == 'POST':
@@ -150,7 +158,6 @@ def filter(request):
                               Data.extend(list(post))
             return render(request, 'posts/job_seeker/list_job.html',{'Posts': Data})
             
-      
 def editPost(request, post_id):
       post=Post.objects.get(pk=post_id)
       fieldJob=FieldJob.objects.all()
@@ -163,7 +170,6 @@ def editPost(request, post_id):
                   'id': post_id
                   })
       else: return redirect('accounts:login')
-
 
 def saveEdit(request, post_id):
       # post = get_object_or_404(Post, pk=pk)

@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
-from django.utils.encoding import force_text
 
 UserModel = get_user_model()
 
@@ -64,17 +63,20 @@ class Profile(models.Model):
       is_updated_interested_job           = models.BooleanField(default=False)
       name_of_interested_job              = models.CharField(max_length=64, null=True, blank=True)
       list_type_of_job                    = ArrayField(
-                                                models.CharField(max_length= 16,null=True, blank=True),
+                                                models.CharField(max_length= 16, null=True, blank=True),
                                                 size=4,
                                                 null=True,
                                           )
       desired_salary                      = models.PositiveIntegerField(null=True)
       desired_working_location            = models.CharField(max_length=64, null=True, blank=True)
 
-      def get_list_type_of_job_display(self):
-        values = self.list_type_of_job
-        return [force_text(dict(self.list_type_of_job.flatchoices).get(value, value), strings_only=True) 
-                for value in values]
+      # Form: "Kỹ năng chuyên môn"
+      list_skil_tag     = ArrayField(
+                              models.CharField(max_length=64, null=True, blank=True),
+                              size=10,
+                              null=True,
+                              blank=True,
+                        )
       class Meta:
             verbose_name            = _('Profile')
             verbose_name_plural     = _('Profiles')

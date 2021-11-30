@@ -1,14 +1,26 @@
-{% extends 'base_jobseeker.html' %}
+{% extends 'base.html' %}
+
 {% load static %}
 
-{% block pagetitle_jobseeker %}
-      Danh sách công việc
+{% block pagetitle %}
+    Danh sách công việc
 {% endblock %}
-{% block linkcss_jobseeker %}
-    <link rel="stylesheet" href="{% static 'css/list-job.css' %}" >
+
+{% block style %}
+    <!-- Style Header and Footer component -->
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/header-component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/footer-component.css' %}">
+    <!-- Style Job Listing Page -->
+    <link rel="stylesheet" href="{% static 'css/JobSeeker/job-listing-page.css' %}">
 {% endblock %}
-{% block maincontent %}
-    <div id="content" class="text-noto-re pt-5 pb-5 mb-5">
+
+{% block pagecontent %}
+    <!-- ----- Header Component ----- -->
+    {% include 'components/JobSeeker/header-component.html' %}
+    <!-- ----- End Header ----- -->
+
+    <!-- ----- Main Content of Job Listing Page ----- -->
+    <div id="content" class="pt-5 pb-5 mb-5 font-NotoSans-Regular">
         <div class="container">
             <form action="{% url 'search-form' %}" method="post">
                 <div class="search my-5 px-md-0 px-4 d-flex row justify-content-between gy-3">
@@ -117,7 +129,7 @@
                         </form>
                 </div>
                 <div class="list-job row ps-5 overflow-auto">
-                    {% for item in Posts %}
+                    {% for post in list_of_job_postings %}
                     <div class="list-job-card mb-4">
                         <a class="text-black" href="{% url 'detail-job' item.id %}">
                             <div class="job-card">
@@ -126,7 +138,9 @@
                                         <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
                                     </div>
                                     <div class="title-post ms-3 col-8">
-                                        <p class="fs-6 text-roboto-m m-0">{{item.name_post}}</p>                                 
+                                        <p class="fs-6 text-roboto-m m-0">
+                                            {{ post.name_post }}
+                                        </p>                                 
                                         <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
                                     </div>
                                     <div class="save-job">
@@ -153,7 +167,23 @@
         </div>
         <div class="clear"></div>
     </div>
+
+    <!-- ----- Footer Component ----- -->
+    {% include 'components/JobSeeker/footer-component.html' %}
+    <!-- ----- End Footer ----- -->
 {% endblock %}
-{% block linkjs %}
-    <script src="{% static 'javascript/search.js' %}"></script>
+
+{% block javascript %}
+    <script 
+        type="text/javascript" 
+        src="{% static 'javascript/JobSeeker/header-component.js' %}">
+    </script>
+    <script
+        type="text/javascript"
+        src="{% static 'javascript/JobSeeker/job-listing-page.js' %}">
+    </script>
+    <script 
+        type="text/javascript" 
+        src="{% static 'javascript/search.js' %}">
+    </script>
 {% endblock %}
