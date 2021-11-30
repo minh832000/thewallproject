@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Post_apply
 from django.utils.html import format_html
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
@@ -12,3 +12,4 @@ class PostAdmin(admin.ModelAdmin):
         queryset.update(confirm=False)
 
 admin.site.register(Post,PostAdmin)
+admin.site.register(Post_apply)

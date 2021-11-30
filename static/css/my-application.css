@@ -1,0 +1,59 @@
+#content{
+    margin: 8rem auto;
+}
+.btn{
+    border-radius:0px;
+    width: 258px;
+}
+.list-job{
+    float: left;
+    width: 70%;
+    height: 90vh;
+}
+
+.job-card{
+    border: #ccc 1px solid;
+    border-radius: 6px;
+    padding: 26px;
+}
+.img-company{
+    width: 50px;
+    height: 50px;
+}
+.color-name{
+    color: #7199FF;
+}
+.save-job img{
+    width: 20px;
+}
+.content-post img,
+.time-post img,
+.quantity-apply img{
+    width: 15px;
+}
+.content-post{
+    height: 110px;
+}
+.time-post{
+    border-bottom:#ccc 2px solid;
+}
+.time-post p,
+.quantity-apply p{
+    font-size: 13px;
+    color: #949292;
+}
+.application-accepted .card{
+    box-shadow: 0 0 5px #41ADE3;
+    border-color:#41ADE3;;
+}
+.application-accepted,
+.application-submitted{
+    border-radius:6px;
+}
+.application-accepted{
+    display: none;
+}
+.icon-save{
+    font-size: 20px;
+    margin-left: 30px;
+}

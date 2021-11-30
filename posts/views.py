@@ -2,6 +2,9 @@ from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
+
+from accounts.models import User
+from .models import Post_apply
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from .models import Post
@@ -35,7 +38,7 @@ def listJob(request):
       context = {
             'first_name_of_user': user.first_name,
             'profile_picture_link': profile.profile_picture.url,
-            'list_of_job_postings': Post.objects.filter(is_confirmed=True).order_by('-time_create'),
+            'list_of_job_postings': Post.objects.filter(confirm=True).order_by('-time_create'),
       }
       return render(request, 'posts/JobSeeker/job-listing-page.html', context)
 
@@ -51,7 +54,7 @@ def detailJob(request, post_id):
             'post': post,
             'company': profile,
       }
-      return render(request, 'posts/job_seeker/job_description.html', context)
+      return render(request, 'posts/JobSeeker/job_description.html', context)
 
 def addNewPost(request):
       fieldJob=FieldJob.objects.all()
@@ -191,3 +194,33 @@ def saveEdit(request, post_id):
             })
             return redirect('manage-post')
       return HttpResponse('không đc validate')
+
+def applyPost(request):
+      if request.method=='POST':
+            post_id=request.POST.get('id-post')
+            user=User.objects.get(pk=request.user.id)
+            apply=Post.objects.get(id=post_id)
+            p=Post_apply.objects.create(user_apply_id=user.id, post_apply_id=post_id)
+            apply.user_apply_id=p.id
+            apply.save()
+            return JsonResponse({'data':'success'})
+      return JsonResponse({})
+
+
+def myApply(request):
+      id_user=request.user.id
+      list_apply_wait_accept=Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait_accept')
+      list_post_wait_accept=[]
+      list_post_accepted=[]
+      list_apply_accepted=Post_apply.objects.filter(user_apply_id=id_user, status_apply='accept')
+      for post in list_apply_wait_accept:
+            apply=Post.objects.get(id=post.post_apply_id)
+            list_post_wait_accept.append(apply)
+
+      for post in list_apply_accepted:
+            apply=Post.objects.get(id=post.post_apply_id)
+            list_post_accepted.append(apply)
+      return render(request, 'posts/JobSeeker/my-application.html',{
+            'list_apply': list_post_wait_accept,
+            'list_apply_accept': list_post_accepted
+      })

@@ -12,5 +12,5 @@ class PostForm(forms.ModelForm):
         post.save()
     class Meta:
             model = Post
-            fields = ['name_post','experience_required','salary','location','content_post','type_job','field_job','tag_skill']
+            fields = ['name_post','experience_required','salary','location','content_post','type_job']
 
