@@ -8,6 +8,7 @@ urlpatterns = [
       path('listjob/filter/', views.filter, name='filter'),
       path('detail/<int:post_id>', views.detailJob, name='detail-job'),
       path('detail/apply/', views.applyPost, name='apply-post'),
+      path('my-apply/', views.myApply, name='my-apply'),
       path('add-post/', views.addNewPost, name='add-new-post'),
       path('edit-post/<int:post_id>', views.editPost, name='edit-post'),
       path('save-edit/<int:post_id>', views.saveEdit, name='save-edit'),

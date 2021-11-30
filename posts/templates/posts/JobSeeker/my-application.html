@@ -1,0 +1,88 @@
+{% extends 'base_jobseeker.html' %}
+{% load static %}
+
+{% block pagetitle_jobseeker %}
+      Chi tiết công việc
+{% endblock %}
+{% block linkcss_jobseeker %}
+    <link rel="stylesheet" href="{% static 'css/my-application.css' %}" >
+{% endblock %}
+{% block maincontent %}
+    <div id="content">
+        <div class="container">
+            <h1 class="font-NotoSans-Bold fs-3 text-center">ĐƠN ỨNG TUYỂN CỦA TÔI</h1>
+            <div class="button-nav text-center py-4">
+                <button id="btn-submitted" class="btn border font-NotoSans-Bold mb-md-0 mb-2">Đơn đã nộp</button>
+                <button id="btn-accepted" class="bg-btn  btn font-NotoSans-Bold">Đơn được chấp nhận</button>
+            </div>
+            <div class="application-submitted border  p-lg-5 p-md-3 mx-sm-5 mx-sm-3 p-0 mx-2">
+                <div class="row row-cols-lg-2">
+                    {% for post in list_apply_wait_accept %}
+                    <div class="list-job-card p-4 ">
+                        <div class="p-4 card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="../assets/image/fpt-software-tuyen.png" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">{{post.name_post}}</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-2"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="../assets/image/location.png" alt="">{{post.location}}</p>
+                                <p class=" mb-1"><img class="me-2" src="../assets/image/dollar.png" alt="">{{post.salary}}</p>
+                            </div>
+                            <div class="time-post px-3 text-worksans-l">
+                                <p><img class="me-2" src="../assets/image/clock.png" alt="">{{post.time_create}}</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="../assets/image/user.png" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>   
+                    </div>
+                    {% endfor %}
+                    
+            </div>
+            <div class="application-accepted border p-lg-5 p-md-3 mx-sm-5 mx-sm-3 p-0 mx-2">
+                <div class=" row row-cols-lg-2">
+                    <div class="list-job-card p-4 ">
+                        <div class="p-4 card">
+                            <div class="title-card d-flex">
+                                <div class="img-company">
+                                    <img class="w-100" src="../assets/image/fpt-software-tuyen.png" alt="">
+                                </div>
+                                <div class="title-post ms-3 col-8">
+                                    <p class="fs-6 text-roboto-m m-0">Sortware-engineer</p>                                 
+                                    <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                </div>
+                                <div class="save-job">
+                                    <i class="far fa-bookmark icon-save" id="icon-2"></i>
+                                </div>
+                            </div>
+                            <div class="content-post p-3 text-worksans-l fs-14">
+                                <p class=" mb-1"><img class="me-2" src="../assets/image/location.png" alt="">Thành phố Hồ Chí Minh</p>
+                                <p class=" mb-1"><img class="me-2" src="../assets/image/dollar.png" alt="">USD 1.000 - 2.000</p>
+                            </div>
+                            <div class="time-post px-3 text-worksans-l">
+                                <p><img class="me-2" src="../assets/image/clock.png" alt="">Được đăng cách đây 1 năm</p>
+                            </div>
+                            <div class="quantity-apply p-3">
+                                <p><img class="me-2" src="../assets/image/user.png" alt="">10 người đã ứng tuyển</p>
+                            </div>
+                        </div>   
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block linkjs %}
+        <script src="{% static 'vendor/jquery/jquery_clickout.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'javascript/my-application.js' %}" type="text/javascript"></script>
+    {% endblock %}

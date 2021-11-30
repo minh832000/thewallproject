@@ -131,7 +131,7 @@
                 <div class="list-job row ps-5 overflow-auto">
                     {% for post in list_of_job_postings %}
                     <div class="list-job-card mb-4">
-                        <a class="text-black" href="{% url 'detail-job' item.id %}">
+                        <a class="text-black" href="{% url 'detail-job' post.id %}">
                             <div class="job-card">
                                 <div class="title-card d-flex">
                                     <div class="img-company">
@@ -148,11 +148,11 @@
                                     </div>
                                 </div>
                                 <div class="content-post p-3 text-worksans-l fs-14">
-                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">{{item.location}}</p>
-                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">{{item.salary}}</p>
+                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">{{post.location}}</p>
+                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">{{post.salary}}</p>
                                 </div>
                                 <div class="time-post px-3 py-2  text-worksans-l">
-                                    <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">{{item.time_create}}</p>
+                                    <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">{{post.time_create}}</p>
                                 </div>
                                 <div class="quantity-apply p-3">
                                     <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>

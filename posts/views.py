@@ -2,13 +2,10 @@ from django.db.models.fields import CharField
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
-<<<<<<< HEAD
 
 from accounts.models import User
 from .models import Post_apply
-=======
 from django.contrib.auth.decorators import login_required
->>>>>>> 2aa0fe5cefa65053687f323fef6e547fe8da7f8f
 from .forms import PostForm
 from .models import Post
 from fields_job.models import FieldJob
@@ -41,7 +38,7 @@ def listJob(request):
       context = {
             'first_name_of_user': user.first_name,
             'profile_picture_link': profile.profile_picture.url,
-            'list_of_job_postings': Post.objects.filter(is_confirmed=True).order_by('-time_create'),
+            'list_of_job_postings': Post.objects.filter(confirm=True).order_by('-time_create'),
       }
       return render(request, 'posts/JobSeeker/job-listing-page.html', context)
 
@@ -57,7 +54,7 @@ def detailJob(request, post_id):
             'post': post,
             'company': profile,
       }
-      return render(request, 'posts/job_seeker/job_description.html', context)
+      return render(request, 'posts/JobSeeker/job_description.html', context)
 
 def addNewPost(request):
       fieldJob=FieldJob.objects.all()
@@ -208,3 +205,15 @@ def applyPost(request):
             apply.save()
             return JsonResponse({'data':'success'})
       return JsonResponse({})
+
+
+def myApply(request):
+      id_user=request.user.id
+      list_apply_wait_accept=Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait-accept')
+      list_post=[]
+      print(list_apply_wait_accept)
+      for post in list_apply_wait_accept:
+            apply=Post.objects.get(id=post.post_apply_id)
+            list_post.append(apply)
+      print(list_post)
+      return render(request, 'posts/JobSeeker/my-application.html',{'list_apply': list_post})
