@@ -255,23 +255,59 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Kỹ năng chuyên môn</p>
-                                    <button id="btn-edit-5" class="add-edit" type="button">
-                                          <i class="icofont-pencil-alt-5"></i>
-                                    </button>
+                                    {% if not profile.list_skill_tag %}
+                                          <button 
+                                                id="btn-edit-5" 
+                                                class="add-edit d-none" 
+                                                type="button">
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button 
+                                                id="btn-edit-5" 
+                                                class="add-edit" 
+                                                type="button">
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    <!-- Show this block if user have not update information or this fields is empty -->
-                                    <div id="entry_section_ProfessionalSkill">
-                                          <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Nêu ra các kỹ năng giúp ích cho vị trí ứng tuyển</p>
-                                          <div class="add-edit justify-content-center d-flex" id="add-edit-5">
-                                                <!-- <img class="me-2" src="{% static 'image/plus.png' %}" alt=""> -->
-                                                <i class="icofont-plus-circle" style="font-size: 13pt; color: #71CFFF; margin-right: 5px;"></i>
-                                                <p class="font-NotoSans-Bold fs-14">THÊM KỸ NĂNG CHUYÊN MÔN</p>
+                                    {% if not profile.list_skill_tag %}
+                                          <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div id="entry_section_ProfessionalSkill">
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Nêu ra các kỹ năng giúp ích cho vị trí ứng tuyển</p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-5">
+                                                      <!-- <img class="me-2" src="{% static 'image/plus.png' %}" alt=""> -->
+                                                      <i class="icofont-plus-circle" style="font-size: 13pt; color: #71CFFF; margin-right: 5px;"></i>
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM KỸ NĂNG CHUYÊN MÔN</p>
+                                                </div>
                                           </div>
-                                    </div>
-                                    <!-- Show this block when user updated -->
-                                    <p id="display_section_ProfessionalSkill" class="d-none"></p>
+                                          <!-- Show this block when user updated -->
+                                          <div 
+                                                id="display_section_ProfessionalSkill" 
+                                                class="d-none">
+
+                                          </div>
+                                    {% else %}
+                                             <!-- Show this block if user have not update information or this fields is empty -->
+                                          <div 
+                                                id="entry_section_ProfessionalSkill"
+                                                class="d-none"
+                                          >
+                                                <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">Nêu ra các kỹ năng giúp ích cho vị trí ứng tuyển</p>
+                                                <div class="add-edit justify-content-center d-flex" id="add-edit-5">
+                                                      <!-- <img class="me-2" src="{% static 'image/plus.png' %}" alt=""> -->
+                                                      <i class="icofont-plus-circle" style="font-size: 13pt; color: #71CFFF; margin-right: 5px;"></i>
+                                                      <p class="font-NotoSans-Bold fs-14">THÊM KỸ NĂNG CHUYÊN MÔN</p>
+                                                </div>
+                                          </div>
+                                          <!-- Show this block when user updated -->
+                                          <div id="display_section_ProfessionalSkill">
+
+                                          </div>
+                                    {% endif %}
+                                 
                               </div>
                         </div>
                         <div class="inf-item pb-5">
@@ -1098,52 +1134,38 @@
                         <img class="i-close position-absolute" src="{% static 'image/cancel.png' %}" alt="">
                   </h3>
                   <p class="font-WorkSans-Regular fs-14 mx-3">Chọn tối đa 10 kỹ năng của bạn. Điều này giúp nhà tuyển dụng hiểu rõ hơn về độ phù hợp của bạn với công việc. </p>
-                  <form class="p-3 border-bottom">
-                        <input class="w-100  p-2 mb-3" type="search" name="" id="" placeholder="Tìm kiếm kỹ năng của bạn">
-                  </form>
-        
-                  <div class="check-box-skill row row-cols-2 px-5 py-3 font-NotoSans-Regular fs-14">
-                        <div class="">
-                                    <div class="py-2">
-                                    <input type="checkbox" name="marketing" id="">
-                                    <label for="marketing">Marketing</label>
-                                    </div>
-                                    <div class="py-2">
-                                    <input type="checkbox" name="communication" id="">
-                                    <label for="communication">Communications</label>
-                                    </div>
-                                    <div class="py-2">
-                                    <input type="checkbox" name="copywriting" id="">
-                                    <label for="copywriting">Copywriting</label>
-                                    </div>
-                        </div>
-                        <div class="">
-                              <div class="py-2">
-                                    <input type="checkbox" name="photography" id="">
-                                    <label for="photography">Photography</label>
-                              </div>
-                              <div class="py-2">
-                                    <input type="checkbox" name="php" id="">
-                                    <label for="php">PHP</label>
-                              </div>
-                              <div class="py-2">
-                                    <input type="checkbox" name="html-css" id="">
-                                    <label for="html-css">HTML and CSS</label>
-                              </div>
-                        </div>
+                  <div class="px-4 py-2">
+                        <input 
+                              id="id_search_skill_tag"
+                              class="w-100 p-2 mb-3" 
+                              type="search" 
+                              placeholder="Tìm kiếm kỹ năng của bạn">
+                  </div>       
+                  <div 
+                        id="id_display_list_skill_tag"
+                        class="font-NotoSans-Regular d-flex align-items-center justify-content-between flex-wrap px-5 pb-2"
+                  >
+                        
                   </div>
-                  <form action="">
-                       
-                        <div class="skill-choosen py-3 border-top">
-                              <p class="color-gray-light px-5 ">Bạn chưa chọn kỹ năng nào</p>
-                              <!--những skill đã chọn-->
-                              <div class="d-none skills d-flex flex-wrap">
-                                    <span class="skill-item px-3 py-1">HTML</span>
-                              </div>
+                  <form
+                        id="id_form_Skill_Tag"
+                        method="POST"
+                  >
+                        <div 
+                              id="id_display_selected_skill_tag"
+                              class="py-3 border-top d-flex align-items-center justify-content-evenly flex-wrap"
+                        >
+                              
                         </div>
                         <div class="mt-4 btn-form font-NotoSans-Bold text-end pe-4 border-top py-3 fs-14">
                               <button class="btn-cancel btn border px-3 me-3">HỦY</button>
-                              <button type="submit" class="btn bg-btn px-3">LƯU</button>
+                              <button 
+                                    id="id_btn_submit_Skill_Tag"
+                                    type="submit" 
+                                    class="btn bg-btn px-3"
+                              >
+                                    LƯU
+                              </button>
                         </div>
                   </form>
             </div>

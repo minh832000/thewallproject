@@ -409,3 +409,146 @@ $(document).on('click', '#btn_submit_Interested-Job', e => {
         }
     })
 })
+
+// Handle searching skill tag
+const array_skill_tag = [];
+$(document).on('keyup', '#id_search_skill_tag', function(e){
+    e.preventDefault();
+    var k = $(this).val();
+    if(k){
+        $.ajax({
+            url: 'http://127.0.0.1:8000/tags/skill/',
+            type: 'POST',
+            data: {
+                'key_word': k,
+            },
+            success: res => {
+                $('#id_display_list_skill_tag').empty();
+                if(res['is_found']) {
+                    if(res['list_tag_skill']) {
+                        console.log(res['list_tag_skill'].length)
+                        if(res['list_tag_skill'].length > 1) {
+                            for(var t of res['list_tag_skill']) {
+                                if (array_skill_tag.length === 0){
+                                    array_skill_tag.push(t.name)
+                                }
+                                else {
+                                    if(!array_skill_tag.includes(t.name)) {
+                                        array_skill_tag.push(t.name);
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            while(array_skill_tag.length > 0) {
+                                array_skill_tag.pop();
+                            }
+                            for(var t of res['list_tag_skill']) {
+                                if(!array_skill_tag.includes(t.name)) {
+                                    array_skill_tag.push(t.name)
+                                }
+                            }
+                        }
+                       
+                        for(var i of array_skill_tag) {
+                            $('#id_display_list_skill_tag').append(
+                                `<div class="form-check" style="width: 40%">
+                                    <input
+                                        name="suggested_tag_skill" 
+                                        id="id_tag_skill"
+                                        class="form-check-input"
+                                        type="checkbox" 
+                                        value="${i}"
+                                    >
+                                    <label 
+                                        class="form-check-label"
+                                        for="id_tag_skill"
+                                    >
+                                        ${i}
+                                    </label>
+                                </div>`
+                            );
+                        }
+                    }
+                }
+                else {
+                    $('#id_display_list_skill_tag').append('<p class="font-WorkSans-Light">Không tìm thấy kết quả</p>')    
+                }
+            },
+            error: err => {
+                console.log(err)
+            }
+        })
+    }
+    else {
+        $('#id_display_list_skill_tag').empty();
+    }
+})
+
+$(document).on('click', '#id_tag_skill', function(e){
+    var v = $(this).val();
+    var is_checked = $(this).attr('checked');
+    console.log(is_checked)
+    $('#id_display_selected_skill_tag').append(
+        `<div 
+            id="id_selected_skill_tag"
+            class="bg-light px-3 py-2"
+        >
+            <input
+                type="text"
+                class="font-WorkSans-Medium bg-transparent border-0"
+                value="${v}"
+                name="list_skill_tag"
+                readonly>   
+            <i class="icon_remove_skill_tag icofont-close-line"></i>             
+        </div>`
+    )    
+})
+
+$(document).on('click', '.icon_remove_skill_tag', function(){
+    var id_parent = $(this).parent().attr('id');
+    
+    if($(`#${id_parent}`).children().length === 0 ){
+        $('#id_display_selected_skill_tag').append('<p class="color-gray-light px-5">Bạn chưa chọn kỹ năng nào</p>');
+    }
+    else {
+        $(`#${id_parent}`).remove();
+    }
+})
+
+$(document).on('click', '#id_btn_submit_Skill_Tag', e => {
+    e.preventDefault();
+    var f = document.getElementById('id_form_Skill_Tag');
+    var fd = new FormData(f);
+    fd.append('form', 'form_skill_tag');
+    $.ajax({
+        url: 'http://127.0.0.1:8000/profiles/',
+        type: 'POST',
+        data: fd,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        success: res => {
+             // close modal
+             $('#frame-5').hide();
+             $('.over-edit').remove();
+             $('#btn-edit-8').removeClass('d-none');
+            if(res['list_skill_tag']){
+                $('#display_section_ProfessionalSkill').removeClass('d-none');
+                $('#display_section_ProfessionalSkill').addClass('d-flex align-items-center justify-content-around')
+                $('#entry_section_ProfessionalSkill').addClass('d-none');
+
+                // Update
+                for(var t of res['list_skill_tag']) {
+                    $('#display_section_ProfessionalSkill').append(
+                        `<span class="font-WorkSans-Regular px-3 py-1 bg-light">${t}</span>`
+                    )
+
+                }
+            }
+        },
+        error: err => {
+            console.log(err);
+        }
+    })
+})

@@ -327,6 +327,14 @@ class Profile(LoginRequiredMixin, View):
                                     'list_type_of_job': instance.list_type_of_job,
                                     'is_updated_interested_job': instance.is_updated_interested_job,
                               }, safe=False, content_type='application/json')
+                        if name_of_form == 'form_skill_tag':
+                              list_skill_tag = request.POST.getlist('list_skill_tag') if request.POST.getlist('list_skill_tag') else None
+                              if list_skill_tag:
+                                    instance.list_skill_tag = list_skill_tag
+                              instance.save()
+                              return JsonResponse({
+                                    'list_skill_tag': instance.list_skill_tag,
+                              })
 
                   if user.is_recruiter:
                         return redirect('/profiles/recruiter/')

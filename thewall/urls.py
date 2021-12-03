@@ -30,6 +30,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('company/', Profiles_Views.CompanyListing.as_view(), name='company_listing'),
     path('manage/', include('manage_recruiter.urls')),
-    path('auth/', include(('social_django.urls', 'social_django'), namespace='social')),
     path('posts/', include('posts.urls')),
+    path('tags/', include('tag_skill.urls')),
+    path('auth/', include(('social_django.urls', 'social_django'), namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
