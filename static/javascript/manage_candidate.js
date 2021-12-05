@@ -1,15 +1,11 @@
 $(document).on('change','#select-job', function(){
-    var val=$('#select-job').val()
-    $.ajax({
-        url: 'show/',
-        type: 'post', // This is the default though, you don't actually need to always mention it
-        data:{
-            'id-post':val
-        },
-        success: function(data) {
-            if(data.data==='success')
-            alert('Bạn đã ứng tuyển thành công!!!');
-            else alert("Đã có lỗi, vui lòng thử lại sau")
-        },
-    }); 
+    console.log($('#select-job').val())
+    $('.candidate-item').hide();
+    $('.candidate-item').each(function(index){
+        var idPost=$('.id_post').val()
+        if(idPost===$('#select-job').val()){
+            console.log($('#item-'+idPost))
+            $('.item-'+idPost).show()
+        }
+    })
 })

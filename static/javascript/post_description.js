@@ -36,5 +36,6 @@ jQuery(document).ready(function($){
     $(document).on('click','.btn-apply',function(){
         sendRequestApply($(".id-post").val())
         console.log($(".id-post").val())
+        $('.btn-apply').prop('disabled', true);
     })
 })
