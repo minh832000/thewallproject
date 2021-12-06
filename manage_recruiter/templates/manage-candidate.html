@@ -36,6 +36,7 @@
                         {% for item in i %}
                         <div class="candidate-item position-relative item-{{id.id}}">
                                 <input type="hidden" name="" class="id_post" value="{{id.id}}">
+                                <input type="hidden" name=" ">
                                 <div class="row title pb-3">
                                     <div class="img-profile overflow-hidden col-1">
                                         <img src={{item.profile_picture.url}} alt="">
@@ -90,10 +91,10 @@
                                     </div>
                                 </div>
                                 <div class="manage-btn py-3  text-end">
-                                    <button class="btn-refuse">
+                                    <button class="btn-refuse" id="user-{{item.user_id}}">
                                         TỪ CHỐI
                                     </button>
-                                    <button class="btn-accept-cand">
+                                    <button class="btn-accept-cand" id="{{item.user_id}}">
                                         CHẤP NHẬN
                                     </button>
                                 </div>

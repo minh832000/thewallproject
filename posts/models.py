@@ -33,4 +33,4 @@ class Post_apply(models.Model):
     id=models.AutoField(primary_key=True)
     user_apply=models.ForeignKey(User,blank=True,null=True,on_delete=models.SET_NULL)
     post_apply=models.ForeignKey(Post, blank=True,null=True,on_delete=models.SET_NULL)
-    status_apply=models.CharField(max_length=20, blank=True,null=True, default="wait_accept")
+    status_apply=models.CharField(max_length=20, blank=True, default="wait_accept")

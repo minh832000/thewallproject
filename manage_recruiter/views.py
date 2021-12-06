@@ -16,17 +16,37 @@ def manageApplicant(request):
     for i in post:
         p=Post_apply.objects.filter(post_apply_id=i.id)
         listpost.append(p)
-    print(listpost)
+    
     arr=[]
     for i in listpost:
         for j in i:
             item= Profile.objects.get(user_id=j.user_apply_id)
             arr.append(item)
         list_cant.append(arr)
-    print(list_cant)    
+    
     return render(request,'manage-candidate.html',{
         'list_job':post,
         'list_candidate':list_cant,
         'id_post':listpost
     })
 
+def accept(request):
+    if request.method=="POST":
+        idCandidate=request.POST.get("id-candidate")
+        print(idCandidate)
+        p=Post_apply.objects.update_or_create(user_apply_id=idCandidate, defaults={"status_apply":"accepted"})
+        return JsonResponse({
+            "data":"Chấp nhận ứng viên thành công!!!",
+            "status":"accepted"})
+    return({"data":"Không thành công, đã gặp lỗi"})    
+
+def refuse(request):
+    if request.method=="POST":
+        idCandidate=request.POST.get("id-candidate")[5:]
+        print(idCandidate)
+        p=Post_apply.objects.update_or_create(user_apply_id=idCandidate, defaults={"status_apply":"refuse"})
+        return JsonResponse({
+            "data":"Từ chối ứng viên thành công!!!",
+            "status":"refused"
+            })
+    return({"data":"Không thành công, đã gặp lỗi"})        

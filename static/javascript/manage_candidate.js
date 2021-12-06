@@ -9,3 +9,33 @@ $(document).on('change','#select-job', function(){
         }
     })
 })
+
+$(".btn-accept-cand").click(function(){
+    var idCandidate=this.id
+    console.log(idCandidate)
+    $.ajax({
+        url: 'accept/',
+        type: 'post', // This is the default though, you don't actually need to always mention it
+        data:{
+            'id-candidate':idCandidate
+        },
+        success: function(data) {
+            alert(data.data)
+        },
+    }); 
+})
+
+$(".btn-refuse").click(function(){
+    var idCandidate=this.id
+    console.log(idCandidate)
+    $.ajax({
+        url: 'refuse/',
+        type: 'post', // This is the default though, you don't actually need to always mention it
+        data:{
+            'id-candidate':idCandidate
+        },
+        success: function(data) {
+            alert(data.data)
+        },
+    }); 
+})
