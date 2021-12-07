@@ -20,88 +20,101 @@
                 </select>
                 <div class="row row-cols-3 col-md-9 col-12 mt-3 mt-md-0">
                     <div class="nav-button">
-                        <button class=" btn-wait-confirm">CHỜ XÁC NHẬN</button>
+                        <a href="{% url 'manage-applicant' %}">
+                            <button class=" btn-wait-confirm">CHỜ XÁC NHẬN</button>
+                        </a>
                     </div>
                     <div class="nav-button">
-                        <button class="btn-accept">ĐÃ CHẤP NHẬN</button>
+                        <a href="{% url 'accepted' %}">
+                            <button class="btn-accept">ĐÃ CHẤP NHẬN</button>
+                        </a>
                     </div>
                     <div class="nav-button">
-                        <button class="btn-refuse">ĐÃ TỪ CHỐI</button>
+                        <a href="{% url 'refuse' %}">
+                            <button class="btn-refuse">ĐÃ TỪ CHỐI</button>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="list-candidate  mt-5">
+                {% if list_candidate %}
                 {% for i in list_candidate %}
-                    {% for id in list_job %}
                         {% for item in i %}
-                        <div class="candidate-item position-relative item-{{id.id}}">
-                                <input type="hidden" name="" class="id_post" value="{{id.id}}">
-                                <input type="hidden" name=" ">
-                                <div class="row title pb-3">
-                                    <div class="img-profile overflow-hidden col-1">
-                                        <img src={{item.profile_picture.url}} alt="">
-                                    </div>
-                                    <div class="col-9 inf ps-ms-3 ps-2 ">
-                                        <p class="name">{{item.full_name}}</p>
-                                        <div class="row row-cols-md-2 row-cols-1">
-                                            <p class="field-job">{{item.name_of_interested_job}}</p>
-                                            <p>{{item.address}}</p>
+                            <div class="candidate-item position-relative item-{{item.id_post}} ">
+                                    <input type="hidden" name="" class="id_post" value="{{item.id_post}}">
+                                    <div class="row title pb-3">
+                                        <div class="img-profile overflow-hidden col-1">
+                                            <img src={{item.profile_picture}} alt="">
                                         </div>
-                                        <a href="" class="view-detail position-absolute">
-                                            <div class="d-flex">
-                                                <img src="../../assets/image/view-detail.png" alt="">
-                                                <p>XEM CHI TIẾT</p>
+                                        <div class="col-9 inf ps-ms-3 ps-2 ">
+                                            <p class="name">{{item.full_name}}</p>
+                                            <div class="row row-cols-md-2 row-cols-1">
+                                                <p class="field-job">{{item.name_of_interested_job}}</p>
+                                                <p>{{item.address}}</p>
                                             </div>
+                                            <a href="" class="view-detail position-absolute">
+                                                <div class="d-flex">
+                                                    <img src="../../assets/image/view-detail.png" alt="">
+                                                    <p>XEM CHI TIẾT</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="main-profile row py-3 row-cols-md-2 row-cols-1 font-WorkSans-Regular">
+                                        <div class="ps-md-5 ps-2">
+                                            <p class="title-profile">KINH NGHIỆM LÀM VIỆC</p>
+                                            <p>{{item.previous_job_title}} tại {{item.name_of_previous_company}} từ {{item.time_start_previous_job}} đến {{item.time_end_previous_job}}
+                                                
+                                        </div>
+                                        <div class="ps-md-5 ps-2 mt-md-0 mt-3">
+                                            <p class="title-profile">HỌC VẤN</p>
+                                            <p>{{item.name_of_school }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <p class="title-profile">KỸ NĂNG</p>
+                                        <div class="skill d-flex flex-wrap">
+                                            <div class="skill-item">
+                                                HTML
+                                            </div>
+                                            <div class="skill-item">
+                                                JAVASCRIPT
+                                            </div>
+                                            <div class="skill-item">
+                                                PYTHON
+                                            </div>
+                                            <div class="skill-item">
+                                                PHP
+                                            </div>
+                                            <div class="skill-item">
+                                                JAVASCRIPT
+                                            </div>
+                                            <div class="skill-item">
+                                                JAVASCRIPT
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="manage-btn py-3  text-end">
+                                        <a href="">
+                                            <button class="btn-refuse-cand " {{disable}} id="user-{{item.id_apply}}">
+                                                TỪ CHỐI
+                                            </button>
+                                        </a>
+                                        <a href="">
+                                            <button class="btn-accept-cand" {{disable}} id="{{item.id_apply}}">
+                                                CHẤP NHẬN
+                                            </button>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="main-profile row py-3 row-cols-md-2 row-cols-1 font-WorkSans-Regular">
-                                    <div class="ps-md-5 ps-2">
-                                        <p class="title-profile">KINH NGHIỆM LÀM VIỆC</p>
-                                        <p>{{item.previous_job_title}} tại {{item.name_of_previous_company}} từ {{item.time_start_previous_job}} đến {{item.time_end_previous_job}}
-                                            
-                                    </div>
-                                    <div class="ps-md-5 ps-2 mt-md-0 mt-3">
-                                        <p class="title-profile">HỌC VẤN</p>
-                                        <p>{{item.name_of_school }}</p>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <p class="title-profile">KỸ NĂNG</p>
-                                    <div class="skill d-flex flex-wrap">
-                                        <div class="skill-item">
-                                            HTML
-                                        </div>
-                                        <div class="skill-item">
-                                            JAVASCRIPT
-                                        </div>
-                                        <div class="skill-item">
-                                            PYTHON
-                                        </div>
-                                        <div class="skill-item">
-                                            PHP
-                                        </div>
-                                        <div class="skill-item">
-                                            JAVASCRIPT
-                                        </div>
-                                        <div class="skill-item">
-                                            JAVASCRIPT
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="manage-btn py-3  text-end">
-                                    <button class="btn-refuse" id="user-{{item.user_id}}">
-                                        TỪ CHỐI
-                                    </button>
-                                    <button class="btn-accept-cand" id="{{item.user_id}}">
-                                        CHẤP NHẬN
-                                    </button>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
+                            {% endfor %}
+                        
+                            {% endfor %}
+                            {% else %}
+                            <p class="px-3 py-4 ">Không có ứng viên nào</p>
+                        {% endif %}    
             </div>
         </div>
     </div>
