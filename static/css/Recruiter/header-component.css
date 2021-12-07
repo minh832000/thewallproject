@@ -240,10 +240,13 @@ button.icon_notify {
     .icon_notify {
         width: 34px;
         height: 35px;
+<<<<<<< HEAD
     }
     
     .nav {
         display: none;
+=======
+>>>>>>> d922aa14b032cd125cc9bb4c73a1b200058b9778
     }
 }
 
@@ -270,10 +273,13 @@ button.icon_notify {
     .icon_notify {
         width: 34px;
         height: 35px;
+<<<<<<< HEAD
     }
     
     .nav {
         display: none;
+=======
+>>>>>>> d922aa14b032cd125cc9bb4c73a1b200058b9778
     }
 }
 @media (min-width: 992px) and (max-width: 1199px) {

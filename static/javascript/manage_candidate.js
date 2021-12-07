@@ -1,15 +1,45 @@
 $(document).on('change','#select-job', function(){
-    var val=$('#select-job').val()
+    console.log($('#select-job').val())
+    $('.candidate-item').hide();
+    $('.candidate-item').each(function(index){
+        var idPost=$('.id_post').val()
+        if(idPost===$('#select-job').val()){
+            console.log($('#select-job').val())
+            $('.item-'+idPost).show()
+        }
+    })
+})
+
+
+$(".btn-refuse-cand").click(function(){
+    var idApply=this.id
+    console.log(idApply)
+
     $.ajax({
-        url: 'show/',
+        url: 'refuse-cand/',
         type: 'post', // This is the default though, you don't actually need to always mention it
         data:{
-            'id-post':val
+            'idApply':idApply
         },
         success: function(data) {
-            if(data.data==='success')
-            alert('Bạn đã ứng tuyển thành công!!!');
-            else alert("Đã có lỗi, vui lòng thử lại sau")
-        },
+            alert(data.data)
+            },
     }); 
+    
+
+})
+$(".btn-accept-cand").click(function(){
+    var idApply=this.id
+    console.log(idApply)
+    $.ajax({
+        url: 'accept/',
+        type: 'post', // This is the default though, you don't actually need to always mention it
+        data:{
+            'id-candidate':idApply
+        },
+        success: function(data) {
+            alert(data.data)
+            },
+    }); 
+    
 })
