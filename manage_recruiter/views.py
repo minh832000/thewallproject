@@ -1,13 +1,21 @@
+from django.contrib.auth.decorators import login_required
 from django.http.response import JsonResponse
 from django.shortcuts import render
+
 from posts.models import Post
 from accounts.models import User
 from profiles.models import Profile
+from profiles.models import RecruiterProfile
 from posts.models import Post_apply
-# Create your views here.
+
+@login_required
 def managePost(request):
-    Data = {'Posts': Post.objects.filter(author_id=request.user.id).order_by('-time_create')}
-    return render(request,'manage-posts.html', Data)
+    recruiter_profile = RecruiterProfile.objects.get(user=request.user)
+    context = {
+        'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+        'Posts': Post.objects.filter(author_id=request.user.id).order_by('-time_create')
+    }
+    return render(request,'manage-posts.html', context)
 
 def manageApplicant(request):
     post=Post.objects.filter(author_id=request.user.id)
@@ -51,6 +59,20 @@ def manageApplicant(request):
         "disable":" "
         })
 
+<<<<<<< HEAD
+@login_required
+def showApplicant(request):
+    if request.method=='POST':
+        id_post=request.POST.get('id-post')
+        post=Post_apply.objects.filter(post_apply_id=id_post)
+        list_applicant=[]
+        for applicant in post:
+            user=User.objects.get(id=applicant.user_apply_id)
+            item= Profile.objects.get(user_id=user.id)
+            list_applicant.append(item)
+            print(list_applicant)
+        return JsonResponse({'data':'success'})
+=======
 def accept(request):
     if request.method=="POST":
         idApply=request.POST.get("idApply")
@@ -155,3 +177,4 @@ def listRefuse(request):
         'list_candidate':list_cant,
         "disable":"disabled"
         })                  
+>>>>>>> d922aa14b032cd125cc9bb4c73a1b200058b9778

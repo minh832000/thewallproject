@@ -1,14 +1,23 @@
 
-{% extends 'base_recruiter.html' %}
+{% extends 'base.html' %}
+
 {% load static %}
 
-{% block pagetitle_recruiter %}
-      Chi tiết công việc
+{% block pagetitle %}
+      Thêm bài tuyển dụng
 {% endblock %}
-{% block linkcss_recruiter %}
-    <link rel="stylesheet" href="{% static 'css/add-new-post.css' %}" >
+
+{% block style %}
+      <!-- Style Header and Footer component -->
+      <link rel="stylesheet" href="{% static 'css/Recruiter/header-component.css' %}">
+      <link rel="stylesheet" href="{% static 'css/Recruiter/footer-component.css' %}">
+
+      <!-- Style Add New Post page-->
+      <link rel="stylesheet" href="{% static 'css/add-new-post.css' %}" >
 {% endblock %}
-{% block maincontent %}
+
+{% block pagecontent %}
+      {% include 'components/Recruiter/header-component.html' %}
 
 <!-- =============== Main Content =============== -->
       <div id="main" class="my-120">
@@ -130,10 +139,15 @@
                   </form>
             </div>
       </div>
+
+      {% include 'components/Recruiter/footer-component.html' %}
+
       <script src="{% static 'vendor/ckeditor/ckeditor.js' %}"></script>
       
       <script>CKEDITOR.replace('text-job-detail');</script>
 {% endblock %}
-{% block linkjs %}
-<script src="{% static 'javascript/add-new-post.js' %}"></script>
+
+{% block javascript %}
+      <script src="{% static 'javascript/Recruiter/header-component.js' %}"></script>
+      <script src="{% static 'javascript/add-new-post.js' %}"></script>
 {% endblock %}

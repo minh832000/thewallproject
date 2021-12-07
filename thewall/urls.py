@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 # Profiles App
 from profiles import views as Profiles_Views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
@@ -32,5 +31,6 @@ urlpatterns = [
     path('manage/', include('manage_recruiter.urls')),
     path('posts/', include('posts.urls')),
     path('tags/', include('tag_skill.urls')),
+    path('notifications/', include('notifications.urls')),
     path('auth/', include(('social_django.urls', 'social_django'), namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,5 +5,4 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
     
     def ready(self):
-        print('Accounts App Ready')
         import accounts.signals

@@ -28,51 +28,70 @@ def listJob(request):
             profile = ProfileModel.objects.get(user=username)
       except ProfileModel.DoesNotExist:
             print('User\'s profile does not exist')
-      # Get first name of the user
-      try:
-            user = UserModel.objects.get(username=username)
-      except UserModel.DoesNotExist:
-            print('User\'s account does not exist')
 
       # Prepare data needed 
+      l_post = list()
+      l = Post.objects.filter(confirm=True).order_by('-time_create')
+      for i in l:
+            try:
+                  recruiter_profile = RecruiterProfileModel.objects.get(user=i.author)
+            except RecruiterProfileModel.DoesNotExist:
+                  print('Recruiter\'s profile does not exist')
+            l_post.append({
+                  'content_of_post': i,
+                  'company': recruiter_profile,
+            })
+
       context = {
-            'first_name_of_user': user.first_name,
+            'first_name_of_user': request.user.first_name,
             'profile_picture_link': profile.profile_picture.url,
-            'list_of_job_postings': Post.objects.filter(confirm=True).order_by('-time_create'),
+            'list_of_job_postings': l_post,
       }
       return render(request, 'posts/JobSeeker/job-listing-page.html', context)
 
 @login_required
 def detailJob(request, post_id):
+      # Get content of the post
       post = Post.objects.get(pk=post_id)
+      # Get creator of the post
       author = post.author_id
-     
-      profile =  RecruiterProfileModel.objects.get(user_id=author)
-      
+      # Get the company's profile 
+      recruiter_profile =  RecruiterProfileModel.objects.get(user_id=author)
+      # Get user's profile
+      profile = ProfileModel.objects.get(user=request.user)
       # Prepare data needed
       context = {
             'post': post,
-            'company': profile,
+            'company': recruiter_profile,
+            'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+            'first_name_of_user': request.user.first_name, 
+            'profile_picture_link': profile.profile_picture.url,
       }
       return render(request, 'posts/JobSeeker/job_description.html', context)
 
+@login_required
 def addNewPost(request):
-      fieldJob=FieldJob.objects.all()
+      fieldJob = FieldJob.objects.all()
       a = PostForm()
-      print(request.user.is_recruiter)
       if request.user.id and request.user.is_recruiter:
-            return render(request, 'posts/recruiter/add_new_post.html',{ 
-                  'f': a, 
-                  'fields':fieldJob})
-      else: return redirect('accounts:login')
+            try:
+                  recruiter_profile = RecruiterProfileModel.objects.get(user=request.user)
+            except RecruiterProfileModel.DoesNotExist:
+                  print('User\'s profile does not exist')
+            context = {
+                  'profile_picture_company_link': recruiter_profile.profile_picture_company.url,
+                  'f': a,
+                  'fields': fieldJob,
+            }
+            return render(request, 'posts/recruiter/add_new_post.html', context)
+
 
 def savePost(request):
       # post = get_object_or_404(Post, pk=pk)
       if request.method == 'POST':
-            form=PostForm(request.POST, author=request.user)
+            form = PostForm(request.POST, author=request.user)
             if form.is_valid():
                   form.save()
-                  inform='Thêm thành công'
                   return redirect('manage-post')
             return HttpResponse('không đc validate')
 
@@ -212,21 +231,38 @@ def applyPost(request):
                     
       return JsonResponse({})
 
-
+@login_required
 def myApply(request):
-      id_user=request.user.id
-      list_apply_wait_accept=Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait_accept')
-      list_post_wait_accept=[]
-      list_post_accepted=[]
-      list_apply_accepted=Post_apply.objects.filter(user_apply_id=id_user, status_apply='accept')
-      for post in list_apply_wait_accept:
-            apply=Post.objects.get(id=post.post_apply_id)
-            list_post_wait_accept.append(apply)
+      id_user = request.user.id
+      if request.user.is_job_seeker:
+            list_apply_wait_accept = Post_apply.objects.filter(user_apply_id=id_user, status_apply='wait_accept')
+            list_apply_accepted = Post_apply.objects.filter(user_apply_id=id_user, status_apply='accept')
 
-      for post in list_apply_accepted:
-            apply=Post.objects.get(id=post.post_apply_id)
-            list_post_accepted.append(apply)
-      return render(request, 'posts/JobSeeker/my-application.html',{
-            'list_apply': list_post_wait_accept,
-            'list_apply_accept': list_post_accepted
-      })
+            list_post_wait_accept = []
+            list_post_accepted = []
+
+            for post in list_apply_wait_accept:
+                  apply = Post.objects.get(id=post.post_apply_id)
+                  recruiter_profile = RecruiterProfileModel.objects.get(user=apply.author)
+
+                  list_post_wait_accept.append({
+                        'post': apply,
+                        'company': recruiter_profile,
+                  })
+
+            for post in list_apply_accepted:
+                  apply = Post.objects.get(id=post.post_apply_id)
+                  list_post_accepted.append(apply)
+            
+            # Get user's profile
+            profile = ProfileModel.objects.get(user=request.user)
+            # Prepare data 
+            context = {
+                  'list_apply': list_post_wait_accept,
+                  'list_apply_accept': list_post_accepted,
+                  'profile_picture_link': profile.profile_picture.url,
+                  'first_name_of_user': request.user.first_name,
+            }
+            return render(request, 'posts/JobSeeker/my-application.html', context)
+      if request.user.is_recruiter:
+            return redirect('/recruiter')

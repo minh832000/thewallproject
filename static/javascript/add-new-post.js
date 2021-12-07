@@ -50,8 +50,8 @@ const sendSkillData=(name,id)=>{
             'name':name
         },
         success: (res) => {
-            const data =res.data
-            selectedSkill.innerHTML += `<input class="px-3 py-1 me-2 id=${data[0].id}" value=${data[0].name}>`
+            const data = res.data
+            selectedSkill.innerHTML += `<input class="px-3 py-1 me-2 id="${data[0].id}" value="${data[0].name}" name="tag_skill">`
 
         },
         error: (err) => {

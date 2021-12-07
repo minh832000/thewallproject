@@ -35,6 +35,7 @@ class Profile(LoginRequiredMixin, View):
                   # Prepare data needed for user
                   context = {
                         'user': user,
+                        'first_name_of_user': user.first_name,
                         'profile': profile,
                         'profile_picture_link': profile.profile_picture.url,
                         'list_job_fields': list_job_fields,
@@ -114,6 +115,7 @@ class Profile(LoginRequiredMixin, View):
                               else: 
                                     instance.is_updated_summary = False
                               instance.save()
+                              print(instance.summary)
                               return JsonResponse({
                                     'is_updated_summary': instance.is_updated_summary,
                                     'summary': instance.summary,
@@ -329,6 +331,7 @@ class Profile(LoginRequiredMixin, View):
                               }, safe=False, content_type='application/json')
                         if name_of_form == 'form_skill_tag':
                               list_skill_tag = request.POST.getlist('list_skill_tag') if request.POST.getlist('list_skill_tag') else None
+                              print(list_skill_tag)
                               if list_skill_tag:
                                     instance.list_skill_tag = list_skill_tag
                               instance.save()
@@ -467,6 +470,7 @@ class CompanyListing(LoginRequiredMixin, View):
                   context = {
                         'list_of_companies': list_recruiter_profile,
                         'profile_picture_link': sender_profile.profile_picture.url,
+                        'first_name_of_user': request.user.first_name, 
                   }
                   return render(request, 'profiles/JobSeeker/company-listing-page.html', context)
 

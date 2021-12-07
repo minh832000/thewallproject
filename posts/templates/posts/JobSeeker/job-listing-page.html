@@ -130,37 +130,37 @@
                 </div>
                 <div class="list-job row ps-5 overflow-auto">
                     {% for post in list_of_job_postings %}
-                    <div class="list-job-card mb-4">
-                        <a class="text-black" href="{% url 'detail-job' post.id %}">
-                            <div class="job-card">
-                                <div class="title-card d-flex">
-                                    <div class="img-company">
-                                        <img class="w-100" src="{% static 'image/fpt-software-tuyen.png' %}" alt="">
+                        <div class="list-job-card mb-4">
+                            <a class="text-black" href="{% url 'detail-job' post.content_of_post.id %}">
+                                <div class="job-card">
+                                    <div class="title-card d-flex">
+                                        <div class="img-company">
+                                            <img class="w-100" src="{{ post.company.profile_picture_company.url }}" alt="">
+                                        </div>
+                                        <div class="title-post ms-3 col-8">
+                                            <p class="fs-6 text-roboto-m m-0">
+                                                {{ post.content_of_post.name_post }}
+                                            </p>                                 
+                                            <p class="fs-14 color-name text-worksans-re m-0">{{ post.company.name_of_company }}</p>
+                                        </div>
+                                        <div class="save-job">
+                                            <i class="far fa-bookmark icon-save" id="icon-1"></i>
+                                        </div>
                                     </div>
-                                    <div class="title-post ms-3 col-8">
-                                        <p class="fs-6 text-roboto-m m-0">
-                                            {{ post.name_post }}
-                                        </p>                                 
-                                        <p class="fs-14 color-name text-worksans-re m-0">FPT Software</p>
+                                    <div class="content-post p-3 text-worksans-l fs-14">
+                                        <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">{{ post.content_of_post.location }}</p>
+                                        <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">{{ post.content_of_post.salary }}</p>
                                     </div>
-                                    <div class="save-job">
-                                        <i class="far fa-bookmark icon-save" id="icon-1"></i>
+                                    <div class="time-post px-3 py-2  text-worksans-l">
+                                        <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">{{ post.content_of_post.time_create }}</p>
+                                    </div>
+                                    <div class="quantity-apply p-3">
+                                        <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
                                     </div>
                                 </div>
-                                <div class="content-post p-3 text-worksans-l fs-14">
-                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/location.png' %}" alt="">{{post.location}}</p>
-                                    <p class=" mb-1"><img class="me-2" src="{% static 'image/dollar.png' %}" alt="">{{post.salary}}</p>
-                                </div>
-                                <div class="time-post px-3 py-2  text-worksans-l">
-                                    <p><img class="me-2" src="{% static 'image/clock.png' %}" alt="">{{post.time_create}}</p>
-                                </div>
-                                <div class="quantity-apply p-3">
-                                    <p><img class="me-2" src="{% static 'image/user.png' %}" alt="">10 người đã ứng tuyển</p>
-                                </div>
-                            </div>
-                            
-                        </a>
-                    </div>
+                                
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>

@@ -26,7 +26,7 @@ class Index(View):
                         print('User\'s Profile does not exist')
                   # Prepare data needed for user
                   context = {
-                        'user': user,
+                        'first_name_of_user': user.first_name,
                         'profile_picture_link': profile.profile_picture.url,
                   }
                   return render(request, 'JobSeeker/index.html', context)
