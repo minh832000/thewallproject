@@ -24,32 +24,33 @@ def manageApplicant(request):
     list_cant=[]
     for i in post:
         p=Post_apply.objects.filter(post_apply_id=i.id,status_apply="wait_accept")
-    if p:    
-        listpost.append(p)
-        print(p)
-            
-    arr=[]
+        if len(p)>0:
+            listpost.append(list(p))
+   
     
+    arr=list()
     for i in listpost:
+        
         for j in i:
-            d={}
-            item= Profile.objects.get(user_id=j.user_apply_id)
-            d={
-                "full_name":item.full_name,
-                "name_of_interested_job":item.name_of_interested_job,
-                "address":item.address,
-                "previous_job_title":item.previous_job_title,
-                "name_of_previous_company":item.name_of_previous_company,
-                "time_start_previous_job":item.time_start_previous_job,
-                "time_end_previous_job":item.time_end_previous_job,
-                "name_of_school":item.name_of_school,
-                "profile_picture":item.profile_picture.url,
-                "id_post":j.post_apply_id,
-                "user_id":item.user_id,
-                "id_apply":j.id
-            }
-            arr.append(d)
-        list_cant.append(arr)
+            
+            item= Profile.objects.filter(user_id=j.user_apply_id).first()
+            if item!=None:
+                d={
+                    "full_name":item.full_name,
+                    "name_of_interested_job":item.name_of_interested_job,
+                    "address":item.address,
+                    "previous_job_title":item.previous_job_title,
+                    "name_of_previous_company":item.name_of_previous_company,
+                    "time_start_previous_job":item.time_start_previous_job,
+                    "time_end_previous_job":item.time_end_previous_job,
+                    "name_of_school":item.name_of_school,
+                    "profile_picture":item.profile_picture.url,
+                    "id_post":j.post_apply_id,
+                    "user_id":item.user_id,
+                    "id_apply":j.id
+                }
+                arr.append(d)
+    list_cant.append(arr)
     
     
     return render(request,'manage-candidate.html',{
@@ -93,30 +94,35 @@ def listAccepted(request):
     list_cant=[]
     for i in post:
         p=Post_apply.objects.filter(post_apply_id=i.id,status_apply="accepted")
-    if p:
-        listpost.append(p)
-    print(listpost)
-    arr=[]
+        
+        if len(p)>0:
+            listpost.append(list(p))
+   
+    
+    arr=list()
     for i in listpost:
         for j in i:
-            d={}
-            item= Profile.objects.get(user_id=j.user_apply_id)
-            d={
-                "full_name":item.full_name,
-                "name_of_interested_job":item.name_of_interested_job,
-                "address":item.address,
-                "previous_job_title":item.previous_job_title,
-                "name_of_previous_company":item.name_of_previous_company,
-                "time_start_previous_job":item.time_start_previous_job,
-                "time_end_previous_job":item.time_end_previous_job,
-                "name_of_school":item.name_of_school,
-                "profile_picture":item.profile_picture.url,
-                "id_post":j.post_apply_id,
-                "user_id":item.user_id,
-                "id_apply":j.id
-            }
-            arr.append(d)
-        list_cant.append(arr)
+            
+            item= Profile.objects.filter(user_id=j.user_apply_id).first()
+            
+            if item!=None:
+                d={
+                    "full_name":item.full_name,
+                    "name_of_interested_job":item.name_of_interested_job,
+                    "address":item.address,
+                    "previous_job_title":item.previous_job_title,
+                    "name_of_previous_company":item.name_of_previous_company,
+                    "time_start_previous_job":item.time_start_previous_job,
+                    "time_end_previous_job":item.time_end_previous_job,
+                    "name_of_school":item.name_of_school,
+                    "profile_picture":item.profile_picture.url,
+                    "id_post":j.post_apply_id,
+                    "user_id":item.user_id,
+                    "id_apply":j.id
+                }
+                arr.append(d)
+    list_cant.append(arr)
+    # print(list_cant)
     return render(request,'manage-candidate.html',{
         'list_job':post,
         'list_candidate':list_cant,
@@ -130,30 +136,34 @@ def listRefuse(request):
     list_cant=[]
     for i in post:
         p=Post_apply.objects.filter(post_apply_id=i.id,status_apply="refuse")
-    if p:
-        listpost.append(p)
-    print(listpost)
-    arr=[]
+        if len(p)>0:
+            listpost.append(list(p))
+   
+    
+    arr=list()
     for i in listpost:
+        
         for j in i:
-            d={}
-            item= Profile.objects.get(user_id=j.user_apply_id)
-            d={
-                "full_name":item.full_name,
-                "name_of_interested_job":item.name_of_interested_job,
-                "address":item.address,
-                "previous_job_title":item.previous_job_title,
-                "name_of_previous_company":item.name_of_previous_company,
-                "time_start_previous_job":item.time_start_previous_job,
-                "time_end_previous_job":item.time_end_previous_job,
-                "name_of_school":item.name_of_school,
-                "profile_picture":item.profile_picture.url,
-                "id_post":j.post_apply_id,
-                "user_id":item.user_id,
-                "id_apply":j.id
-            }
-            arr.append(d)
-        list_cant.append(arr)
+            
+            item= Profile.objects.filter(user_id=j.user_apply_id).first()
+            print(item)
+            if item!=None:
+                d={
+                    "full_name":item.full_name,
+                    "name_of_interested_job":item.name_of_interested_job,
+                    "address":item.address,
+                    "previous_job_title":item.previous_job_title,
+                    "name_of_previous_company":item.name_of_previous_company,
+                    "time_start_previous_job":item.time_start_previous_job,
+                    "time_end_previous_job":item.time_end_previous_job,
+                    "name_of_school":item.name_of_school,
+                    "profile_picture":item.profile_picture.url,
+                    "id_post":j.post_apply_id,
+                    "user_id":item.user_id,
+                    "id_apply":j.id
+                }
+                arr.append(d)
+    list_cant.append(arr)
     return render(request,'manage-candidate.html',{
         'list_job':post,
         'list_candidate':list_cant,

@@ -219,10 +219,16 @@ def applyPost(request):
             post_id=request.POST.get('id-post')
             user=User.objects.get(pk=request.user.id)
             apply=Post.objects.get(id=post_id)
-            p=Post_apply.objects.create(user_apply_id=user.id, post_apply_id=post_id)
-            apply.user_apply_id=p.id
-            apply.save()
-            return JsonResponse({'data':'success'})
+            if Post_apply.objects.filter(user_apply_id=user.id, post_apply_id=post_id):
+                  a=Post_apply.objects.get(user_apply_id=user.id, post_apply_id=post_id) 
+                  print(a)  
+                  return JsonResponse({'data':'error'})
+            else: 
+                  p=Post_apply.objects.create(user_apply_id=user.id, post_apply_id=post_id)
+                  apply.user_apply_id=p.id
+                  apply.save()
+                  return JsonResponse({'data':'success'})
+                    
       return JsonResponse({})
 
 @login_required

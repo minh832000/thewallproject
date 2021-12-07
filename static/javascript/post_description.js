@@ -29,6 +29,9 @@ jQuery(document).ready(function($){
             success: function(data) {
                 if(data.data==='success')
                 alert('Bạn đã ứng tuyển thành công!!!');
+                else if(data.data==='error'){
+                    alert('Bạn đã ứng tuyển công việc này rồi')
+                }
                 else alert("Đã có lỗi, vui lòng thử lại sau")
             },
         }); 
