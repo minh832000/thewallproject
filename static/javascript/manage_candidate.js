@@ -33,9 +33,9 @@ $(".btn-accept-cand").click(function(){
     console.log(idApply)
     $.ajax({
         url: 'accept/',
-        type: 'post', // This is the default though, you don't actually need to always mention it
+        type: 'post',
         data:{
-            'id-candidate':idApply
+            'idApply':idApply
         },
         success: function(data) {
             alert(data.data)
