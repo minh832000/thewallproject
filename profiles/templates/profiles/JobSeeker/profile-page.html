@@ -21,15 +21,22 @@
                   <h1 class="font-NotoSans-Bold text-center text-uppercase my-5">Hồ sơ của bạn</h1>
                   <div class="name row text-center text-sm-start">
                         <div class="frame-img col-sm-3 col-12">
-                              <div class="img-profile overflow-hidden m-auto me-sm-2">
-                                    <input 
-                                          id="changeProfilePicture" 
-                                          type="file" 
-                                          multiple accept="image/*">
-                                    <img 
-                                          id="profilePicture" 
-                                          src="{{ profile.profile_picture.url }}" 
-                                          alt="Profile Picture">
+                              <div class="box_profile_picture">
+                                    <input type="file" id="id_changeProfilePicture" style="display: none;">
+                                    <div class="body_profile_picture">
+                                          <img
+                                                id="id_profilePictureCompany" 
+                                                class="profile_picture"
+                                                src="{{ recruiter_profile.profile_picture_company.url }}" 
+                                                alt="Body Profile Picture">
+                                    </div>
+                                    <div class="box_circle_profile_picture cotrol_change_profile_picture">
+                                          <div class="overlay_box_profile_picture control_change_profile_picture">
+                                                <div class="box_circle_icon control_change_profile_picture">
+                                                      <i class="icofont-camera"></i>
+                                                </div>
+                                          </div>
+                                    </div>
                               </div>
                         </div>
                         <div class="col-sm-9">

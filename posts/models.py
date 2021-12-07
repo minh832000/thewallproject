@@ -1,13 +1,10 @@
 from django.db import models
 from django.db.models.signals import post_save
-from django.dispatch.dispatcher import receiver
 from django.utils import timezone
 from accounts.models import User
 from fields_job.models import FieldJob
 from ckeditor.fields import RichTextField
 from django.contrib.postgres.fields import ArrayField
-
-from notifications.models import Notification
 
 class Post(models.Model):
     id                  = models.AutoField(primary_key=True)
@@ -28,7 +25,8 @@ class Post(models.Model):
     content_post        = RichTextField(max_length=2000, blank=False, null=False)
     type_job            = models.CharField(max_length=100, blank=False, null=False)
     confirm             = models.BooleanField(default=False)
-    user_apply=models.ForeignKey('Post_apply',blank=True,null=True,on_delete=models.SET_NULL)
+    user_apply          = models.ForeignKey('Post_apply',blank=True,null=True,on_delete=models.SET_NULL)
+    
     def __str__(self):
         return self.name_post
 
@@ -38,14 +36,3 @@ class Post_apply(models.Model):
     post_apply   = models.ForeignKey(Post, blank=True,null=True,on_delete=models.SET_NULL)
     status_apply = models.CharField(max_length=20, blank=True,null=True, default="wait_accept")
 
-    def create_application(sender, instance, created, *args, **kwarg):
-        if created:
-            application = instance
-            applicant = application.user_apply.id
-            post = application.post
-            
-            notification = Notification(type_of_notification=3, sender=applicant, receiver=post.author.id, post=post.id)
-
-
-# Signal Post_apply
-post_save.connect(Post_apply.create_application, sender=Post_apply)

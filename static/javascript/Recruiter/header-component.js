@@ -4,6 +4,7 @@ const array_of_notifications = [];
 // Getting the user's list of notifications when loading page 
 const notifications = document.querySelectorAll('.numbers_of_notifications');
 const menuNotifications = document.querySelectorAll('.dropdown_menu_notifications');
+console.log(menuNotifications.length);
 
 window.addEventListener('load', async function() {
     let url = 'http://127.0.0.1:8000/notifications/';
@@ -96,42 +97,37 @@ jQuery(document).ready(function($){
             const checkId = array_of_notifications.every(k => {
                 return i['id'] != k['id'];
             })
+        
             if(checkId){
                 array_of_notifications.unshift(i);
-            }
-        })
-        // Clear content of menu dropdown
-        while(menuNotifications.firstChild){
-            menuNotifications.removeChild(menuNotifications.firstChild);  
-        }
-        // Add the latest and have not seen notification
-        array_of_notifications.forEach(i => {
-            let node = document.createElement('LI');
-            node.classList.add('dropdown-item');
-            node.classList.add('font-WorkSans-Regular');
-            node.classList.add('py-3');
-            let textNode;
-            // Format datetime
-            let d = new Date(i['created_at']);
-            let t = d.toLocaleString();
-            if(i['type_of_notification'] == 1){
-                node.id = i['id'];
-                textNode = document.createTextNode(`Bạn vừa tạo tài khoản vào lúc ${t}`);
-                node.appendChild(textNode);
-                for(let i = 0; i < menuNotifications.length; i++){
-                    menuNotifications[i].appendChild(node);
+                //Add the latest and have not seen notification
+                let node = document.createElement('LI');
+                node.classList.add('dropdown-item');
+                node.classList.add('font-WorkSans-Regular');
+                node.classList.add('py-3');
+                let textNode;
+                // Format datetime
+                let d = new Date(i['created_at']);
+                let t = d.toLocaleString();
+                if(i['type_of_notification'] == 1){
+                    node.id = i['id'];
+                    textNode = document.createTextNode(`Bạn vừa tạo tài khoản vào lúc ${t}`);
+                    node.appendChild(textNode);
+                    for(let i = 0; i < menuNotifications.length; i++){
+                        menuNotifications[i].appendChild(node);
+                    }
                 }
-            }
-            if(i['type_of_notification'] == 2){
-                node.id = i['id'];
-                textNode = document.createTextNode(`Bạn vừa cập nhật hồ sơ vào lúc ${t}`);
-                node.appendChild(textNode);
-                for(let i = 0; i < menuNotifications.length; i++){
-                    menuNotifications[i].appendChild(node);
+                if(i['type_of_notification'] == 2){
+                    node.id = i['id'];
+                    textNode = document.createTextNode(`Bạn vừa cập nhật hồ sơ vào lúc ${t}`);
+                    node.appendChild(textNode);
+                    for(let i = 0; i < menuNotifications.length; i++){
+                        menuNotifications[i].insertBefore(node, menuNotifications[i].firstChild)
+                    }
                 }
-            }
-            if(i['type_of_notifications'] == 3){
-    
+                if(i['type_of_notifications'] == 3){
+        
+                }                
             }
         })
     };
