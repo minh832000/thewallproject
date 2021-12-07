@@ -104,9 +104,9 @@
                                     <p class="text-uppercase font-NotoSans-Bold">Kỹ năng yêu cầu</p>
                                     <!-- Content Field -->
                                     <ul class="list-required-skills font-NotoSans-Bold">
-                                          <li>html</li>
-                                          <li>css</li>
-                                          <li>javascript</li>
+                                          {% for t in item.tag_skill %}
+                                                <li class="bg-light px-3 py-1">{{ t }}</li>
+                                          {% endfor %}
                                     </ul>
                               </div>
                         </div>
@@ -115,7 +115,7 @@
 
                         <div class="post-actions text-end">
                               <a
-                                    href="#"
+                                    href="{% url 'edit-post' item.id %}"
                                     class="post-button font-NotoSans-Bold"
                                     type="button"
                               

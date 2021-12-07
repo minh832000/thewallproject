@@ -160,7 +160,12 @@
                                                 </div>
                                           </div> 
                                           <div id="display_section_Summary" class="d-none">
-                                                <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
+                                                <p 
+                                                      id="#displaySummaryInformation"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.summary }}
+                                                </p>
                                           </div>
                                     {% else %}
                                           <div id="entry_section_Summary" class="d-none">
@@ -174,7 +179,12 @@
                                                 </div>
                                           </div> 
                                           <div id="display_section_Summary">
-                                                <p class="font-WorkSans-Regular">{{ profile.summary }}</p>
+                                                <p
+                                                      id="#displaySummaryInformation"
+                                                      class="font-WorkSans-Regular"
+                                                >
+                                                      {{ profile.summary }}
+                                                </p>
                                           </div>
                                     {% endif %}
                               </div>
@@ -304,7 +314,9 @@
                                           </div>
                                           <!-- Show this block when user updated -->
                                           <div id="display_section_ProfessionalSkill">
-
+                                                {% for t in profile.list_skill_tag %}
+                                                      <span class="font-WorkSans-Regular px-3 py-1 bg-light">{{ t }}</span>
+                                                {% endfor %}
                                           </div>
                                     {% endif %}
                                  
@@ -314,13 +326,27 @@
                               <!-- Header of a profile's item -->
                               <div class="header_information_item">
                                     <p class="font-NotoSans-Bold">Kinh nghiệm làm việc</p>
-                                    <button id="btn-edit-3" class="add-edit" type="button">
-                                          <i class="icofont-pencil-alt-5"></i>
-                                    </button>
+                                    {% if not profile.is_updated_previous_job %}
+                                          <button 
+                                                id="btn-edit-3" 
+                                                class="add-edit d-none" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% else %}
+                                          <button 
+                                                id="btn-edit-3" 
+                                                class="add-edit" 
+                                                type="button"
+                                          >
+                                                <i class="icofont-pencil-alt-5"></i>
+                                          </button>
+                                    {% endif %}
                               </div>
                               <!-- Body of a profile's item -->
                               <div class="body_information_item">
-                                    {% if not profile.is_updated_previous_company %}
+                                    {% if not profile.is_updated_previous_job %}
                                           <!-- Show this block if user have not update information or this fields is empty -->
                                           <div id="entry_section_workExperience">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
@@ -354,7 +380,7 @@
                                          </div>
                                     {% else %}
                                           <!-- Show this block if user have not update information or this fields is empty -->
-                                          <div id="entry_section_workExperience">
+                                          <div id="entry_section_workExperience" class="d-none">
                                                 <p class="text-center font-WorkSans-Regular fs-6 py-3 color-gray">77,9% nhà tuyển dụng được khảo sát coi kinh nghiệm làm việc là dữ liệu quan trọng trong các trong các hồ sơ ứng tuyển. </p>
                                                 <div class="add-edit justify-content-center d-flex" id="add-edit-3">
                                                       <i class="icofont-plus-circle" style="font-size: 18pt; color:#71CFFF;"></i>
@@ -562,7 +588,6 @@
                                           </div>
                                           <div 
                                                 id="display_section_volunteeringActivity" 
-                                                class=""
                                           >
                                                 <p
                                                       id="display_name_volunteeringActivity"
@@ -1153,7 +1178,7 @@
                   >
                         <div 
                               id="id_display_selected_skill_tag"
-                              class="py-3 border-top d-flex align-items-center justify-content-evenly flex-wrap"
+                              class="py-3 border-top d-flex align-items-center justify-content-around flex-wrap"
                         >
                               
                         </div>

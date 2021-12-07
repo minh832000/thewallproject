@@ -23,9 +23,24 @@
                 
                   <div class="col-6 col-80 col-sm-6 col-md-9 col-lg-10">
                         <div class="d-flex justify-content-end d-md-none">
-                              <div class="icon_notify">
+                              <button 
+                                    id="id_dropdown_control_notifications"
+                                    class="icon_notify dropdown-toggle"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                              >
                                     <i class="icofont-notification"></i>
-                              </div>
+                                    <span
+                                          class="numbers_of_notifications">
+                                    </span>
+                              </button>
+                              <ul
+                                    class="dropdown-menu dropdown_menu_notifications p-2"
+                                    aria-labelledby="id_dropdown_control_notifications"
+                              >
+
+                              </ul>
                               <div class="icon_show_menu ms-1">
                                     <i class="icofont-navigation-menu"></i>
                               </div>
@@ -64,10 +79,24 @@
                                     </div>
                                     <div class="nav_item order-2">
                                           <div class="d-flex align-items-center">
-                                                <div class="icon_notify d-none d-md-block">
+                                                <button 
+                                                      id="id_dropdown_control_notifications"
+                                                      class="icon_notify dropdown-toggle d-none d-md-block"
+                                                      type="button"
+                                                      data-bs-toggle="dropdown"
+                                                      aria-expanded="false"
+                                                >
                                                       <i class="icofont-notification"></i>
-                                                </div>
-                                             
+                                                      <span 
+                                                            class="numbers_of_notifications">
+                                                      </span>
+                                                </button>
+                                                <ul 
+                                                      class="dropdown-menu dropdown_menu_notifications p-2"
+                                                      aria-labelledby="id_dropdown_control_notifications"
+                                                >
+
+                                                </ul>
                                                 <div class="accordion_group">
                                                       <button 
                                                             id="id_header_AccountSetting" 

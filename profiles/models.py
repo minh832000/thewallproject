@@ -2,8 +2,12 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 UserModel = get_user_model()
+
+from notifications.models import Notification as NotificationModel
 
 class Profile(models.Model):
       GENDER_MALE       = 1
@@ -71,7 +75,7 @@ class Profile(models.Model):
       desired_working_location            = models.CharField(max_length=64, null=True, blank=True)
 
       # Form: "Kỹ năng chuyên môn"
-      list_skil_tag     = ArrayField(
+      list_skill_tag     = ArrayField(
                               models.CharField(max_length=64, null=True, blank=True),
                               size=10,
                               null=True,
@@ -83,6 +87,15 @@ class Profile(models.Model):
       # show how we want it to be displayed
       def __str__(self):
           return f'{self.user.username} profile'
+
+      # Mission: Sending the signal to inform that the user's profile is updated
+      def inform_profile_updated(sender, instance, created, *args, **kwargs):
+            if not created:
+                  profile = instance
+                  creater = profile.user
+
+                  initializing_notification = NotificationModel(type_of_notification=2, sender=creater, receiver=creater)
+                  initializing_notification.save()
 
 class RecruiterProfile(models.Model):
       user                                      = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name="profile_recruiter")
@@ -101,6 +114,20 @@ class RecruiterProfile(models.Model):
       class Meta:
             verbose_name            = _('Profile Recruiter')
             verbose_name_plural     = _('Profiles Recruiter')
-       # show how we want it to be displayed
+      # show how we want it to be displayed
       def __str__(self):
           return f'Profile Recruiter-{self.user.username}'
+      
+      # Mission: Sending the signal to inform that the user's profile is updated
+      def inform_recruiter_profile_updated(sender, instance, created, *args, **kwargs):
+            if not created:
+                  recruiter_profile = instance
+                  creater = recruiter_profile.user
+
+                  initializing_notification = NotificationModel(type_of_notification=2, sender=creater, receiver=creater)
+                  initializing_notification.save()
+
+# Signal of Recruiter Profile
+post_save.connect(RecruiterProfile.inform_recruiter_profile_updated, sender=RecruiterProfile)
+# Signal of Profile
+post_save.connect(Profile.inform_profile_updated, sender=Profile)

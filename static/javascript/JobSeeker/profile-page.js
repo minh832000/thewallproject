@@ -104,9 +104,6 @@ $(document).on('change', '#changeProfilePicture', function() {
            contentType: false,
            processData: false,
            success: (res) => {
-
-           },
-           success: (res) => {
                console.log('Upload Profile Image Success ');
            },
            error: (error) => {
@@ -132,16 +129,20 @@ $(document).on('click', '#submitSummaryForm', (e) => {
         enctype: 'multipart/form-data',
         contentType: false,
         processData: false,
-        success: (res) => {
+        success: res => {
+            console.log(res['summary'])
+            $('#frame-2').hide();
+            $('.over-edit').remove();
             if(res['is_updated_summary']) {
                 $('#entry_section_Summary').addClass('d-none');
                 $('#display_section_Summary').removeClass('d-none');
+
+                $('#displaySummaryInformation').text(res['summary']);
             }
             else {
                 $('#entry_section_Summary').addClass('d-none');
                 $('#display_section_Summary').removeClass('d-none');
             }
-            $('#displaySummaryInformation').text(res['summary']);
         },
         error: (error) => {
             console.log(error);
@@ -331,7 +332,7 @@ $(document).on('click', '#btn_submit_volunteeringActivityForm', e => {
             // update the fields which are just changed
             console.log(typeof(res['is_updated_volunteering_activity']));
             console.log(res['is_updated_volunteering_activity']);
-            if (res['is_updated_voluntering_activity']) {
+            if (res['is_updated_volunteering_activity']) {
                 $('#display_section_volunteeringActivity').removeClass('d-none');
                 $('#entry_section_volunteeringActivity').addClass('d-none');
                 console.log('true');

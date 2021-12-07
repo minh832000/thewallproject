@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
+    'notifications.apps.NotificationsConfig',
     'posts',
     'ckeditor',
     'fields_job',

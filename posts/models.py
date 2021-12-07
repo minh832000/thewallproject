@@ -1,11 +1,14 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch.dispatcher import receiver
 from django.utils import timezone
 from accounts.models import User
 from fields_job.models import FieldJob
 from ckeditor.fields import RichTextField
-from profiles.models import Profile
-# Create your models here.
 from django.contrib.postgres.fields import ArrayField
+
+from notifications.models import Notification
+
 class Post(models.Model):
     id                  = models.AutoField(primary_key=True)
     author              = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -30,7 +33,19 @@ class Post(models.Model):
         return self.name_post
 
 class Post_apply(models.Model):
-    id=models.AutoField(primary_key=True)
-    user_apply=models.ForeignKey(User,blank=True,null=True,on_delete=models.SET_NULL)
-    post_apply=models.ForeignKey(Post, blank=True,null=True,on_delete=models.SET_NULL)
-    status_apply=models.CharField(max_length=20, blank=True,null=True, default="wait_accept")
+    id           = models.AutoField(primary_key=True)
+    user_apply   = models.ForeignKey(User,blank=True,null=True,on_delete=models.SET_NULL)
+    post_apply   = models.ForeignKey(Post, blank=True,null=True,on_delete=models.SET_NULL)
+    status_apply = models.CharField(max_length=20, blank=True,null=True, default="wait_accept")
+
+    def create_application(sender, instance, created, *args, **kwarg):
+        if created:
+            application = instance
+            applicant = application.user_apply.id
+            post = application.post
+            
+            notification = Notification(type_of_notification=3, sender=applicant, receiver=post.author.id, post=post.id)
+
+
+# Signal Post_apply
+post_save.connect(Post_apply.create_application, sender=Post_apply)
